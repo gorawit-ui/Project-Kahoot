@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { driveImageUrl, sampleQuestions } from "@/data/questions";
 import { guestTitle } from "@/lib/guest-title";
+import { getPlayerId, openRoomChannel, sendRoomEvent } from "@/lib/live-room";
 
 const DEFAULT_SECONDS = 15;
 
@@ -16,11 +17,26 @@ export default function PlayPage() {
   const [nickname, setNickname] = useState("Guest");
   const [score, setScore] = useState(0);
   const [lastPoints, setLastPoints] = useState<number | null>(null);
+  const [live, setLive] = useState(false);
+  const channelRef = useRef<ReturnType<typeof openRoomChannel>>(null);
   const question = sampleQuestions[questionIndex];
   const expired = seconds === 0 && !submitted;
 
   useEffect(() => {
     setNickname(localStorage.getItem("jixgo-nickname") || "Guest");
+    const room = new URLSearchParams(window.location.search).get("room");
+    const initialQuestion = Number(new URLSearchParams(window.location.search).get("question"));
+    if (Number.isInteger(initialQuestion) && initialQuestion >= 0) setQuestionIndex(initialQuestion);
+    const channel = openRoomChannel(room || "", (event) => {
+      if (event.type === "question-changed" || event.type === "game-started") {
+        setQuestionIndex(event.questionIndex);
+        setFinished(false);
+      }
+      if (event.type === "game-finished") setFinished(true);
+    });
+    channelRef.current = channel;
+    setLive(Boolean(channel));
+    return () => { channel?.unsubscribe(); };
   }, []);
 
   useEffect(() => {
@@ -44,6 +60,7 @@ export default function PlayPage() {
     setSubmitted(true);
     setLastPoints(points);
     setScore((value) => value + points);
+    sendRoomEvent(channelRef.current, { type: "player-answered", playerId: getPlayerId(), nickname, questionIndex, selectedIndex: index, answeredAt: Date.now() });
   }
 
   function goNext() {
@@ -83,7 +100,7 @@ export default function PlayPage() {
     <main className="page-shell">
       <section className="shell-content">
         <div className="topbar">
-          <span className="question-number">QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length}</span>
+          <span className="question-number">QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length} · {live ? "LIVE" : "SOLO"}</span>
           <span className={`timer ${seconds < 10 ? "danger" : ""}`}>{seconds}</span>
         </div>
         <div className="panel question-card player-question-card">

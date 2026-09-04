@@ -3,22 +3,35 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
+import { getPlayerId, openRoomChannel, sendRoomEvent, type LiveEvent } from "@/lib/live-room";
 
 export default function LobbyPage() {
   const [room, setRoom] = useState("142426");
   const [nickname, setNickname] = useState("Guest");
   const [entering, setEntering] = useState(false);
+  const [live, setLive] = useState(false);
+  const [channel, setChannel] = useState<ReturnType<typeof openRoomChannel>>(null);
 
   useEffect(() => {
     const queryRoom = new URLSearchParams(window.location.search).get("room");
     setRoom(queryRoom || "142426");
-    setNickname(localStorage.getItem("jixgo-nickname") || "Guest");
+    const savedNickname = localStorage.getItem("jixgo-nickname") || "Guest";
+    setNickname(savedNickname);
     const shouldAnimate = new URLSearchParams(window.location.search).get("enter") === "1";
     setEntering(shouldAnimate);
+    const roomChannel = openRoomChannel(queryRoom || "142426", (event: LiveEvent) => {
+      if (event.type === "game-started" || event.type === "question-changed") {
+        window.location.href = `/play?room=${queryRoom || "142426"}&question=${event.questionIndex}`;
+      }
+    });
+    setChannel(roomChannel);
+    setLive(Boolean(roomChannel));
+    if (roomChannel) sendRoomEvent(roomChannel, { type: "player-joined", playerId: getPlayerId(), nickname: savedNickname });
     if (shouldAnimate) {
       const timer = window.setTimeout(() => setEntering(false), 1400);
-      return () => window.clearTimeout(timer);
+      return () => { window.clearTimeout(timer); roomChannel?.unsubscribe(); };
     }
+    return () => roomChannel?.unsubscribe();
   }, []);
 
   return (
@@ -38,6 +51,7 @@ export default function LobbyPage() {
           <p className="player-count">ผู้เล่นในห้องนี้ <strong>24</strong> / 100 คน</p>
           <span className="pill">SOLO MODE · 9 QUESTIONS · 15 SEC</span>
           <div className="lobby-waiting-note">นี่คือบัตรเข้างานดิจิทัลของคุณ เก็บไว้เป็นความทรงจำได้เลย</div>
+          <div className="live-status">{live ? "● เชื่อมต่อกับห้องจริงแล้ว" : "โหมดตัวอย่าง · ยังไม่ได้เชื่อม Supabase"}</div>
           <Link className="button primary lobby-start" href={`/play?room=${room}`}>ฉันพร้อมแล้ว ✦</Link>
         </div>
       </section>

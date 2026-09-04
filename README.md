@@ -21,6 +21,17 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Optional live room connection
+
+The Host–Player broadcast adapter activates when these public Supabase variables are set in Vercel/local environment:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+```
+
+Run `supabase/schema.sql` before adding persisted rooms. Never expose a Supabase `service_role` key in browser variables. Without these variables, the Solo/demo flow remains available.
+
 ## Routes
 
 - `/` Homepage
