@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function LobbyPage() {
-  const params = useSearchParams();
-  const room = params.get("room") || "142426";
-  const nickname = typeof window !== "undefined" ? localStorage.getItem("jixgo-nickname") || "Guest" : "Guest";
+  const [room, setRoom] = useState("142426");
+  const [nickname, setNickname] = useState("Guest");
+
+  useEffect(() => {
+    const queryRoom = new URLSearchParams(window.location.search).get("room");
+    setRoom(queryRoom || "142426");
+    setNickname(localStorage.getItem("jixgo-nickname") || "Guest");
+  }, []);
 
   return (
     <main className="page-shell">
