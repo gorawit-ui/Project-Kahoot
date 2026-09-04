@@ -1,3 +1,34 @@
 # JIXGO Magical 24 — Interactive Fan Meet Quiz
 
-Mobile-first real-time fan meet quiz platform.
+Mobile-first real-time fan meet quiz platform for Jixgo.
+
+## Current scaffold
+
+- Next.js + TypeScript App Router
+- Magical mobile-first Homepage with lightweight canvas starfield/fireworks
+- Join Room, Lobby, Player Question, and Host Dashboard demo routes
+- Timer danger state below 10 seconds
+- Configurable game defaults and scoring utility
+- Supabase-ready schema for solo mode and future team mode
+- Host leaderboard preview: Top 5 / all players
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:3000.
+
+## Routes
+
+- `/` Homepage
+- `/join` Player join
+- `/lobby` Lobby
+- `/play` Sample player question
+- `/host` Host dashboard
+
+## Product notes
+
+The MVP keeps Solo Mode visible and Team Mode hidden in the UI while preserving its data-model foundation. Main branch is kept separate until Preview/UAT approval.
