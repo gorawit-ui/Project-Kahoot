@@ -11,17 +11,21 @@ export default function HomePage() {
     <main className="page-shell home-shell">
       <div className="hero-art" aria-hidden="true" />
       <MagicBackdrop />
-      <div className="portal portal-one" />
-      <div className="portal portal-two" />
+      <div className="magic-portal-ring ring-one" aria-hidden="true" />
+      <div className="magic-portal-ring ring-two" aria-hidden="true" />
+      <div className="light-sweep" aria-hidden="true" />
 
       <section className="hero-card">
         <div className="presented-mark" aria-label="Jixgo Presents">
-          <span>✦</span><i /> <strong>Jixgo Presents</strong> <i /><span>✦</span>
+          <span>✦</span><i /><strong>Jixgo Presents</strong><i /><span>✦</span>
         </div>
 
-        <div className="brand-lockup" aria-label="Jixgo Magical 24">
-          <div className="brand-name">Jixgo</div>
-          <div className="brand-ribbon"><span>MAGICAL</span><strong>24</strong></div>
+        <div className="logo-stage">
+          <div className="logo-aura" aria-hidden="true" />
+          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" />
+          <div className="logo-spark spark-one" aria-hidden="true">✦</div>
+          <div className="logo-spark spark-two" aria-hidden="true">✧</div>
+          <div className="logo-spark spark-three" aria-hidden="true">✦</div>
         </div>
 
         <div className="hero-invitation">
@@ -32,12 +36,12 @@ export default function HomePage() {
         <div className="event-ticket">
           <div className="event-ticket-heading">THE MAGICAL FAN MEET</div>
           <div className="event-details">
-            <div className="event-detail">
+            <div className="event-detail date-detail">
               <span className="event-detail-label">DATE</span>
-              <strong>14 NOVEMBER 2026</strong>
-              <small>วันเสาร์ที่ 14 พฤศจิกายน 2026</small>
+              <div className="date-display"><strong>14</strong><span><b>NOVEMBER</b><small>2026</small></span></div>
+              <small>วันเสาร์ที่ 14 พฤศจิกายน</small>
             </div>
-            <div className="event-detail">
+            <div className="event-detail venue-detail">
               <span className="event-detail-label">VENUE</span>
               <strong>Thee &amp; Thou</strong>
               <small>สถานที่จัดงาน</small>
@@ -49,15 +53,7 @@ export default function HomePage() {
           <div className="join-panel-heading">พร้อมเข้าสู่เกมหรือยัง?</div>
           <p className="join-panel-note">ใส่รหัสห้องจาก Host เพื่อเริ่มต้นการผจญภัย</p>
           <div className="join-row">
-            <input
-              id="room"
-              value={room}
-              onChange={(event) => setRoom(event.target.value.toUpperCase())}
-              placeholder="รหัสห้อง"
-              maxLength={6}
-              inputMode="numeric"
-              aria-label="รหัสห้อง"
-            />
+            <input id="room" value={room} onChange={(event) => setRoom(event.target.value.toUpperCase())} placeholder="รหัสห้อง" maxLength={6} inputMode="numeric" aria-label="รหัสห้อง" />
             <Link className="button primary" href={room ? `/join?room=${room}` : "/join"}>เข้าสู่เกม</Link>
           </div>
           <div className="join-secondary">ยังไม่มีรหัสห้อง? <Link href="/join">เข้าร่วมเกมที่นี่</Link></div>
