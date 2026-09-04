@@ -135,6 +135,35 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .join-secondary a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
 .host-link { display: inline-flex; gap: 7px; margin-top: 13px; color: #c4daf8; font-size: .72rem; opacity: .9; }
 .host-link span { color: var(--gold-soft); }
+.guest-title-preview { padding: 10px 12px; border: 1px solid rgba(244, 201, 107, .24); border-radius: 10px; color: #c9dcfb; background: rgba(255,255,255,.045); font-size: .76rem; line-height: 1.5; }
+.guest-title-preview strong { color: var(--ivory); }
+.guest-title-preview em { color: var(--gold-soft); font-style: normal; }
+.portal-transition { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; align-content: center; gap: 18px; color: var(--gold-soft); background: rgba(3, 12, 42, .82); backdrop-filter: blur(8px); animation: portal-fade 1.4s ease both; }
+.portal-transition-ring { display: grid; place-items: center; width: 94px; height: 94px; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 14px rgba(244, 201, 107, .08), 0 0 44px rgba(244, 201, 107, .44); color: var(--gold-soft); font-size: 2.5rem; animation: portal-spin 1.4s ease-in-out both; }
+.guest-pass { position: relative; overflow: hidden; }
+.guest-pass::before { content: "✦  ✧  ✦"; position: absolute; top: 13px; right: 16px; color: rgba(255, 233, 173, .42); letter-spacing: 8px; }
+.guest-pass-arrive { animation: pass-arrive .7s cubic-bezier(.18,.88,.28,1) both; }
+.guest-pass-label { margin-top: 20px; color: var(--gold-soft); font: 600 .72rem/1 "Cinzel Decorative", serif; letter-spacing: .14em; }
+.guest-pass-name { margin-top: 16px; color: var(--ivory); font: 700 clamp(2.2rem, 11vw, 4rem)/.9 "Berkshire Swash", "Cormorant Garamond", serif; }
+.guest-pass-title { margin-top: 10px; color: var(--gold); font-size: .82rem; }
+.guest-pass .room-code { margin: 26px 0 12px; font-size: clamp(2.8rem, 16vw, 6rem); }
+.lobby-start { width: min(100%, 300px); margin-top: 24px; }
+.answer-feedback { display: grid; gap: 3px; padding: 12px 14px; border-radius: 12px; font-size: .82rem; line-height: 1.5; }
+.answer-feedback strong { font-size: .95rem; }
+.answer-feedback.correct { border: 1px solid rgba(117, 217, 156, .52); color: #baf4c9; background: rgba(33, 116, 86, .25); }
+.answer-feedback.wrong { border: 1px solid rgba(255, 174, 115, .42); color: #ffe0b9; background: rgba(148, 77, 33, .24); }
+.finish-card { gap: 18px; }
+.result-card { width: min(100%, 340px); padding: 30px 18px; border: 1px solid rgba(244, 201, 107, .62); border-radius: 22px; background: radial-gradient(circle at 50% 38%, rgba(35, 91, 180, .8), rgba(4, 18, 61, .96)); box-shadow: inset 0 0 0 6px rgba(255,255,255,.035), 0 14px 30px rgba(0,0,0,.25); }
+.result-card-kicker { color: var(--gold-soft); font: 600 .68rem/1 "Cinzel Decorative", serif; letter-spacing: .15em; }
+.result-card-name { margin-top: 28px; color: var(--ivory); font: 700 2.2rem/1 "Berkshire Swash", "Cormorant Garamond", serif; }
+.result-card-title { margin-top: 10px; color: var(--gold); font-size: .86rem; }
+.result-score { margin-top: 28px; color: var(--gold-soft); font: 700 3.8rem/.8 "Cormorant Garamond", serif; text-shadow: 0 2px 0 #8c5a1e; }
+.result-card-caption { margin-top: 18px; color: #b9dbff; font-size: .58rem; letter-spacing: .12em; }
+.result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: min(100%, 340px); }
+.result-actions .button { padding-inline: 8px; font-size: .78rem; }
+@keyframes portal-fade { 0%, 78% { opacity: 1; } 100% { opacity: 0; pointer-events: none; } }
+@keyframes portal-spin { from { transform: scale(.6) rotate(-24deg); opacity: .2; } 65% { transform: scale(1.08) rotate(12deg); opacity: 1; } to { transform: scale(1) rotate(0); } }
+@keyframes pass-arrive { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @media (max-width: 380px) {
   .hero-card { padding-left: 2px; padding-right: 2px; }
   .brand-name { font-size: 5rem; }

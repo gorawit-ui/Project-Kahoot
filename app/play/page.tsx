@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { driveImageUrl, sampleQuestions } from "@/data/questions";
+import { guestTitle } from "@/lib/guest-title";
 
 const DEFAULT_SECONDS = 15;
 
@@ -12,13 +13,21 @@ export default function PlayPage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [nickname, setNickname] = useState("Guest");
+  const [score, setScore] = useState(0);
+  const [lastPoints, setLastPoints] = useState<number | null>(null);
   const question = sampleQuestions[questionIndex];
   const expired = seconds === 0 && !submitted;
+
+  useEffect(() => {
+    setNickname(localStorage.getItem("jixgo-nickname") || "Guest");
+  }, []);
 
   useEffect(() => {
     setSeconds(DEFAULT_SECONDS);
     setSelected(null);
     setSubmitted(false);
+    setLastPoints(null);
   }, [questionIndex]);
 
   useEffect(() => {
@@ -29,8 +38,12 @@ export default function PlayPage() {
 
   function selectAnswer(index: number) {
     if (submitted || seconds === 0) return;
+    const isCorrect = index === question.correctIndex;
+    const points = isCorrect ? 1000 + Math.round((seconds / DEFAULT_SECONDS) * 500) : 0;
     setSelected(index);
     setSubmitted(true);
+    setLastPoints(points);
+    setScore((value) => value + points);
   }
 
   function goNext() {
@@ -46,10 +59,20 @@ export default function PlayPage() {
       <main className="page-shell">
         <section className="shell-content">
           <div className="panel lobby-center finish-card">
-            <div className="eyebrow-small">QUEST COMPLETE</div>
+            <div className="eyebrow-small">QUEST COMPLETE · {nickname.toUpperCase()}</div>
             <h1 className="title">จบการเดินทางแล้ว ✦</h1>
-            <p className="waiting">รอ Host แสดงผลคะแนนและผู้ชนะของห้องนี้</p>
-            <Link className="button primary" href="/">กลับหน้าแรก</Link>
+            <div className="result-card" id="result-card">
+              <div className="result-card-kicker">JIXGO MAGICAL 24</div>
+              <div className="result-card-name">{nickname}</div>
+              <div className="result-card-title">{guestTitle(nickname)}</div>
+              <div className="result-score">{score.toLocaleString()}</div>
+              <div className="result-card-caption">YOU COMPLETED THE MAGICAL JOURNEY</div>
+            </div>
+            <div className="result-actions">
+              <button className="button primary" onClick={() => shareResult(nickname, score)}>แชร์ผลลัพธ์ ✦</button>
+              <button className="button ghost" onClick={() => downloadResult(nickname, score)}>บันทึกการ์ด</button>
+            </div>
+            <Link className="back-link" href="/">กลับหน้าแรก</Link>
           </div>
         </section>
       </main>
@@ -76,6 +99,10 @@ export default function PlayPage() {
               </button>
             ))}
           </div>
+          {submitted ? <div className={`answer-feedback ${selected === question.correctIndex ? "correct" : "wrong"}`} role="status">
+            <strong>{selected === question.correctIndex ? "เวทมนตร์ทำงานแล้ว ✦" : "คาถานี้พลาดไปนิดเดียว"}</strong>
+            <span>{selected === question.correctIndex ? `+${lastPoints?.toLocaleString()} คะแนน · ตอบได้ยอดเยี่ยม` : `คำตอบคือ ${question.choices[question.correctIndex]} · ไปต่อกันได้เลย`}</span>
+          </div> : null}
           <div className={`answer-status ${submitted ? "submitted" : ""} ${expired ? "expired" : ""}`} role="status">
             {submitted ? "ส่งคำตอบแล้ว ✦ รอ Host เฉลยได้เลย" : expired ? "หมดเวลาแล้ว ข้อนี้ไม่ได้รับคำตอบ" : "แตะคำตอบที่คิดว่าใช่ที่สุด"}
           </div>
@@ -86,3 +113,18 @@ export default function PlayPage() {
     </main>
   );
 }
+
+function shareResult(nickname: string, score: number) {
+  const text = `ฉันจบ JIXGO Magical 24 ในฉายา ${guestTitle(nickname)} ได้ ${score.toLocaleString()} คะแนน ✦`;
+  if (navigator.share) navigator.share({ title: "JIXGO Magical 24", text }).catch(() => undefined);
+  else navigator.clipboard?.writeText(text);
+}
+
+function downloadResult(nickname: string, score: number) {
+  const safeName = nickname.replace(/[^a-zA-Z0-9ก-๙_-]/g, "") || "guest";
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071f5a"/><stop offset="1" stop-color="#06143a"/></linearGradient></defs><rect width="1080" height="1350" rx="42" fill="url(#bg)"/><circle cx="540" cy="510" r="330" fill="none" stroke="#f4c96b" stroke-opacity=".45"/><text x="540" y="180" fill="#ffe9ad" font-size="34" text-anchor="middle" font-family="serif" letter-spacing="8">JIXGO MAGICAL 24</text><text x="540" y="520" fill="#fff9eb" font-size="88" text-anchor="middle" font-family="serif">${escapeXml(nickname)}</text><text x="540" y="600" fill="#f4c96b" font-size="34" text-anchor="middle" font-family="sans-serif">${escapeXml(guestTitle(nickname))} ✦</text><text x="540" y="850" fill="#ffe9ad" font-size="150" text-anchor="middle" font-family="serif">${score.toLocaleString()}</text><text x="540" y="930" fill="#b9dbff" font-size="24" text-anchor="middle" font-family="sans-serif" letter-spacing="4">YOU COMPLETED THE MAGICAL JOURNEY</text></svg>`;
+  const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+  const link = document.createElement("a"); link.href = url; link.download = `jixgo-magical-24-${safeName}.svg`; link.click(); URL.revokeObjectURL(url);
+}
+
+function escapeXml(value: string) { return value.replace(/[<>&'\"]/g, (character) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", "\"": "&quot;" }[character] ?? character)); }
