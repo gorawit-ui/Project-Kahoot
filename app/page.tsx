@@ -21,8 +21,9 @@ export default function HomePage() {
         </div>
 
         <div className="logo-stage">
+          <div className="logo-plate" aria-hidden="true" />
           <div className="logo-aura" aria-hidden="true" />
-          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" />
+          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" width={1536} height={1024} />
           <div className="logo-spark spark-one" aria-hidden="true">✦</div>
           <div className="logo-spark spark-two" aria-hidden="true">✧</div>
           <div className="logo-spark spark-three" aria-hidden="true">✦</div>
@@ -30,18 +31,18 @@ export default function HomePage() {
 
         <div className="hero-invitation">
           <p className="hero-kicker"><span>✦</span> Join us for a magical celebration! <span>✦</span></p>
-          <p className="hero-copy">มาร่วมเปิดประตูสู่โลกเวทมนตร์ของ Jixgo</p>
+          <p className="hero-copy">ประตูสู่โลกเวทมนตร์ของ Jixgo กำลังเปิด</p>
         </div>
 
         <div className="event-ticket">
           <div className="event-ticket-heading">THE MAGICAL FAN MEET</div>
           <div className="event-details">
-            <div className="event-detail date-detail">
+            <div className="event-detail date-detail" aria-label="วันจัดงาน 14 November 2026">
               <span className="event-detail-label">DATE</span>
               <div className="date-display"><strong>14</strong><span><b>NOVEMBER</b><small>2026</small></span></div>
               <small>วันเสาร์ที่ 14 พฤศจิกายน</small>
             </div>
-            <div className="event-detail venue-detail">
+            <div className="event-detail venue-detail" aria-label="สถานที่จัดงาน Thee and Thou">
               <span className="event-detail-label">VENUE</span>
               <strong>Thee &amp; Thou</strong>
               <small>สถานที่จัดงาน</small>
@@ -50,7 +51,7 @@ export default function HomePage() {
         </div>
 
         <div className="join-panel">
-          <div className="join-panel-heading">พร้อมเข้าสู่เกมหรือยัง?</div>
+          <div className="join-panel-heading">พร้อมเข้าสู่โลกเวทมนตร์หรือยัง?</div>
           <p className="join-panel-note">ใส่รหัสห้องจาก Host เพื่อเริ่มต้นการผจญภัย</p>
           <div className="join-row">
             <input id="room" value={room} onChange={(event) => setRoom(event.target.value.toUpperCase())} placeholder="รหัสห้อง" maxLength={6} inputMode="numeric" aria-label="รหัสห้อง" />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cinzel+Decorative:wght@400;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
 
 :root {
   --midnight: #06143a;
@@ -206,4 +206,135 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
   .question-image-frame.portrait, .preview-shell .question-image-frame.portrait { height: 300px; }
   .question-image-frame.square, .preview-shell .question-image-frame.square { height: 320px; }
   .question-image-frame.tall, .preview-shell .question-image-frame.tall { height: 320px; }
+}
+
+/* Final visual pass: centered artwork frames and invitation-first home */
+.logo-stage {
+  width: min(100%, 500px);
+  min-height: 218px;
+  aspect-ratio: 1.5 / 1;
+  margin: 10px auto 0;
+  overflow: visible;
+}
+.logo-plate {
+  position: absolute;
+  z-index: 0;
+  inset: 11% 3%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(5, 24, 76, .76) 0%, rgba(7, 32, 91, .36) 52%, transparent 74%);
+  box-shadow: 0 0 42px rgba(123, 184, 255, .2);
+}
+.event-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.presented-mark {
+  position: relative;
+  z-index: 4;
+  margin-top: 3px;
+}
+.hero-invitation {
+  position: relative;
+  z-index: 4;
+  margin-top: 2px;
+}
+.date-display {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+}
+.date-display > strong {
+  line-height: .78;
+}
+.date-display > span {
+  min-width: 0;
+  text-align: left;
+}
+.date-display b,
+.date-display small {
+  white-space: nowrap;
+}
+.date-detail > small {
+  text-align: center;
+}
+.join-panel {
+  position: relative;
+  z-index: 4;
+}
+.host-link {
+  position: relative;
+  z-index: 4;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9px;
+}
+
+/* Every question gets one predictable visual footprint. The artwork can crop,
+   contain, or use a circle without changing the question layout below it. */
+.question-image-frame,
+.question-image-frame.portrait,
+.question-image-frame.square,
+.question-image-frame.tall,
+.preview-shell .question-image-frame,
+.preview-shell .question-image-frame.portrait,
+.preview-shell .question-image-frame.square,
+.preview-shell .question-image-frame.tall {
+  width: min(100%, 360px);
+  height: 220px;
+  aspect-ratio: auto;
+  margin-inline: auto;
+  padding: 10px;
+  overflow: hidden;
+}
+.question-image-frame.image-shape-rounded { border-radius: 20px; }
+.question-image-frame.image-shape-square {
+  width: min(100%, 246px);
+  border-radius: 16px;
+}
+.question-image-frame.image-shape-circle {
+  width: min(100%, 220px);
+  height: 220px;
+  border-radius: 50%;
+  padding: 9px;
+}
+.question-image-frame .question-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-position: center;
+  border-radius: 12px;
+}
+.question-image-frame.image-fit-contain .question-image { object-fit: contain; }
+.question-image-frame.image-fit-cover .question-image { object-fit: cover; }
+.question-image-frame.image-shape-circle .question-image {
+  border-radius: 50%;
+}
+.question-image-frame.map-art {
+  background: radial-gradient(circle, rgba(23, 79, 174, .32), rgba(4, 18, 61, .22) 68%, transparent 100%);
+}
+.question-image-frame.map-art .question-image {
+  object-fit: contain;
+  border-radius: 50%;
+}
+.question-image-frame.song-art .question-image {
+  object-fit: contain;
+  object-position: center;
+}
+@media (max-width: 380px) {
+  .logo-stage { min-height: 198px; }
+  .question-image-frame,
+  .question-image-frame.portrait,
+  .question-image-frame.square,
+  .question-image-frame.tall,
+  .preview-shell .question-image-frame,
+  .preview-shell .question-image-frame.portrait,
+  .preview-shell .question-image-frame.square,
+  .preview-shell .question-image-frame.tall { height: 204px; }
+  .question-image-frame.image-shape-circle { width: 204px; height: 204px; }
 }
