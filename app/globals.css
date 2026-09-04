@@ -225,6 +225,10 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
   box-shadow: 0 0 42px rgba(123, 184, 255, .2);
 }
 .event-logo {
+  /* The supplied transparent canvas has ~32px more empty space on the right.
+     Offset the rendered artwork so its visible center, not its canvas center,
+     aligns with the hero on narrow screens and desktop. */
+  left: 2.6%;
   width: 100%;
   height: auto;
   max-height: none;
