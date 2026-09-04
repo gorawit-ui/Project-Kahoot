@@ -110,7 +110,15 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .brand-ribbon strong { color: #d99c2b; font: 700 clamp(2.2rem, 11vw, 4.5rem)/.7 "Cormorant Garamond", serif; text-shadow: 0 1px 0 #fff, 0 2px 0 #a96618; }
 .hero-invitation { width: min(100%, 500px); margin: 12px auto 0; padding: 14px 16px 13px; border-top: 1px solid rgba(255, 226, 151, .5); border-bottom: 1px solid rgba(255, 226, 151, .5); background: linear-gradient(90deg, transparent, rgba(8, 31, 93, .5), transparent); }
 .hero-kicker { margin: 0; color: var(--gold-soft); font: 600 clamp(1.12rem, 5vw, 1.7rem)/1.22 "Cormorant Garamond", serif; text-shadow: 0 2px 9px rgba(0,0,0,.45); }
-.hero-kicker span { color: var(--gold); padding: 0 4px; }
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.5vw, 10px);
+  white-space: nowrap;
+  font-size: clamp(.9rem, 4.6vw, 1.7rem);
+}
+.hero-kicker span { flex: 0 0 auto; color: var(--gold); padding: 0; }
 .hero-copy { max-width: 320px; margin: 8px auto 0; color: #eef5ff; font-size: .9rem; line-height: 1.65; }
 .event-ticket { width: min(100%, 480px); margin-top: 18px; padding: 12px; border: 1px solid rgba(255, 224, 145, .72); border-radius: 17px; background: linear-gradient(135deg, rgba(8, 30, 91, .92), rgba(18, 61, 132, .76)); box-shadow: 0 12px 28px rgba(0, 8, 38, .32), inset 0 0 0 1px rgba(185, 219, 255, .12); }
 .event-ticket-heading { margin-bottom: 9px; color: var(--gold-soft); font: 600 .7rem/1 "Cinzel Decorative", serif; letter-spacing: .12em; }
