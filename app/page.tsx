@@ -23,7 +23,7 @@ export default function HomePage() {
         <div className="logo-stage">
           <div className="logo-plate" aria-hidden="true" />
           <div className="logo-aura" aria-hidden="true" />
-          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" width={1175} height={945} />
+          <img className="event-logo" src="/assets/logo-jixgo.png" alt="JIXGO Magical 24" width={1238} height={1046} />
           <div className="logo-spark spark-one" aria-hidden="true">✦</div>
           <div className="logo-spark spark-two" aria-hidden="true">✧</div>
           <div className="logo-spark spark-three" aria-hidden="true">✦</div>
