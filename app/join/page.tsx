@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { guestTitle } from "@/lib/guest-title";
 
 export default function JoinPage() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function JoinPage() {
           <form className="form-stack" onSubmit={submit} style={{ marginTop: 24 }}>
             <label>รหัสห้อง<input className="code-input" value={room} onChange={(e) => setRoom(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="เช่น 142426" maxLength={6} inputMode="numeric" required /></label>
             <label>ชื่อที่ใช้เล่น<input value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="ชื่อเล่น / นามแฝง" maxLength={24} required /></label>
-            {nickname.trim() ? <div className="guest-title-preview">ฉายาของคุณ · <strong>{nickname.trim()}</strong> จะเป็น <em>ผู้ตามหาแสงดาว</em> ✦</div> : null}
+            {nickname.trim() ? <div className="guest-title-preview">ฉายาของคุณ · <strong>{nickname.trim()}</strong> จะเป็น <em>{guestTitle(nickname.trim())}</em> ✦</div> : null}
             <button className="button primary" type="submit">เข้าร่วมเกม ✦</button>
           </form>
         </div>
