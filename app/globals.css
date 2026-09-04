@@ -93,3 +93,45 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .hero-art { position: fixed; inset: 0; z-index: -3; background-image: linear-gradient(180deg, rgba(5, 18, 64, .18), rgba(4, 12, 43, .76)), url("/assets/background-00.jpg"); background-position: center top; background-size: cover; opacity: .9; transform: scale(1.03); animation: hero-drift 18s ease-in-out infinite alternate; }
 @keyframes hero-drift { from { transform: scale(1.03) translate3d(0, 0, 0); } to { transform: scale(1.08) translate3d(0, -1%, 0); } }
 .home-shell::after { background: linear-gradient(180deg, rgba(4, 14, 50, .12) 0%, rgba(4, 12, 43, .62) 53%, rgba(4, 10, 33, .9) 100%); }
+
+/* Homepage Design Gate v2: invitation-first hierarchy */
+.hero-card { padding-top: 30px; padding-bottom: 26px; }
+.presented-mark { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--gold-soft); font: 600 .72rem/1 "Cinzel Decorative", serif; letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.42); }
+.presented-mark span { color: var(--gold); font-size: 1.1rem; }
+.presented-mark i { display: block; width: clamp(22px, 10vw, 70px); height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.presented-mark i:nth-of-type(2) { background: linear-gradient(90deg, var(--gold), transparent); }
+.brand-lockup { margin: 18px 0 12px; }
+.brand-name { position: relative; color: transparent; background: linear-gradient(160deg, #fffdf2 12%, #ffe9a9 48%, #d59a35 83%); -webkit-background-clip: text; background-clip: text; font-family: "Berkshire Swash", "Cormorant Garamond", serif; font-size: clamp(5.4rem, 27vw, 11rem); line-height: .72; letter-spacing: .01em; text-shadow: 0 2px 0 rgba(104, 54, 10, .72), 0 0 14px rgba(255, 229, 156, .72), 0 10px 24px rgba(0, 5, 35, .48); transform: rotate(-3deg); }
+.brand-name::before, .brand-name::after { content: "✦"; position: absolute; color: var(--gold-soft); font: 1.2rem/1 "Cormorant Garamond", serif; text-shadow: 0 0 12px var(--gold); }
+.brand-name::before { left: -12px; top: -10px; }
+.brand-name::after { right: -13px; bottom: -8px; }
+.brand-ribbon { display: inline-flex; align-items: center; gap: 15px; margin-top: 25px; padding: 8px 24px 10px; border: 1px solid rgba(255,255,255,.72); border-radius: 12px 12px 48% 48%; color: var(--ink); background: linear-gradient(100deg, #b9dbff, #fffdf1 50%, #b9dbff); box-shadow: 0 4px 0 rgba(95, 53, 16, .55), 0 8px 18px rgba(3, 7, 35, .35); font-family: "Cinzel Decorative", "Cormorant Garamond", serif; font-size: clamp(.85rem, 4.5vw, 1.55rem); letter-spacing: .12em; transform: rotate(-2deg); }
+.brand-ribbon span { color: var(--ink); font-size: 1em; letter-spacing: .12em; }
+.brand-ribbon strong { color: #d99c2b; font: 700 clamp(2.2rem, 11vw, 4.5rem)/.7 "Cormorant Garamond", serif; text-shadow: 0 1px 0 #fff, 0 2px 0 #a96618; }
+.hero-invitation { width: min(100%, 500px); margin: 12px auto 0; padding: 14px 16px 13px; border-top: 1px solid rgba(255, 226, 151, .5); border-bottom: 1px solid rgba(255, 226, 151, .5); background: linear-gradient(90deg, transparent, rgba(8, 31, 93, .5), transparent); }
+.hero-kicker { margin: 0; color: var(--gold-soft); font: 600 clamp(1.12rem, 5vw, 1.7rem)/1.22 "Cormorant Garamond", serif; text-shadow: 0 2px 9px rgba(0,0,0,.45); }
+.hero-kicker span { color: var(--gold); padding: 0 4px; }
+.hero-copy { max-width: 320px; margin: 8px auto 0; color: #eef5ff; font-size: .9rem; line-height: 1.65; }
+.event-ticket { width: min(100%, 480px); margin-top: 18px; padding: 12px; border: 1px solid rgba(255, 224, 145, .72); border-radius: 17px; background: linear-gradient(135deg, rgba(8, 30, 91, .92), rgba(18, 61, 132, .76)); box-shadow: 0 12px 28px rgba(0, 8, 38, .32), inset 0 0 0 1px rgba(185, 219, 255, .12); }
+.event-ticket-heading { margin-bottom: 9px; color: var(--gold-soft); font: 600 .7rem/1 "Cinzel Decorative", serif; letter-spacing: .12em; }
+.event-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.event-detail { min-width: 0; padding: 11px 8px 9px; border: 1px solid rgba(185, 219, 255, .24); border-radius: 11px; background: rgba(1, 13, 49, .28); }
+.event-detail-label { display: block; margin-bottom: 5px; color: #b7d3fa; font-size: .63rem; letter-spacing: .16em; }
+.event-detail strong { display: block; color: var(--ivory); font: 600 clamp(.95rem, 4vw, 1.22rem)/1.1 "Cormorant Garamond", serif; }
+.event-detail small { display: block; margin-top: 5px; color: #b8d3f4; font-size: .65rem; }
+.join-panel { margin-top: 17px; border-color: rgba(255, 224, 145, .78); background: linear-gradient(145deg, rgba(4, 20, 67, .86), rgba(12, 45, 105, .78)); }
+.join-panel-heading { color: var(--ivory); font-size: 1rem; font-weight: 700; }
+.join-panel-note { margin: 4px 0 10px; color: #c6d9f6; font-size: .75rem; }
+.join-row .button { min-width: 112px; }
+.join-secondary { margin-top: 10px; color: #bcd4f4; font-size: .75rem; text-align: center; }
+.join-secondary a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+.host-link { display: inline-flex; gap: 7px; margin-top: 13px; color: #c4daf8; font-size: .72rem; opacity: .9; }
+.host-link span { color: var(--gold-soft); }
+@media (max-width: 380px) {
+  .hero-card { padding-left: 2px; padding-right: 2px; }
+  .brand-name { font-size: 5rem; }
+  .brand-ribbon { gap: 10px; padding-left: 17px; padding-right: 17px; }
+  .event-detail small { font-size: .58rem; }
+  .join-panel { padding: 13px; }
+  .join-row .button { min-width: 104px; padding-left: 12px; padding-right: 12px; }
+}
