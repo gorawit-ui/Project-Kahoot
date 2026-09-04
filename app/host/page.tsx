@@ -13,7 +13,7 @@ export default function HostPage() {
   return (
     <main className="page-shell">
       <section className="shell-content">
-        <div className="topbar"><div><div className="eyebrow-small">HOST CONTROL</div><h1 className="title">JIXGO Magical 24</h1></div><Link className="back-link" href="/">หน้าแรก</Link></div>
+        <div className="topbar"><div><div className="eyebrow-small">HOST CONTROL</div><h1 className="title">JIXGO Magical 24</h1></div><div className="topbar-actions"><Link className="back-link" href="/preview">ดู Preview คำถาม</Link><Link className="back-link" href="/">หน้าแรก</Link></div></div>
         <div className="host-grid">
           <div className="panel">
             <div className="host-stat"><span>Room code</span><strong>142426</strong></div>
