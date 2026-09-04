@@ -8,6 +8,7 @@ export default function HomePage() {
   const [room, setRoom] = useState("");
   return (
     <main className="page-shell home-shell">
+      <div className="hero-art" aria-hidden="true" />
       <MagicBackdrop />
       <div className="portal portal-one" />
       <div className="portal portal-two" />
