@@ -20,7 +20,7 @@ export default function PlayPage() {
       <section className="shell-content">
         <div className="topbar"><span className="question-number">QUESTION 01 / {sampleQuestions.length}</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}>{seconds}</span></div>
         <div className="panel question-card">
-          <div className="question-image-frame">
+          <div className={`question-image-frame ${question.imageFrame}`}>
             <img className="question-image" src={driveImageUrl(question.imageUrl)} alt="ภาพประกอบคำถาม" />
           </div>
           <h1 className="question-text">{question.prompt}</h1>
