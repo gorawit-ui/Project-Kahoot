@@ -23,7 +23,7 @@ export default function HomePage() {
         <div className="logo-stage">
           <div className="logo-plate" aria-hidden="true" />
           <div className="logo-aura" aria-hidden="true" />
-          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" width={1536} height={1024} />
+          <img className="event-logo" src="/assets/logo-event.png" alt="JIXGO Magical 24" width={1175} height={945} />
           <div className="logo-spark spark-one" aria-hidden="true">✦</div>
           <div className="logo-spark spark-two" aria-hidden="true">✧</div>
           <div className="logo-spark spark-three" aria-hidden="true">✦</div>
@@ -39,8 +39,7 @@ export default function HomePage() {
           <div className="event-details">
             <div className="event-detail date-detail" aria-label="วันจัดงาน 14 November 2026">
               <span className="event-detail-label">DATE</span>
-              <div className="date-display"><strong>14</strong><span><b>NOVEMBER</b><small>2026</small></span></div>
-              <small>วันเสาร์ที่ 14 พฤศจิกายน</small>
+              <div className="date-display compact-date"><strong>14</strong><span>Nov</span><small>2026</small></div>
             </div>
             <div className="event-detail venue-detail" aria-label="สถานที่จัดงาน Thee and Thou">
               <span className="event-detail-label">VENUE</span>

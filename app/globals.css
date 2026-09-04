@@ -211,8 +211,8 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 /* Final visual pass: centered artwork frames and invitation-first home */
 .logo-stage {
   width: min(100%, 500px);
-  min-height: 218px;
-  aspect-ratio: 1.5 / 1;
+  min-height: 0;
+  aspect-ratio: auto;
   margin: 10px auto 0;
   overflow: visible;
 }
@@ -226,8 +226,9 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 }
 .event-logo {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+  max-height: none;
+  object-fit: initial;
 }
 .presented-mark {
   position: relative;
@@ -239,27 +240,27 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
   z-index: 4;
   margin-top: 2px;
 }
-.date-display {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
+.date-display.compact-date {
+  display: flex;
+  align-items: baseline;
   justify-content: center;
-  gap: 9px;
-  min-height: 52px;
-}
-.date-display > strong {
-  line-height: .78;
-}
-.date-display > span {
-  min-width: 0;
-  text-align: left;
-}
-.date-display b,
-.date-display small {
+  gap: 7px;
+  min-height: 48px;
   white-space: nowrap;
 }
-.date-detail > small {
-  text-align: center;
+.compact-date > strong {
+  color: var(--gold-soft);
+  font: 700 clamp(2.1rem, 9vw, 3rem)/.8 "Cormorant Garamond", serif;
+  text-shadow: 0 1px 0 #fff, 0 2px 0 #8c5a1e;
+}
+.compact-date > span {
+  color: var(--ivory);
+  font: 600 clamp(1.25rem, 5vw, 1.65rem)/1 "Cormorant Garamond", serif;
+}
+.compact-date > small {
+  color: #b9d8fa;
+  font-size: .78rem;
+  letter-spacing: .1em;
 }
 .join-panel {
   position: relative;
@@ -327,7 +328,7 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
   object-position: center;
 }
 @media (max-width: 380px) {
-  .logo-stage { min-height: 198px; }
+  .logo-stage { width: min(100%, 340px); }
   .question-image-frame,
   .question-image-frame.portrait,
   .question-image-frame.square,
