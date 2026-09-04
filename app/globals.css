@@ -196,3 +196,14 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 @media (prefers-reduced-motion: reduce) {
   .event-logo, .logo-stage, .logo-aura, .logo-spark, .magic-portal-ring, .light-sweep { animation: none; }
 }
+
+/* Question art frames: preserve mobile rhythm and artwork */
+.question-image-frame.portrait, .preview-shell .question-image-frame.portrait { aspect-ratio: 4 / 5; height: min(68vw, 300px); }
+.question-image-frame.square, .preview-shell .question-image-frame.square { aspect-ratio: 1 / 1; height: min(78vw, 300px); }
+.question-image-frame.tall, .preview-shell .question-image-frame.tall { aspect-ratio: 9 / 13; height: min(82vw, 300px); }
+.question-image-frame.portrait .question-image, .question-image-frame.square .question-image, .question-image-frame.tall .question-image { object-fit: contain; }
+@media (min-width: 740px) {
+  .question-image-frame.portrait, .preview-shell .question-image-frame.portrait { height: 300px; }
+  .question-image-frame.square, .preview-shell .question-image-frame.square { height: 320px; }
+  .question-image-frame.tall, .preview-shell .question-image-frame.tall { height: 320px; }
+}
