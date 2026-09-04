@@ -25,7 +25,7 @@ export default function LobbyPage() {
           <p className="waiting">Host กำลังเตรียมคำถามเวทมนตร์ให้ทุกคนอยู่</p>
           <p className="player-count">ผู้เล่นในห้องนี้ <strong>24</strong> / 100 คน</p>
           <span className="pill">SOLO MODE · 18 QUESTIONS · 15 SEC</span>
-          <div style={{ marginTop: 28 }}><Link className="button primary" href="/play">ดูตัวอย่างหน้าคำถาม</Link></div>
+          <div className="lobby-waiting-note">เมื่อ Host เริ่มเกม หน้าคำถามจะปรากฏที่มือถือของคุณอัตโนมัติ</div>
         </div>
       </section>
     </main>

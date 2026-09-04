@@ -1,13 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { driveImageUrl, sampleQuestions } from "@/data/questions";
 
 export default function PreviewPage() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const activeIndexRef = useRef<HTMLButtonElement>(null);
   const question = sampleQuestions[questionIndex];
+
+  useEffect(() => {
+    activeIndexRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [questionIndex]);
 
   function chooseQuestion(index: number) {
     setQuestionIndex(index);
@@ -22,7 +27,7 @@ export default function PreviewPage() {
           <Link className="back-link" href="/host">กลับ Host</Link>
         </div>
         <div className="preview-index" aria-label="เลือกคำถาม">
-          {sampleQuestions.map((item, index) => <button className={`preview-index-item ${index === questionIndex ? "active" : ""}`} key={item.id} onClick={() => chooseQuestion(index)}>{String(index + 1).padStart(2, "0")}</button>)}
+          {sampleQuestions.map((item, index) => <button ref={index === questionIndex ? activeIndexRef : undefined} className={`preview-index-item ${index === questionIndex ? "active" : ""}`} key={item.id} onClick={() => chooseQuestion(index)}>{String(index + 1).padStart(2, "0")}</button>)}
         </div>
         <div className="panel question-card">
           <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length}</span><span>15 SEC DEFAULT</span></div>

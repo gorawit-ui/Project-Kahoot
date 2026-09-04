@@ -33,7 +33,7 @@ export default function JoinPage() {
           <h1 className="title">Join the magic</h1>
           <p className="subtitle">ใส่รหัสห้องและชื่อที่อยากให้แสดงในเกม</p>
           <form className="form-stack" onSubmit={submit} style={{ marginTop: 24 }}>
-            <label>รหัสห้อง<input className="code-input" value={room} onChange={(e) => setRoom(e.target.value.toUpperCase())} placeholder="เช่น 142426" maxLength={6} inputMode="numeric" required /></label>
+            <label>รหัสห้อง<input className="code-input" value={room} onChange={(e) => setRoom(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="เช่น 142426" maxLength={6} inputMode="numeric" required /></label>
             <label>ชื่อที่ใช้เล่น<input value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="ชื่อเล่น / นามแฝง" maxLength={24} required /></label>
             <button className="button primary" type="submit">เข้าร่วมเกม ✦</button>
           </form>
