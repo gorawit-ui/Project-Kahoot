@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function JoinPage() {
   const router = useRouter();
-  const params = useSearchParams();
   const [room, setRoom] = useState("");
   const [nickname, setNickname] = useState("");
 
   useEffect(() => {
-    setRoom(params.get("room")?.toUpperCase() ?? "");
+    const queryRoom = new URLSearchParams(window.location.search).get("room");
+    setRoom(queryRoom?.toUpperCase() ?? "");
     setNickname(localStorage.getItem("jixgo-nickname") ?? "");
-  }, [params]);
+  }, []);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
