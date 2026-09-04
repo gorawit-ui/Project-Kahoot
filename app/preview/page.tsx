@@ -26,7 +26,7 @@ export default function PreviewPage() {
         </div>
         <div className="panel question-card">
           <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length}</span><span>15 SEC DEFAULT</span></div>
-          <div className="question-image-frame">
+          <div className={`question-image-frame ${question.imageFrame}`}>
             <img className="question-image" src={driveImageUrl(question.imageUrl)} alt={`ภาพประกอบคำถามที่ ${question.id}`} />
           </div>
           <h2 className="question-text">{question.prompt}</h2>
