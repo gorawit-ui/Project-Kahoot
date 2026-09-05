@@ -21,7 +21,7 @@ export default function PlayPage() {
   const channelRef = useRef<ReturnType<typeof openRoomChannel>>(null);
   const question = sampleQuestions[questionIndex];
   const expired = seconds === 0 && !submitted;
-  const [emojiLine, ...promptLines] = question.prompt.split("\\n");
+  const [emojiLine, ...promptLines] = question.prompt.split("\n");
   const isEmojiQuestion = question.id >= 10;
 
   useEffect(() => {
