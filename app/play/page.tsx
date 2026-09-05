@@ -37,7 +37,7 @@ export default function PlayPage() {
     });
     channelRef.current = channel;
     setLive(Boolean(channel));
-    return () => channel?.unsubscribe();
+    return () => { void channel?.unsubscribe(); };
   }, []);
 
   useEffect(() => {
@@ -114,9 +114,8 @@ export default function PlayPage() {
 }
 
 function ChoiceRound({ question, selected, submitted, expired, lastPoints, onChoose }: { question: ChoiceQuestion; selected: number | null; submitted: boolean; expired: boolean; lastPoints: number | null; onChoose: (index: number) => void }) {
-  const isEmoji = question.media.type === "emoji";
   return <>
-    {isEmoji ? <div className="emoji-question-frame" role="img" aria-label={`โจทย์อิโมจิ: ${question.media.clues}`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={question.media.src} alt={`ภาพประกอบคำถามที่ ${question.id}`} /></div>}
+    {question.media.type === "emoji" ? <div className="emoji-question-frame" role="img" aria-label={`โจทย์อิโมจิ: ${question.media.clues}`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={question.media.src} alt={`ภาพประกอบคำถามที่ ${question.id}`} /></div>}
     <h1 className="question-text question-prompt-banner">{question.prompt}</h1>
     <div className="choices">
       {question.choices.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} onClick={() => onChoose(index)} disabled={expired || submitted} aria-pressed={selected === index}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}
