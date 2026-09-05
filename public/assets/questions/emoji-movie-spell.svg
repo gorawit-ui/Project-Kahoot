@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06143a"/><stop offset=".55" stop-color="#123f91"/><stop offset="1" stop-color="#071a4f"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#fff5bd" stop-opacity=".9"/><stop offset="1" stop-color="#fff5bd" stop-opacity="0"/></radialGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#fff0a6"/><stop offset=".5" stop-color="#f4c96b"/><stop offset="1" stop-color="#b77b22"/></linearGradient>
+</defs>
+<title id="title">Emoji Movie Spell</title><desc id="desc">ทายหนังจากอิโมจิ</desc>
+<rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+<circle cx="800" cy="350" r="330" fill="url(#glow)" opacity=".35"/>
+<g fill="none" stroke="#f4c96b" stroke-opacity=".55"><ellipse cx="800" cy="380" rx="500" ry="210" stroke-width="3"/><ellipse cx="800" cy="380" rx="590" ry="245" stroke-width="1"/></g>
+<g font-family="Arial, sans-serif" font-size="88" text-anchor="middle">
+ <text x="520" y="250">⭐</text><text x="680" y="175">👑</text><text x="850" y="220">🎬</text><text x="1015" y="175">❓</text><text x="1130" y="275">✨</text>
+</g>
+<g transform="translate(520 300)">
+ <path d="M30 100 Q280 30 560 100 L560 310 Q280 240 30 310Z" fill="#0b2a6d" stroke="url(#gold)" stroke-width="8"/>
+ <path d="M30 100 Q280 30 560 100" fill="none" stroke="#fff5d1" stroke-width="10"/>
+ <path d="M280 74 L280 278" stroke="#d9a73f" stroke-width="5" opacity=".7"/>
+ <path d="M95 150 Q180 110 260 150 L260 230 Q180 195 95 230Z" fill="#f7df9a" opacity=".85"/>
+ <path d="M300 150 Q390 110 500 150 L500 230 Q390 195 300 230Z" fill="#f7df9a" opacity=".85"/>
+</g>
+<g fill="#fff9eb" font-family="Georgia, serif" text-anchor="middle">
+ <text x="800" y="650" font-size="82" font-weight="bold" letter-spacing="5">EMOJI MOVIE SPELL</text>
+ <text x="800" y="730" font-size="48" fill="#ffe9ad">ทายหนังจากอิโมจิ</text>
+</g>
+<g fill="url(#gold)" font-size="34" font-family="Georgia, serif" text-anchor="middle"><text x="120" y="80">✦</text><text x="1480" y="100">✧</text><text x="1450" y="820">✦</text><text x="150" y="790">✧</text></g>
+</svg>

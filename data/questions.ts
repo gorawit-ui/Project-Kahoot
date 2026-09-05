@@ -10,6 +10,8 @@ export type QuizQuestion = {
   imageFit: "contain" | "cover";
 };
 
+const emojiMovieSpell = "/assets/questions/emoji-movie-spell.svg";
+
 export const sampleQuestions: QuizQuestion[] = [
   { id: 1, prompt: "จิ๊กโก๋เกิดวันที่เท่าไหร่", choices: ["24 พย.", "22 พย.", "26 พย.", "28 พย."], correctIndex: 3, answer: "28 พย.", imageUrl: "/assets/questions/question-01.jpg", imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
   { id: 2, prompt: "จิ๊กโก๋เกิดราศีอะไร", choices: ["ราศีธนู", "ราศีเมษ", "ราศีพิจิก", "ราศีพิจิกกา"], correctIndex: 2, answer: "ราศีพิจิก", imageUrl: "/assets/questions/question-02.jpg", imageFrame: "square", imageShape: "circle", imageFit: "cover" },
@@ -19,7 +21,12 @@ export const sampleQuestions: QuizQuestion[] = [
   { id: 6, prompt: "เพลงแรกที่ร้อง 3 คน เพลงอะไร", choices: ["โต๊ะหมู่", "โต๊ะริม", "โต๊ะริมทาง", "โต๊ะพึมๆ"], correctIndex: 1, answer: "โต๊ะริม", imageUrl: "/assets/questions/question-06.jpg", imageFrame: "tall", imageShape: "rounded", imageFit: "contain" },
   { id: 7, prompt: "ปีนี้จิ๊กโก๋อายุเท่าไหร่?", choices: [20, 24, 19, 22], correctIndex: 1, answer: 24, imageUrl: "/assets/questions/question-07.jpg", imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
   { id: 8, prompt: "เพลง ใจฟูทุกครั้งที่มองหน้าเธอ จิ๋วใส่เสื้อสีอะไร", choices: ["ขาว", "ชมพู", "น้ำเงิน", "ดำ"], correctIndex: 1, answer: "ชมพู", imageUrl: "/assets/questions/question-08.jpg", imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
-  { id: 9, prompt: "จิ๊กโก๋มีหมาชื่ออะไร", choices: ["โบโบ้", "บับว่า", "ชัพปุย", "บับเบิ้ล"], correctIndex: 3, answer: "บับเบิ้ล", imageUrl: "/assets/questions/question-09.jpg", imageFrame: "portrait", imageShape: "circle", imageFit: "cover" }
+  { id: 9, prompt: "จิ๊กโก๋มีหมาชื่ออะไร", choices: ["โบโบ้", "บับว่า", "ชัพปุย", "บับเบิ้ล"], correctIndex: 3, answer: "บับเบิ้ล", imageUrl: "/assets/questions/question-09.jpg", imageFrame: "portrait", imageShape: "circle", imageFit: "cover" },
+  { id: 10, prompt: "🇨🇳⚔️🐉🏹🌸\nเรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["Raya and the Last Dragon", "Mulan", "Pocahontas", "Frozen"], correctIndex: 1, answer: "Mulan", imageUrl: emojiMovieSpell, imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
+  { id: 11, prompt: "🕛👠🎃🐭🏰\nเรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["Tangled", "Cinderella", "Frozen", "Coco"], correctIndex: 1, answer: "Cinderella", imageUrl: emojiMovieSpell, imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
+  { id: 12, prompt: "🤠👨‍🚀🦖🐷🚀\nเรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["WALL-E", "Cars", "Zootopia", "Toy Story"], correctIndex: 3, answer: "Toy Story", imageUrl: emojiMovieSpell, imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
+  { id: 13, prompt: "👦🏻🧚🏼‍♀️🌙🪟🐊🏴‍☠️\nเรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["Peter Pan", "Pirates of the Caribbean", "The Little Mermaid", "Alice in Wonderland"], correctIndex: 0, answer: "Peter Pan", imageUrl: emojiMovieSpell, imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" },
+  { id: 14, prompt: "👁️👹👧🏾🚪🏢\nเรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["The Nightmare Before Christmas", "Monsters, Inc.", "Lilo & Stitch", "Inside Out"], correctIndex: 1, answer: "Monsters, Inc.", imageUrl: emojiMovieSpell, imageFrame: "portrait", imageShape: "rounded", imageFit: "contain" }
 ];
 
 export function driveImageUrl(url: string) {
