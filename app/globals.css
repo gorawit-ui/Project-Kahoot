@@ -582,3 +582,19 @@ input::placeholder { color: #d9e8ff; opacity: .68; }
     font-size: clamp(1.35rem, 7.4vw, 2.3rem);
   }
 }
+
+/* Design QA pass: keep emoji and caption centered inside the landscape card. */
+.emoji-question-frame {
+  padding: 18px;
+  justify-items: center;
+  isolation: isolate;
+}
+.emoji-question-line {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.emoji-question-caption {
+  white-space: nowrap;
+}
