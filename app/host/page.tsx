@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { getPlayerId, openRoomChannel, sendRoomEvent, type LiveEvent } from "@/lib/live-room";
+import { sampleQuestions } from "@/data/questions";
 
 const sampleRanks = ["Minnie", "JixgoFan", "Magic24", "BlueStar", "TheeThou"];
 
@@ -28,7 +29,8 @@ export default function HostPage() {
     setRunning(next);
     if (next) {
       const startedAt = Date.now();
-      sendRoomEvent(channelRef.current, { type: "game-started", questionIndex: question - 1, startedAt, deadlineAt: startedAt + 15000 });
+      const activeQuestion = sampleQuestions[question - 1];
+      sendRoomEvent(channelRef.current, { type: "game-started", questionIndex: question - 1, startedAt, deadlineAt: startedAt + activeQuestion.timeSeconds * 1000 });
     } else sendRoomEvent(channelRef.current, { type: "game-paused" });
   }
 
@@ -40,11 +42,11 @@ export default function HostPage() {
           <div className="panel">
             <div className="host-stat"><span>Room code</span><strong>142426</strong></div>
             <div className="host-stat"><span>สถานะ</span><strong>{running ? "กำลังเล่น" : "พักอยู่"} {live ? "· LIVE" : "· DEMO"}</strong></div>
-            <div className="host-stat"><span>คำถาม</span><strong>{question} / 18</strong></div>
+            <div className="host-stat"><span>คำถาม</span><strong>{question} / {sampleQuestions.length}</strong></div>
             <div className="host-stat"><span>ผู้เล่น</span><strong>24 / 100</strong></div>
             <div className="control-grid">
               <button className="button primary" onClick={toggleGame}>{running ? "พักเกม" : "เริ่มเกม"}</button>
-              <button className="button ghost" onClick={() => { const next = Math.min(question + 1, 18); setQuestion(next); const startedAt = Date.now(); sendRoomEvent(channelRef.current, { type: "question-changed", questionIndex: next - 1, startedAt, deadlineAt: startedAt + 15000 }); }}>ข้อต่อไป</button>
+              <button className="button ghost" onClick={() => { const next = Math.min(question + 1, sampleQuestions.length); setQuestion(next); const startedAt = Date.now(); sendRoomEvent(channelRef.current, { type: "question-changed", questionIndex: next - 1, startedAt, deadlineAt: startedAt + sampleQuestions[next - 1].timeSeconds * 1000 }); }}>ข้อต่อไป</button>
               <button className="button ghost" onClick={() => alert("เพิ่มเวลา 10 วินาทีใน Demo")}>+10 วินาที</button>
               <button className="button ghost" onClick={() => alert("ข้ามข้อใน Demo")}>ข้ามข้อนี้</button>
               <button className="button ghost" onClick={() => alert("ยกเลิกผลข้อนี้ใน Demo")}>Void ข้อนี้</button>
