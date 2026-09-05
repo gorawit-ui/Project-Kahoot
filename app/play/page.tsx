@@ -21,6 +21,8 @@ export default function PlayPage() {
   const channelRef = useRef<ReturnType<typeof openRoomChannel>>(null);
   const question = sampleQuestions[questionIndex];
   const expired = seconds === 0 && !submitted;
+  const [emojiLine, ...promptLines] = question.prompt.split("\\n");
+  const isEmojiQuestion = question.id >= 10;
 
   useEffect(() => {
     setNickname(localStorage.getItem("jixgo-nickname") || "Guest");
@@ -55,7 +57,8 @@ export default function PlayPage() {
   function selectAnswer(index: number) {
     if (submitted || seconds === 0) return;
     const isCorrect = index === question.correctIndex;
-    const points = isCorrect ? 1000 + Math.round((seconds / DEFAULT_SECONDS) * 500) : 0;
+    const speedBonus = Math.round((seconds / DEFAULT_SECONDS) * 50);
+    const points = isCorrect ? 100 + speedBonus : 0;
     setSelected(index);
     setSubmitted(true);
     setLastPoints(points);
@@ -104,10 +107,17 @@ export default function PlayPage() {
           <span className={`timer ${seconds < 10 ? "danger" : ""}`}>{seconds}</span>
         </div>
         <div className="panel question-card player-question-card">
-          <div className={`question-image-frame ${question.imageFrame} image-shape-${question.imageShape} image-fit-${question.imageFit} ${question.id === 3 ? "map-art" : ""} ${question.id === 6 ? "song-art" : ""}`}>
-            <img className="question-image" src={driveImageUrl(question.imageUrl)} alt={`ภาพประกอบคำถามที่ ${question.id}`} />
-          </div>
-          <h1 className="question-text">{question.prompt}</h1>
+          {isEmojiQuestion ? (
+            <div className="emoji-question-frame" role="img" aria-label="โจทย์ทายหนังจากอิโมจิ">
+              <div className="emoji-question-line">{emojiLine}</div>
+              <div className="emoji-question-caption">EMOJI MOVIE SPELL</div>
+            </div>
+          ) : (
+            <div className={`question-image-frame ${question.imageFrame} image-shape-${question.imageShape} image-fit-${question.imageFit} ${question.id === 3 ? "map-art" : ""} ${question.id === 6 ? "song-art" : ""}`}>
+              <img className="question-image" src={driveImageUrl(question.imageUrl)} alt={`ภาพประกอบคำถามที่ ${question.id}`} />
+            </div>
+          )}
+          <h1 className="question-text">{isEmojiQuestion ? promptLines.join(" ") : question.prompt}</h1>
           <div className="choices">
             {question.choices.map((choice, index) => (
               <button className={`choice ${selected === index ? "selected" : ""}`} key={String(choice)} onClick={() => selectAnswer(index)} disabled={seconds === 0 || submitted} aria-pressed={selected === index}>
