@@ -90,9 +90,9 @@ export default function PlayPage() {
       <section className="shell-content player-shell">
         <div className="topbar player-topbar">
           <span className="question-number">QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length} · {live ? "LIVE" : "SOLO"}</span>
-          <span className={\`timer \${seconds < 10 ? "danger" : ""}\`} aria-label={\`เหลือ \${seconds} วินาที\`}>{seconds}</span>
+          <span className={`timer ${seconds < 10 ? "danger" : ""}`} aria-label={`เหลือ ${seconds} วินาที`}>{seconds}</span>
         </div>
-        <div className={\`panel question-card player-question-card \${question.kind === "bonus" ? "bonus-card" : ""}\`}>
+        <div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>
           {question.kind === "choice" ? <ChoiceRound question={question} selected={selected} submitted={submitted} expired={expired} lastPoints={lastPoints} onChoose={selectAnswer} /> : (
             <BonusRound
               answers={bonusAnswers}
@@ -104,7 +104,7 @@ export default function PlayPage() {
               onSubmit={submitBonus}
             />
           )}
-          {question.kind === "choice" && !submitted ? <div className={\`answer-status \${expired ? "expired" : ""}\`} role="status">{expired ? "หมดเวลาแล้ว ข้อนี้ไม่ได้รับคำตอบ" : "แตะคำตอบที่คิดว่าใช่ที่สุด"}</div> : null}
+          {question.kind === "choice" && !submitted ? <div className={`answer-status ${expired ? "expired" : ""}`} role="status">{expired ? "หมดเวลาแล้ว ข้อนี้ไม่ได้รับคำตอบ" : "แตะคำตอบที่คิดว่าใช่ที่สุด"}</div> : null}
           <button className="button primary next-question" onClick={goNext} disabled={!submitted && !expired}>{questionIndex === sampleQuestions.length - 1 ? "จบเกม" : "ข้อต่อไป →"}</button>
           <Link className="back-link player-exit" href="/">ออกจากตัวอย่าง</Link>
         </div>
@@ -116,12 +116,12 @@ export default function PlayPage() {
 function ChoiceRound({ question, selected, submitted, expired, lastPoints, onChoose }: { question: ChoiceQuestion; selected: number | null; submitted: boolean; expired: boolean; lastPoints: number | null; onChoose: (index: number) => void }) {
   const isEmoji = question.media.type === "emoji";
   return <>
-    {isEmoji ? <div className="emoji-question-frame" role="img" aria-label={\`โจทย์อิโมจิ: \${question.media.clues}\`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={question.media.src} alt={\`ภาพประกอบคำถามที่ \${question.id}\`} /></div>}
+    {isEmoji ? <div className="emoji-question-frame" role="img" aria-label={`โจทย์อิโมจิ: ${question.media.clues}`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={question.media.src} alt={`ภาพประกอบคำถามที่ ${question.id}`} /></div>}
     <h1 className="question-text question-prompt-banner">{question.prompt}</h1>
     <div className="choices">
-      {question.choices.map((choice, index) => <button className={\`choice \${selected === index ? "selected" : ""}\`} key={choice} onClick={() => onChoose(index)} disabled={expired || submitted} aria-pressed={selected === index}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}
+      {question.choices.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} onClick={() => onChoose(index)} disabled={expired || submitted} aria-pressed={selected === index}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}
     </div>
-    {submitted ? <div className={\`answer-feedback \${selected === question.correctIndex ? "correct" : "wrong"}\`} role="status"><strong>{selected === question.correctIndex ? "เวทมนตร์ทำงานแล้ว ✦" : "คาถานี้พลาดไปนิดเดียว"}</strong><span>{selected === question.correctIndex ? \`+\${lastPoints?.toLocaleString()} คะแนน · ตอบได้ยอดเยี่ยม\` : \`คำตอบคือ \${question.answer} · ไปต่อกันได้เลย\`}</span></div> : null}
+    {submitted ? <div className={`answer-feedback ${selected === question.correctIndex ? "correct" : "wrong"}`} role="status"><strong>{selected === question.correctIndex ? "เวทมนตร์ทำงานแล้ว ✦" : "คาถานี้พลาดไปนิดเดียว"}</strong><span>{selected === question.correctIndex ? `+${lastPoints?.toLocaleString()} คะแนน · ตอบได้ยอดเยี่ยม` : `คำตอบคือ ${question.answer} · ไปต่อกันได้เลย`}</span></div> : null}
   </>;
 }
 
@@ -145,16 +145,16 @@ function FinishCard({ nickname, score }: { nickname: string; score: number }) {
 }
 
 function shareResult(nickname: string, score: number) {
-  const text = \`ฉันจบ JIXGO Magical 24 ในฉายา \${guestTitle(nickname)} ได้ \${score.toLocaleString()} คะแนน ✦\`;
+  const text = `ฉันจบ JIXGO Magical 24 ในฉายา ${guestTitle(nickname)} ได้ ${score.toLocaleString()} คะแนน ✦`;
   if (navigator.share) navigator.share({ title: "JIXGO Magical 24", text }).catch(() => undefined);
   else navigator.clipboard?.writeText(text);
 }
 
 function downloadResult(nickname: string, score: number) {
   const safeName = nickname.replace(/[^a-zA-Z0-9ก-๙_-]/g, "") || "guest";
-  const svg = \`<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071f5a"/><stop offset="1" stop-color="#06143a"/></linearGradient></defs><rect width="1080" height="1350" rx="42" fill="url(#bg)"/><circle cx="540" cy="510" r="330" fill="none" stroke="#f4c96b" stroke-opacity=".45"/><text x="540" y="180" fill="#ffe9ad" font-size="34" text-anchor="middle" font-family="serif" letter-spacing="8">JIXGO MAGICAL 24</text><text x="540" y="520" fill="#fff9eb" font-size="88" text-anchor="middle" font-family="serif">\${escapeXml(nickname)}</text><text x="540" y="600" fill="#f4c96b" font-size="34" text-anchor="middle" font-family="sans-serif">\${escapeXml(guestTitle(nickname))} ✦</text><text x="540" y="850" fill="#ffe9ad" font-size="150" text-anchor="middle" font-family="serif">\${score.toLocaleString()}</text><text x="540" y="930" fill="#b9dbff" font-size="24" text-anchor="middle" font-family="sans-serif" letter-spacing="4">YOU COMPLETED THE MAGICAL JOURNEY</text></svg>\`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071f5a"/><stop offset="1" stop-color="#06143a"/></linearGradient></defs><rect width="1080" height="1350" rx="42" fill="url(#bg)"/><circle cx="540" cy="510" r="330" fill="none" stroke="#f4c96b" stroke-opacity=".45"/><text x="540" y="180" fill="#ffe9ad" font-size="34" text-anchor="middle" font-family="serif" letter-spacing="8">JIXGO MAGICAL 24</text><text x="540" y="520" fill="#fff9eb" font-size="88" text-anchor="middle" font-family="serif">${escapeXml(nickname)}</text><text x="540" y="600" fill="#f4c96b" font-size="34" text-anchor="middle" font-family="sans-serif">${escapeXml(guestTitle(nickname))} ✦</text><text x="540" y="850" fill="#ffe9ad" font-size="150" text-anchor="middle" font-family="serif">${score.toLocaleString()}</text><text x="540" y="930" fill="#b9dbff" font-size="24" text-anchor="middle" font-family="sans-serif" letter-spacing="4">YOU COMPLETED THE MAGICAL JOURNEY</text></svg>`;
   const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
-  const link = document.createElement("a"); link.href = url; link.download = \`jixgo-magical-24-\${safeName}.svg\`; link.click(); URL.revokeObjectURL(url);
+  const link = document.createElement("a"); link.href = url; link.download = `jixgo-magical-24-${safeName}.svg`; link.click(); URL.revokeObjectURL(url);
 }
 
 function escapeXml(value: string) { return value.replace(/[<>&'\"]/g, (character) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", "\"": "&quot;" }[character] ?? character)); }
