@@ -31,10 +31,26 @@ export default function PreviewPage() {
         </div>
         <div className="panel question-card">
           <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length}</span><span>15 SEC DEFAULT</span></div>
-          <div className={`question-image-frame ${question.imageFrame} image-shape-${question.imageShape} image-fit-${question.imageFit} ${question.id === 3 ? "map-art" : ""} ${question.id === 6 ? "song-art" : ""}`}>
-            <img className="question-image" src={driveImageUrl(question.imageUrl)} alt={`ภาพประกอบคำถามที่ ${question.id}`} />
-          </div>
-          <h2 className="question-text">{question.prompt}</h2>
+          {(() => {
+            const [emojiLine, ...promptLines] = question.prompt.split("\\n");
+            const isEmojiQuestion = question.id >= 10;
+            return isEmojiQuestion ? (
+              <>
+                <div className="emoji-question-frame" role="img" aria-label="โจทย์ทายหนังจากอิโมจิ">
+                  <div className="emoji-question-line">{emojiLine}</div>
+                  <div className="emoji-question-caption">EMOJI MOVIE SPELL</div>
+                </div>
+                <h2 className="question-text">{promptLines.join(" ")}</h2>
+              </>
+            ) : (
+              <>
+                <div className={`question-image-frame ${question.imageFrame} image-shape-${question.imageShape} image-fit-${question.imageFit} ${question.id === 3 ? "map-art" : ""} ${question.id === 6 ? "song-art" : ""}`}>
+                  <img className="question-image" src={driveImageUrl(question.imageUrl)} alt={`ภาพประกอบคำถามที่ ${question.id}`} />
+                </div>
+                <h2 className="question-text">{question.prompt}</h2>
+              </>
+            );
+          })()}
           <div className="choices preview-choices">
             {question.choices.map((choice, index) => <div className={`choice preview-choice ${index === question.correctIndex && showAnswer ? "correct" : ""}`} key={String(choice)}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span>{index === question.correctIndex && showAnswer ? <strong className="answer-badge">คำตอบ</strong> : null}</div>)}
           </div>
