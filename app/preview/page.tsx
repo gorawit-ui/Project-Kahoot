@@ -32,7 +32,7 @@ export default function PreviewPage() {
         <div className="panel question-card">
           <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {sampleQuestions.length}</span><span>15 SEC DEFAULT</span></div>
           {(() => {
-            const [emojiLine, ...promptLines] = question.prompt.split("\\n");
+            const [emojiLine, ...promptLines] = question.prompt.split("\n");
             const isEmojiQuestion = question.id >= 10;
             return isEmojiQuestion ? (
               <>
