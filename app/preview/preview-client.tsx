@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { publicPreviewQuestions } from "@/data/public-questions";
 
@@ -18,7 +17,7 @@ export default function PreviewClient({ initialQuestionId }: PreviewClientProps)
   }
 
   return <main className="page-shell"><section className="shell-content preview-shell">
-    <div className="topbar"><div><div className="eyebrow-small">CONTENT PREVIEW · TEAM ONLY</div><h1 className="title">Question journey</h1></div><Link className="back-link" href="/host">กลับ Host</Link></div>
+    <div className="topbar"><div><div className="eyebrow-small">CONTENT PREVIEW · TEAM ONLY</div><h1 className="title">Question journey</h1></div><a className="back-link" href="/host">กลับ Host</a></div>
     <nav className="preview-index" aria-label="เลือกคำถาม">{publicPreviewQuestions.map((item, index) => <a ref={index === questionIndex ? activeIndexRef : undefined} className={`preview-index-item ${index === questionIndex ? "active" : ""}`} key={item.id} href={questionHref(index)} aria-current={index === questionIndex ? "page" : undefined}>{String(item.id).padStart(2, "0")}</a>)}</nav>
     <div className={`panel question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>
       <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {publicPreviewQuestions.length}</span><span>{question.timeSeconds} SEC {question.kind === "bonus" ? "BONUS" : "DEFAULT"}</span></div>

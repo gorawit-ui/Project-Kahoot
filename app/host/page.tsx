@@ -28,7 +28,7 @@ export default function HostPage() {
   async function prepare(event: FormEvent) {
     event.preventDefault(); setBusy(true); setMessage("กำลัง seed คำถามและเตรียมห้อง…");
     const response = await fetch("/api/game/setup", { method: "POST", headers: headers() }); const payload = await response.json().catch(() => ({})); setBusy(false);
-    if (!response.ok) { setMessage(payload.error === "GAME_NOT_CONFIGURED" ? "ยังไม่ได้ตั้งค่า Supabase ใน Vercel" : "เตรียมห้องไม่สำเร็จ: ตรวจรหัสควบคุมและ migration"); return; }
+    if (!response.ok) { setMessage(payload.error === "GAME_NOT_CONFIGURED" ? "ยังไม่ได้ตั้งค่า Supabase ใน Vercel" : `เตรียมห้องไม่สำเร็จ: ${payload.error ?? "ตรวจรหัสควบคุมและ migration"}`); return; }
     setMessage("เตรียมห้อง 142426 พร้อมคำถาม 1–20 แล้ว"); void refresh();
   }
   async function command(position: number, status: "lobby" | "question" | "reveal" | "paused" | "finished") {
