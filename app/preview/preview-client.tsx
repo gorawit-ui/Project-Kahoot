@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { publicPreviewQuestions } from "@/data/public-questions";
+import { QuestionAtmosphere } from "@/components/question-atmosphere";
 
 type PreviewClientProps = { initialQuestionId?: number };
 
@@ -16,7 +17,7 @@ export default function PreviewClient({ initialQuestionId }: PreviewClientProps)
     return `/preview?question=${publicPreviewQuestions[index].id}`;
   }
 
-  return <main className="page-shell"><section className="shell-content preview-shell">
+  return <main className="page-shell question-screen"><QuestionAtmosphere /><section className="shell-content preview-shell">
     <div className="topbar"><div><div className="eyebrow-small">CONTENT PREVIEW · TEAM ONLY</div><h1 className="title">Question journey</h1></div><a className="back-link" href="/host">กลับ Host</a></div>
     <nav className="preview-index" aria-label="เลือกคำถาม">{publicPreviewQuestions.map((item, index) => <a ref={index === questionIndex ? activeIndexRef : undefined} className={`preview-index-item ${index === questionIndex ? "active" : ""}`} key={item.id} href={questionHref(index)} aria-current={index === questionIndex ? "page" : undefined}>{String(item.id).padStart(2, "0")}</a>)}</nav>
     <div className={`panel question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>
