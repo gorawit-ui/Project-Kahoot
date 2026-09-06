@@ -16,6 +16,8 @@ begin
       'timeLimitSeconds', v_question.time_limit_seconds,
       'reveal', case when v_room.status = 'reveal' and v_question.kind = 'choice'
         then jsonb_build_object('correctOption', v_question.correct_answer->>'option')
+        when v_room.status = 'reveal' and v_question.kind = 'bonus'
+        then jsonb_build_object('correctAnswers', v_question.correct_answer->'answers')
         else null end
     ) end
   );
