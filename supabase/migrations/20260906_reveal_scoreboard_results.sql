@@ -7,6 +7,11 @@ declare v_room public.rooms; v_question public.questions;
 begin
   select * into v_room from rooms where code = upper(trim(p_code));
   if v_room.id is null then raise exception 'ROOM_NOT_FOUND'; end if;
+  -- A question remains visible for a short beat after the timer hits zero, then every
+  -- polling client sees the same revealed state. The Host still controls the next question.
+  if v_room.status = 'question' and v_room.question_deadline_at is not null and now() >= v_room.question_deadline_at + interval '3 seconds' then
+    update rooms set status = 'reveal' where id = v_room.id returning * into v_room;
+  end if;
   select * into v_question from questions where quiz_id = v_room.quiz_id and position = v_room.current_position;
   return jsonb_build_object(
     'room', jsonb_build_object('code', v_room.code, 'status', v_room.status, 'currentPosition', v_room.current_position, 'deadlineAt', v_room.question_deadline_at),
@@ -25,13 +30,14 @@ end $$;
 
 create or replace function public.player_room_summary(p_code text, p_session_token text)
 returns jsonb language plpgsql security definer set search_path = public, extensions as $$
-declare v_room public.rooms; v_player public.players;
+declare v_room public.rooms; v_player public.players; v_question public.questions;
 begin
   select * into v_room from rooms where code = upper(trim(p_code));
   if v_room.id is null then raise exception 'ROOM_NOT_FOUND'; end if;
   select * into v_player from players
     where room_id = v_room.id and session_token_hash = extensions.crypt(p_session_token, session_token_hash);
   if v_player.id is null then raise exception 'PLAYER_NOT_FOUND'; end if;
+  select * into v_question from questions where quiz_id = v_room.quiz_id and position = v_room.current_position;
   return jsonb_build_object(
     'player', (select jsonb_build_object('nickname', nickname, 'score', total_score, 'rank', rank) from (
       select id, nickname, total_score, row_number() over (order by total_score desc, joined_at asc)::integer as rank
@@ -40,7 +46,8 @@ begin
     'leaderboard', coalesce((select jsonb_agg(jsonb_build_object('nickname', nickname, 'score', total_score, 'rank', rank) order by rank) from (
       select nickname, total_score, row_number() over (order by total_score desc, joined_at asc)::integer as rank
       from players where room_id = v_room.id limit 10
-    ) ranked), '[]'::jsonb)
+    ) ranked), '[]'::jsonb),
+    'currentResponse', (select response from answers where room_id = v_room.id and player_id = v_player.id and question_id = v_question.id)
   );
 end $$;
 
