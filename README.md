@@ -9,8 +9,9 @@ Mobile-first real-time fan meet quiz platform for Jixgo.
 - Join Room, Lobby, Player Question, and Host Dashboard demo routes
 - Timer danger state below 10 seconds
 - Configurable game defaults and scoring utility
-- Supabase-ready schema for solo mode and future team mode
-- Host leaderboard preview: Top 5 / all players
+- Authoritative Supabase scoring; Player reads public state only and submits answers to server
+- Host-only room controls and a live Top 5 / all-player leaderboard
+- Q20 answer strings are exact-match checked in Postgres
 
 ## Run locally
 
@@ -21,16 +22,21 @@ npm run dev
 
 Open http://localhost:3000.
 
-## Optional live room connection
+## Live room setup (required for the event)
 
-The Host–Player broadcast adapter activates when these public Supabase variables are set in Vercel/local environment:
+1. Create a new Supabase project, then open **SQL Editor** and run the complete file [`supabase/migrations/20260906_authoritative_game.sql`](supabase/migrations/20260906_authoritative_game.sql).
+2. In Vercel → Project → Settings → Environment Variables, add these values for **Preview** and **Production**:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+JIXGO_HOST_CONTROL_KEY=... # a long private host password; never use NEXT_PUBLIC_ here
 ```
 
-Run `supabase/schema.sql` before adding persisted rooms. Never expose a Supabase `service_role` key in browser variables. Without these variables, the Solo/demo flow remains available.
+3. Redeploy the connected branch. Open `/host`, enter room code `142426` and the same `JIXGO_HOST_CONTROL_KEY`, then select **เตรียมห้อง / seed คำถาม** exactly once. This writes questions 1–20 and their answer key directly to Supabase. The answer key is not returned by any player endpoint.
+
+The Host key is verified on the server and is never bundled as a browser environment variable. The `SUPABASE_SERVICE_ROLE_KEY` is server-only; do not prefix it with `NEXT_PUBLIC_`.
 
 ## Routes
 
