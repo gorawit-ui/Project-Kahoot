@@ -712,6 +712,14 @@ input { min-height: 48px; border-radius: 14px; background: rgba(22, 56, 119, .68
 .bonus-input-preview { color: #afc8ef; font-size: .82rem; }
 .bonus-answer-key { color: #baf4c9; font-size: .82rem; }
 
+.reveal-wrap { display: grid; gap: 14px; padding-top: 6vh; }
+.reveal-card { padding: 28px 20px; border: 1px solid rgba(255, 220, 141, .55); border-radius: 24px; background: radial-gradient(circle at 50% 0, rgba(70, 134, 225, .46), rgba(7, 26, 78, .96) 70%); text-align: center; animation: reveal-arrive .42s cubic-bezier(.2,.9,.25,1.25) both; }
+.reveal-card.correct { border-color: rgba(117, 217, 156, .7); box-shadow: 0 0 30px rgba(87, 218, 157, .18); }.reveal-card.wrong { border-color: rgba(255, 174, 115, .68); }
+.reveal-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 50%; color: var(--gold-soft); background: rgba(255,255,255,.1); font-size: 1.8rem; }.reveal-card h1 { margin: 7px 0 10px; color: var(--ivory); font: 700 clamp(2.2rem, 11vw, 3.4rem)/.92 "Cormorant Garamond", serif; }.reveal-card p { margin: 0; color: #cbdfff; }.reveal-answer { display: block; margin-top: 8px; color: var(--gold-soft); font-size: clamp(1.25rem, 6vw, 1.8rem); }
+.scoreboard { display: grid; gap: 11px; padding: 16px; }.my-rank { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2px 12px; padding: 12px; border-radius: 14px; color: #cfe0fc; background: rgba(255,255,255,.06); }.my-rank strong { grid-row: span 2; color: var(--gold-soft); font: 700 2.3rem/.8 "Cormorant Garamond", serif; }.my-rank em { font-style: normal; font-size: .78rem; }.score-list li { transition: transform .4s ease, background .4s ease; }.rank-shift { animation: rank-shift .55s ease both; }.rank-up { color: #9af1b7; font-size: .68rem; }.rank-down { color: #ffb68e; font-size: .68rem; }
+.final-score { display: grid; gap: 5px; padding: 22px; border: 1px solid rgba(244, 201, 107, .55); border-radius: 20px; background: radial-gradient(circle at 50% 20%, rgba(74, 143, 232, .5), rgba(7, 26, 78, .9)); }.final-score span { color: #cfe0fc; }.final-score strong { color: var(--gold-soft); font: 700 4rem/.85 "Cormorant Garamond", serif; }.final-score em { color: #d5e6ff; font-size: .85rem; font-style: normal; }
+@keyframes reveal-arrive { from { opacity: 0; transform: translateY(18px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } } @keyframes rank-shift { 45% { transform: translateX(8px); background: rgba(244, 201, 107, .15); } }
+
 @media (max-width: 380px), (max-height: 720px) {
   .page-shell { padding: 12px; }
   .shell-content { padding-top: 8px; }

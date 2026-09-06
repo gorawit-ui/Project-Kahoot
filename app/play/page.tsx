@@ -1,79 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
 
-type PublicQuestion = { id: string; position: number; kind: "choice" | "bonus"; prompt: string; media: { type?: "image" | "emoji"; src?: string; clues?: string; displayClues?: string }; options: string[]; timeLimitSeconds: number };
-type GameState = { room: { code: string; status: "lobby" | "question" | "reveal" | "paused" | "finished"; currentPosition: number; deadlineAt: string | null }; question: PublicQuestion | null };
+type BonusPrompt = { id: string; prompt: string };
+type Question = { id: string; position: number; kind: "choice" | "bonus"; prompt: string; media: { type?: "image" | "emoji"; src?: string; clues?: string; displayClues?: string }; options: Array<string | BonusPrompt>; timeLimitSeconds: number; reveal?: { correctOption?: string } | null };
+type ScoreRow = { nickname: string; score: number; rank: number };
+type State = { room: { code: string; status: "lobby" | "question" | "reveal" | "paused" | "finished"; currentPosition: number; deadlineAt: string | null }; question: Question | null; summary?: { player: ScoreRow; leaderboard: ScoreRow[] } | null };
 
 export default function PlayPage() {
-  const [room, setRoom] = useState("");
-  const [state, setState] = useState<GameState | null>(null);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<string[]>(Array(10).fill(""));
-  const [submitted, setSubmitted] = useState(false);
-  const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…");
-  const [lastPoints, setLastPoints] = useState<number | null>(null);
-  const [now, setNow] = useState(Date.now());
+  const [room, setRoom] = useState(""); const [state, setState] = useState<State | null>(null); const [selected, setSelected] = useState<number | null>(null); const [answers, setAnswers] = useState<string[]>(Array(10).fill("")); const [submitted, setSubmitted] = useState(false); const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…"); const [now, setNow] = useState(Date.now()); const ranks = useRef<Record<string, number>>({});
   const nickname = typeof window === "undefined" ? "Guest" : localStorage.getItem("jixgo-nickname") || "Guest";
-
-  const refresh = useCallback(async (code: string) => {
-    const response = await fetch(`/api/game/state?room=${encodeURIComponent(code)}`, { cache: "no-store" });
-    if (!response.ok) { setMessage(response.status === 503 ? "ระบบเกมจริงยังไม่ได้เชื่อม Supabase" : "ไม่พบห้องนี้"); return; }
-    const next = await response.json() as GameState;
-    setState((current) => {
-      if (current?.question?.id !== next.question?.id || current?.room.status !== next.room.status) {
-        setSelected(null); setAnswers(Array(10).fill("")); setSubmitted(false); setLastPoints(null);
-      }
-      return next;
-    });
-  }, []);
-
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("room")?.trim().toUpperCase() || "";
-    setRoom(code);
-    if (!code) { setMessage("ต้องเข้าร่วมห้องก่อนเริ่มเล่น"); return; }
-    void refresh(code);
-    const poll = window.setInterval(() => void refresh(code), 1000);
-    const clock = window.setInterval(() => setNow(Date.now()), 250);
-    return () => { window.clearInterval(poll); window.clearInterval(clock); };
-  }, [refresh]);
-
-  const question = state?.question ?? null;
-  const seconds = useMemo(() => state?.room.deadlineAt ? Math.max(0, Math.ceil((new Date(state.room.deadlineAt).getTime() - now) / 1000)) : 0, [state?.room.deadlineAt, now]);
-  const canAnswer = state?.room.status === "question" && seconds > 0 && !submitted;
-
-  async function submit(response: { option?: string; answers?: string[] }) {
-    if (!room || !canAnswer) return;
-    const result = await fetch("/api/game/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room, response }) });
-    const payload = await result.json();
-    if (!result.ok) { setMessage(payload.error === "ANSWER_LOCKED" ? "หมดเวลาแล้ว ข้อนี้ล็อกคำตอบแล้ว" : "ส่งคำตอบไม่สำเร็จ ลองใหม่อีกครั้ง"); return; }
-    setSubmitted(true); setLastPoints(payload.scoreAwarded ?? 0);
-    setMessage(payload.scoreAwarded > 0 ? `เวทมนตร์ทำงานแล้ว ✦ +${payload.scoreAwarded} คะแนน` : "ส่งคำตอบแล้ว · รอ Host เฉลย");
-  }
-
-  if (state?.room.status === "finished") return <FinishCard nickname={nickname} />;
-  if (!question || state?.room.status !== "question") return <WaitingRoom room={room} message={message} />;
-
-  return <main className="page-shell"><section className="shell-content player-shell">
-    <div className="topbar player-topbar"><span className="question-number">QUESTION {String(question.position).padStart(2, "0")} / 20 · LIVE</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}>{seconds}</span></div>
-    <div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>
-      {question.kind === "choice" ? <ChoiceRound question={question} selected={selected} disabled={!canAnswer} onChoose={(index) => { setSelected(index); void submit({ option: question.options[index] }); }} /> : <BonusRound answers={answers} disabled={!canAnswer} onChange={(index, value) => setAnswers((current) => current.map((answer, answerIndex) => answerIndex === index ? value : answer))} onSubmit={() => void submit({ answers })} />}
-      <div className={`answer-status ${seconds === 0 && !submitted ? "expired" : submitted ? "submitted" : ""}`}>{submitted ? `${message}${lastPoints === 0 ? "" : " · รอข้อต่อไป"}` : seconds === 0 ? "หมดเวลาแล้ว · รอ Host เปลี่ยนข้อ" : "คำตอบจะถูกล็อกเมื่อส่งหรือหมดเวลา"}</div>
-      <Link className="back-link player-exit" href="/">ออกจากเกม</Link>
-    </div>
-  </section></main>;
+  const refresh = useCallback(async (code: string) => { const response = await fetch(`/api/game/state?room=${encodeURIComponent(code)}`, { cache: "no-store" }); if (!response.ok) { setMessage(response.status === 503 ? "ระบบเกมจริงยังไม่ได้เชื่อม Supabase" : "ไม่พบห้องนี้"); return; } const next = await response.json() as State; setState(current => { if (current?.question?.id !== next.question?.id) { setSelected(null); setAnswers(Array(10).fill("")); setSubmitted(false); } return next; }); }, []);
+  useEffect(() => { const code = new URLSearchParams(window.location.search).get("room")?.trim().toUpperCase() || ""; setRoom(code); if (!code) { setMessage("ต้องเข้าร่วมห้องก่อนเริ่มเล่น"); return; } void refresh(code); const poll = window.setInterval(() => void refresh(code), 1000); const clock = window.setInterval(() => setNow(Date.now()), 250); return () => { window.clearInterval(poll); window.clearInterval(clock); }; }, [refresh]);
+  const question = state?.question; const summary = state?.summary ?? null; const seconds = useMemo(() => state?.room.deadlineAt ? Math.max(0, Math.ceil((new Date(state.room.deadlineAt).getTime() - now) / 1000)) : 0, [state?.room.deadlineAt, now]); const canAnswer = state?.room.status === "question" && seconds > 0 && !submitted;
+  async function submit(response: { option?: string; answers?: string[] }) { if (!room || !canAnswer) return; const result = await fetch("/api/game/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room, response }) }); if (!result.ok) { setMessage("ส่งคำตอบไม่สำเร็จหรือหมดเวลาแล้ว"); return; } setSubmitted(true); setMessage("ส่งคำตอบแล้ว · รอ Host แสดงเฉลย"); }
+  if (state?.room.status === "finished") return <Finish nickname={nickname} summary={summary} ranks={ranks.current} />;
+  if (!question || (state?.room.status !== "question" && state?.room.status !== "reveal")) return <Waiting room={room} message={message} />;
+  if (state.room.status === "reveal") return <Reveal question={question} selected={selected} submitted={submitted} summary={summary} ranks={ranks.current} />;
+  return <main className="page-shell"><section className="shell-content player-shell"><div className="topbar player-topbar"><span className="question-number">QUESTION {String(question.position).padStart(2, "0")} / 20 · LIVE</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}>{seconds}</span></div><div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>{question.kind === "choice" ? <Choice question={question} selected={selected} disabled={!canAnswer} choose={(index) => { setSelected(index); void submit({ option: String(question.options[index]) }); }} /> : <Bonus question={question} answers={answers} disabled={!canAnswer} change={(i, value) => setAnswers(current => current.map((answer, index) => index === i ? value : answer))} submit={() => void submit({ answers })} />}<div className={`answer-status ${submitted ? "submitted" : seconds === 0 ? "expired" : ""}`}>{submitted ? message : seconds === 0 ? "หมดเวลาแล้ว · รอ Host แสดงเฉลย" : "คำตอบจะถูกล็อกเมื่อส่งหรือหมดเวลา"}</div><Link className="back-link player-exit" href="/">ออกจากเกม</Link></div></section></main>;
 }
 
-function ChoiceRound({ question, selected, disabled, onChoose }: { question: PublicQuestion; selected: number | null; disabled: boolean; onChoose: (index: number) => void }) {
-  const media = question.media;
-  return <>{media.type === "emoji" ? <div className="emoji-question-frame" role="img" aria-label="โจทย์อิโมจิ"><div className="emoji-question-line">{media.displayClues ?? media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={media.src} alt="ภาพประกอบคำถาม" /></div>}<h1 className="question-text question-prompt-banner">{question.prompt}</h1><div className="choices">{question.options.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} onClick={() => onChoose(index)} disabled={disabled} aria-pressed={selected === index}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}</div></>;
-}
-
-function BonusRound({ answers, disabled, onChange, onSubmit }: { answers: string[]; disabled: boolean; onChange: (index: number, value: string) => void; onSubmit: () => void }) {
-  return <><div className="bonus-heading"><span className="bonus-kicker">✦ FINAL SPELL · 60 SEC ✦</span><h1>Bonus Magic Time</h1><p>เติมชื่อเพลงให้ครบทุกตัวอักษร แล้วส่งคำตอบทั้ง 10 เพลง</p></div><div className="bonus-rule">คำตอบต้องสะกดตรงทุกตัวอักษร · ระบบตรวจบน server</div><div className="bonus-grid">{answers.map((answer, index) => <label className="bonus-entry" key={index}><span className="bonus-id">20.{index + 1}</span><span className="bonus-clue">เติมชื่อเพลงข้อ {index + 1}</span><input value={answer} onChange={(event) => onChange(index, event.target.value)} placeholder="พิมพ์ชื่อเพลง" disabled={disabled} autoComplete="off" /></label>)}</div><button className="button primary bonus-submit" onClick={onSubmit} disabled={disabled}>ส่งคาถาทั้ง 10 เพลง ✦</button></>;
-}
-
-function WaitingRoom({ room, message }: { room: string; message: string }) { return <main className="page-shell"><section className="shell-content"><div className="panel lobby-center finish-card"><div className="eyebrow-small">LIVE ROOM {room || "—"}</div><h1 className="title">รอประตูเวทมนตร์เปิด</h1><p className="waiting">{message}</p><Link className="back-link" href="/join">กลับไปเข้าร่วมห้อง</Link></div></section></main>; }
-function FinishCard({ nickname }: { nickname: string }) { return <main className="page-shell"><section className="shell-content"><div className="panel lobby-center finish-card"><div className="eyebrow-small">QUEST COMPLETE · {nickname.toUpperCase()}</div><h1 className="title">จบการเดินทางแล้ว ✦</h1><p className="waiting">{guestTitle(nickname)} · รอ Host ประกาศ leaderboard</p><Link className="button primary" href="/">กลับหน้าแรก</Link></div></section></main>; }
+function Choice({ question, selected, disabled, choose }: { question: Question; selected: number | null; disabled: boolean; choose: (index: number) => void }) { const choices = question.options as string[]; const media = question.media; return <>{media.type === "emoji" ? <div className="emoji-question-frame"><div className="emoji-question-line">{media.displayClues ?? media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={media.src} alt="ภาพประกอบคำถาม" /></div>}<h1 className="question-text question-prompt-banner">{question.prompt}</h1><div className="choices">{choices.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} disabled={disabled} onClick={() => choose(index)}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}</div></>; }
+function Bonus({ question, answers, disabled, change, submit }: { question: Question; answers: string[]; disabled: boolean; change: (index: number, value: string) => void; submit: () => void }) { const clues = question.options as BonusPrompt[]; return <><div className="bonus-heading"><span className="bonus-kicker">✦ FINAL SPELL · 60 SEC ✦</span><h1>{question.prompt}</h1><p>เติมชื่อเพลงให้ครบทุกตัวอักษร แล้วส่งคำตอบทั้ง 10 เพลง</p></div><div className="bonus-rule">คำตอบต้องสะกดตรงทุกตัวอักษร · ระบบตรวจบน server</div><div className="bonus-grid">{clues.map((clue, index) => <label className="bonus-entry" key={clue.id}><span className="bonus-id">{clue.id}</span><span className="bonus-clue">{clue.prompt}</span><input value={answers[index] ?? ""} onChange={event => change(index, event.target.value)} placeholder="พิมพ์ชื่อเพลง" disabled={disabled} autoComplete="off" /></label>)}</div><button className="button primary bonus-submit" disabled={disabled} onClick={submit}>ส่งคาถาทั้ง 10 เพลง ✦</button></>; }
+function Reveal({ question, selected, submitted, summary, ranks }: { question: Question; selected: number | null; submitted: boolean; summary: State["summary"]; ranks: Record<string, number> }) { const correct = question.reveal?.correctOption; const own = selected === null ? null : String(question.options[selected]); const isCorrect = Boolean(submitted && own === correct); return <main className="page-shell"><section className="shell-content player-shell"><div className="reveal-wrap"><div className={`reveal-card ${isCorrect ? "correct" : "wrong"}`}><span className="reveal-icon">{isCorrect ? "✦" : "✧"}</span><div className="eyebrow-small">QUESTION {String(question.position).padStart(2, "0")} · REVEAL</div><h1>{isCorrect ? "คำตอบถูกต้อง!" : submitted ? "ยังไม่ใช่คำตอบนี้" : "หมดเวลาแล้ว"}</h1>{correct ? <><p>คำตอบที่ถูกต้องคือ</p><strong className="reveal-answer">{correct}</strong></> : <p>ส่งคำตอบแล้ว · คะแนนโบนัสกำลังรวม</p>}</div><Scoreboard summary={summary} ranks={ranks} /></div></section></main>; }
+function Scoreboard({ summary, ranks }: { summary: State["summary"]; ranks: Record<string, number> }) { if (!summary) return <p className="waiting">กำลังรวมคะแนน…</p>; return <section className="scoreboard panel"><div className="eyebrow-small">LIVE SCOREBOARD</div><div className="my-rank"><span>อันดับของคุณ</span><strong>#{summary.player.rank}</strong><em>{summary.player.score} คะแนน</em></div><ol className="rank-list score-list">{summary.leaderboard.map(row => { const before = ranks[row.nickname]; const delta = before ? before - row.rank : 0; ranks[row.nickname] = row.rank; return <li className={delta ? "rank-shift" : ""} key={row.nickname}><span>#{row.rank} {row.nickname}{delta > 0 ? <b className="rank-up"> ▲{delta}</b> : delta < 0 ? <b className="rank-down"> ▼{Math.abs(delta)}</b> : null}</span><strong>{row.score}</strong></li>; })}</ol><p className="waiting">รอ Host เริ่มข้อถัดไป ✦</p></section>; }
+function Waiting({ room, message }: { room: string; message: string }) { return <main className="page-shell"><section className="shell-content"><div className="panel lobby-center finish-card"><div className="eyebrow-small">LIVE ROOM {room || "—"}</div><h1 className="title">รอประตูเวทมนตร์เปิด</h1><p className="waiting">{message}</p><Link className="back-link" href="/join">กลับไปเข้าร่วมห้อง</Link></div></section></main>; }
+function Finish({ nickname, summary, ranks }: { nickname: string; summary: State["summary"]; ranks: Record<string, number> }) { return <main className="page-shell"><section className="shell-content player-shell"><div className="panel lobby-center finish-card"><div className="eyebrow-small">QUEST COMPLETE · {nickname.toUpperCase()}</div><h1 className="title">จบการเดินทางแล้ว ✦</h1>{summary ? <><div className="final-score"><span>{guestTitle(nickname)}</span><strong>{summary.player.score}</strong><em>คะแนน · อันดับ #{summary.player.rank}</em></div><Scoreboard summary={summary} ranks={ranks} /></> : <p className="waiting">กำลังสรุปคะแนน…</p>}<Link className="button primary" href="/">กลับหน้าแรก</Link></div></section></main>; }
