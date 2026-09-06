@@ -40,7 +40,7 @@ export default function LobbyPage() {
   return (
     <main className="page-shell">
       <section className="shell-content">
-        <div className="topbar"><span className="pill">ROOM {room}</span><Link className="back-link" href="/join">เปลี่ยนชื่อ</Link></div>
+        <div className="topbar"><span className="pill">MAGICAL GUEST PASS</span><Link className="back-link" href="/join">เปลี่ยนชื่อ</Link></div>
         {entering ? <div className="portal-transition" role="status" aria-live="polite"><div className="portal-transition-ring">✦</div><span>กำลังเปิดประตูสู่โลกของ Jixgo…</span></div> : null}
         {opening ? <GameStartCountdown /> : null}
         <div className={`panel lobby-center guest-pass ${entering ? "guest-pass-arrive" : ""}`}>
@@ -49,8 +49,6 @@ export default function LobbyPage() {
           <div className="guest-pass-label">MAGICAL GUEST PASS</div>
           <div className="guest-pass-name">{nickname}</div>
           <div className="guest-pass-title">{guestTitle(nickname)} ✦</div>
-          <div className="room-code">{room}</div>
-          <div className="ornament" />
           <h1 className="title">พร้อมหรือยัง?</h1>
           <p className="waiting">คุณพร้อมแล้ว — ประตูเวทมนตร์กำลังจะเปิด</p>
           <p className="player-count">ผู้เล่นในห้องนี้ <strong>กำลังอัปเดต</strong></p>
