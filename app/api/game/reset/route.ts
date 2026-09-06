@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { z } from "zod";
-import { isValidHostKey } from "@/lib/host-auth";
+import { getHostControlKey, HOST_SESSION_COOKIE, isValidHostSession } from "@/lib/host-auth";
 import { getSupabaseAdmin } from "@/lib/supabase-server";
 
 const resetSchema = z.object({ room: z.literal("142426") });
@@ -8,10 +9,11 @@ const resetSchema = z.object({ room: z.literal("142426") });
 // The reset endpoint is intentionally limited to the named test room. Production rooms
 // remain immutable records, while this room can be reused safely during UAT.
 export async function POST(request: Request) {
-  const hostKey = request.headers.get("x-jixgo-host-token");
   const body = resetSchema.safeParse(await request.json());
+  const session = (await cookies()).get(HOST_SESSION_COOKIE)?.value;
+  const hostKey = getHostControlKey();
   const supabase = getSupabaseAdmin();
-  if (!body.success || !isValidHostKey(hostKey)) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
+  if (!body.success || !isValidHostSession(session) || !hostKey) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
   if (!supabase) return NextResponse.json({ error: "GAME_NOT_CONFIGURED" }, { status: 503 });
 
   // Re-use the protected RPC so the provided Host key is verified against this room.

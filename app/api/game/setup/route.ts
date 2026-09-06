@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { sampleQuestions } from "@/data/questions";
-import { isValidHostKey } from "@/lib/host-auth";
+import { getHostControlKey, HOST_SESSION_COOKIE, isValidHostSession } from "@/lib/host-auth";
 import { getSupabaseAdmin } from "@/lib/supabase-server";
 
 const QUIZ_TITLE = "JIXGO Magical 24";
 
 export async function POST(request: Request) {
-  const hostKey = request.headers.get("x-jixgo-host-token");
+  const session = (await cookies()).get(HOST_SESSION_COOKIE)?.value;
+  const hostKey = getHostControlKey();
   const supabase = getSupabaseAdmin();
-  if (!isValidHostKey(hostKey)) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
+  if (!isValidHostSession(session) || !hostKey) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
   if (!supabase) return NextResponse.json({ error: "GAME_NOT_CONFIGURED" }, { status: 503 });
 
   const { data: existingQuiz, error: readQuizError } = await supabase.from("quizzes").select("id").eq("title", QUIZ_TITLE).maybeSingle();
