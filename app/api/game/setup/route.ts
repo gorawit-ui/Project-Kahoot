@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { z } from "zod";
 import { sampleQuestions } from "@/data/questions";
 import { getHostControlKey, HOST_SESSION_COOKIE, isValidHostSession } from "@/lib/host-auth";
 import { getSupabaseAdmin } from "@/lib/supabase-server";
 
 const QUIZ_TITLE = "JIXGO Magical 24";
+const setupSchema = z.object({ room: z.string().regex(/^\d{6}$/) });
 
 export async function POST(request: Request) {
+  const body = setupSchema.safeParse(await request.json().catch(() => null));
+  if (!body.success) return NextResponse.json({ error: "INVALID_ROOM_CODE" }, { status: 400 });
   const session = (await cookies()).get(HOST_SESSION_COOKIE)?.value;
   const hostKey = getHostControlKey();
   const supabase = getSupabaseAdmin();
@@ -29,7 +33,7 @@ export async function POST(request: Request) {
   const { error: questionError } = await supabase.from("questions").upsert(rows, { onConflict: "quiz_id,position" });
   if (questionError) return NextResponse.json({ error: questionError.message }, { status: 500 });
 
-  const code = "142426";
+  const code = body.data.room;
   const { error: roomError } = await supabase.rpc("initialize_game_room", { p_quiz_id: quiz.id, p_code: code, p_host_token: hostKey });
   if (roomError) return NextResponse.json({ error: roomError.message }, { status: 500 });
   return NextResponse.json({ ok: true, room: code, questionCount: rows.length });
