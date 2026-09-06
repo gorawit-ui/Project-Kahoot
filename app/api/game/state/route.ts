@@ -11,6 +11,6 @@ export async function GET(request: NextRequest) {
   if (error) return NextResponse.json({ error: error.message }, { status: 404 });
   const token = (await cookies()).get("jixgo_player_token")?.value;
   if (!token) return NextResponse.json(data, { headers: { "Cache-Control": "no-store" } });
-  const { data: summary } = await supabase.rpc("player_room_summary", { p_code: room, p_session_token: token });
-  return NextResponse.json({ ...data, summary: summary ?? null }, { headers: { "Cache-Control": "no-store" } });
+  const { data: summary, error: summaryError } = await supabase.rpc("player_room_summary", { p_code: room, p_session_token: token });
+  return NextResponse.json({ ...data, summary: summary ?? null, summaryError: summaryError?.message ?? null }, { headers: { "Cache-Control": "no-store" } });
 }
