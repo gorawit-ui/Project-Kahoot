@@ -67,5 +67,5 @@ export default function JixgoMascot({ mode = "idle", className = "", label = "Ji
     setCanRender(!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !lowPower && Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl")));
   }, []);
   if (!canRender) return <MascotFallback className={className} />;
-  return <div className={`${styles.root} ${styles[mode]} ${className}`} role="img" aria-label={label}><Canvas dpr={[1, 1.5]} camera={{ position: [0, .55, 4.1], fov: 33 }} gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}><FairytaleHost mode={mode} /></Canvas></div>;
+  return <div className={`${styles.root} ${styles[mode]} ${className}`} role="img" aria-label={label}><Canvas dpr={[1, 1.5]} camera={{ position: [0, -.28, 5.15], fov: 33 }} gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}><FairytaleHost mode={mode} /></Canvas></div>;
 }
