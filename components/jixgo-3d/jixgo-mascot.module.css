@@ -1,4 +1,4 @@
-.root, .fallback { display: block; width: clamp(112px, 34vw, 174px); height: clamp(142px, 43vw, 222px); pointer-events: none; user-select: none; }
+.root, .fallback { display: block; width: clamp(132px, 40vw, 190px); height: clamp(205px, 58vw, 270px); pointer-events: none; user-select: none; }
 .root canvas { display: block; width: 100% !important; height: 100% !important; }
 .fallback { object-fit: contain; filter: drop-shadow(0 12px 14px rgba(0, 6, 35, .35)); }
 .greeting { animation: greeting-enter .7s cubic-bezier(.18,.88,.28,1) both; }
