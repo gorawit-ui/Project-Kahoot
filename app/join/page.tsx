@@ -34,10 +34,10 @@ export default function JoinPage() {
   }
 
   return (
-    <main className="page-shell">
+    <main className="page-shell join-world-shell">
       <section className="shell-content">
         <Link className="back-link" href="/">← กลับหน้าแรก</Link>
-        <div className="panel" style={{ marginTop: 24 }}>
+        <div className="panel join-card" style={{ marginTop: 24 }}>
           <div className="eyebrow-small">JIXGO MAGICAL 24</div>
           <h1 className="title">Join the magic</h1>
           <p className="subtitle">ตั้งชื่อของคุณ แล้วก้าวเข้าสู่โลกเวทมนตร์</p>
