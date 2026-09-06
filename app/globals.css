@@ -63,7 +63,7 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .question-card { display: grid; gap: 18px; }
 .question-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .question-number { color: var(--gold-soft); font-size: .8rem; font-weight: 700; }
-.timer { min-width: 68px; height: 62px; display: grid; grid-template-columns: 1fr; place-items: center; align-content: center; gap: 0; padding: 5px 11px 6px; border: 1px solid rgba(255, 224, 145, .7); border-radius: 18px; color: var(--gold-soft); background: linear-gradient(145deg, rgba(44, 105, 203, .82), rgba(5, 24, 74, .96)); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,6,35,.28); }.timer small, .timer em { color: #dceaff; font: 700 .52rem/1 "Cinzel Decorative", serif; letter-spacing: .12em; }.timer strong { color: var(--gold-soft); font: 700 1.72rem/.88 "Cormorant Garamond", serif; }.timer.danger { color: #fff; border-color: var(--danger); background: linear-gradient(145deg, rgba(183, 52, 73, .88), rgba(82, 18, 52, .96)); animation: timer-pulse .8s infinite; }
+.timer { min-width: 72px; height: 72px; display: grid; grid-template-rows: 10px 32px 10px; grid-template-columns: 1fr; place-items: center; align-content: center; row-gap: 2px; padding: 6px 11px; border: 1px solid rgba(255, 224, 145, .7); border-radius: 18px; color: var(--gold-soft); background: linear-gradient(145deg, rgba(44, 105, 203, .82), rgba(5, 24, 74, .96)); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,6,35,.28); }.timer small, .timer em { display: block; color: #dceaff; font: 700 .52rem/10px "Cinzel Decorative", serif; letter-spacing: .12em; }.timer strong { display: block; color: var(--gold-soft); font: 700 1.8rem/32px "Cormorant Garamond", serif; }.timer.danger { color: #fff; border-color: var(--danger); background: linear-gradient(145deg, rgba(183, 52, 73, .88), rgba(82, 18, 52, .96)); animation: timer-pulse .8s infinite; }
 @keyframes timer-pulse { 50% { transform: scale(1.08); box-shadow: 0 0 0 7px rgba(255, 85, 112, .14); } }
 .clue { min-height: 210px; display: grid; place-items: center; padding: 18px; border: 1px solid rgba(255, 231, 166, .34); border-radius: 16px; color: var(--gold-soft); background: linear-gradient(135deg, rgba(21, 68, 143, .9), rgba(5, 20, 61, .85)); text-align: center; font: 600 1.35rem "Cormorant Garamond", serif; }
 .question-text { margin: 0; color: var(--ivory); font-size: 1.16rem; font-weight: 600; }
@@ -734,5 +734,7 @@ button, .button, .choice { touch-action: manipulation; -webkit-tap-highlight-col
   .player-question-card .emoji-question-frame { aspect-ratio: 16 / 7.8 !important; }
   .player-question-card .choice { min-height: 46px; }
   .question-prompt-banner { padding: 9px 11px; }
-  .timer { width: 48px; min-width: 48px; height: 48px; font-size: 1.35rem; }
+  .timer { width: 66px; min-width: 66px; height: 62px; grid-template-rows: 9px 28px 9px; padding: 5px 8px; }
+  .timer small, .timer em { font-size: .48rem; line-height: 9px; }
+  .timer strong { font-size: 1.6rem; line-height: 28px; }
 }
