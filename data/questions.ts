@@ -55,7 +55,7 @@ export const sampleQuestions: QuizQuestion[] = [
     { id: "20.7", prompt: "C h _ _ t", answer: "Cheat" },
     { id: "20.8", prompt: "ก ล _ บ ไ _ ห _ ค น ใ น ใ _ ข อ ง เ ธ _ เ ล ย ไ ป", answer: "กลับไปหาคนในใจของเธอเลยไป" },
     { id: "20.9", prompt: "ท _ ท _ ไ ม", answer: "ทนทำไม" },
-    { id: "20.10", prompt: "_พ้ม_ก", answer: "แพ้มาก" },
+    { id: "20.10", prompt: "แ _ มา ก", answer: "แพ้มาก" },
   ] },
 ];
 
