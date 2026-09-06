@@ -14,9 +14,36 @@ type PlayerSummary = { player: ScoreRow; leaderboard: ScoreRow[]; currentRespons
 type State = { room: { code: string; status: "lobby" | "question" | "reveal" | "paused" | "finished"; currentPosition: number; deadlineAt: string | null }; question: Question | null; summary?: PlayerSummary | null; summaryError?: string | null };
 
 export default function PlayPage() {
-  const [room, setRoom] = useState(""); const [state, setState] = useState<State | null>(null); const [selected, setSelected] = useState<number | null>(null); const [answers, setAnswers] = useState<string[]>(Array(10).fill("")); const [submitted, setSubmitted] = useState(false); const [sending, setSending] = useState(false); const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…"); const [now, setNow] = useState(Date.now()); const ranks = useRef<Record<string, number>>({});
+  const [room, setRoom] = useState(""); const [state, setState] = useState<State | null>(null); const [selected, setSelected] = useState<number | null>(null); const [answers, setAnswers] = useState<string[]>(Array(10).fill("")); const [submitted, setSubmitted] = useState(false); const [sending, setSending] = useState(false); const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…"); const [now, setNow] = useState(Date.now()); const ranks = useRef<Record<string, number>>({}); const refreshInFlight = useRef(false); const refreshVersion = useRef(0);
   const nickname = typeof window === "undefined" ? "Guest" : localStorage.getItem("jixgo-nickname") || "Guest";
-  const refresh = useCallback(async (code: string) => { const response = await fetch(`/api/game/state?room=${encodeURIComponent(code)}`, { cache: "no-store" }); if (!response.ok) { setMessage(response.status === 503 ? "ระบบเกมจริงยังไม่ได้เชื่อม Supabase" : "ไม่พบห้องนี้"); return; } const next = await response.json() as State; setState(current => { if (current?.question?.id !== next.question?.id) { setSelected(null); setAnswers(Array(10).fill("")); setSubmitted(false); } return next; }); }, []);
+  const refresh = useCallback(async (code: string) => {
+    if (refreshInFlight.current) return;
+    refreshInFlight.current = true;
+    const version = ++refreshVersion.current;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 7000);
+    try {
+      const response = await fetch(`/api/game/state?room=${encodeURIComponent(code)}&t=${Date.now()}`, { cache: "no-store", signal: controller.signal });
+      if (!response.ok) {
+        setMessage(response.status === 503 ? "ระบบเกมจริงยังไม่ได้เชื่อม Supabase" : "เชื่อมต่อห้องไม่สำเร็จ · กำลังลองใหม่");
+        return;
+      }
+      const next = await response.json() as State;
+      if (version !== refreshVersion.current || !next.room) return;
+      setState(current => {
+        if (current?.question?.id !== next.question?.id) {
+          setSelected(null); setAnswers(Array(10).fill("")); setSubmitted(false); setSending(false);
+        }
+        return next;
+      });
+      setMessage("");
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") setMessage("การเชื่อมต่อสะดุด · กำลังลองใหม่");
+    } finally {
+      window.clearTimeout(timeout);
+      refreshInFlight.current = false;
+    }
+  }, []);
   useEffect(() => { const code = new URLSearchParams(window.location.search).get("room")?.trim().toUpperCase() || ""; setRoom(code); if (!code) { setMessage("ต้องเข้าร่วมห้องก่อนเริ่มเล่น"); return; } void refresh(code); const poll = window.setInterval(() => void refresh(code), 1000); const clock = window.setInterval(() => setNow(Date.now()), 250); return () => { window.clearInterval(poll); window.clearInterval(clock); }; }, [refresh]);
   const question = state?.question; const summary = state?.summary ?? null; const seconds = useMemo(() => state?.room.deadlineAt ? Math.max(0, Math.ceil((new Date(state.room.deadlineAt).getTime() - now) / 1000)) : 0, [state?.room.deadlineAt, now]); const canAnswer = state?.room.status === "question" && seconds > 0 && !submitted && !sending;
   async function submit(response: { option?: string; answers?: string[] }) { if (!room || !canAnswer) return; setSending(true); setMessage("กำลังล็อกคำตอบ…"); try { const result = await fetch("/api/game/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room, response }) }); if (!result.ok) { setMessage("ส่งคำตอบไม่สำเร็จหรือหมดเวลาแล้ว"); return; } setSubmitted(true); setMessage("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ"); } finally { setSending(false); } }
