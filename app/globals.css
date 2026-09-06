@@ -75,6 +75,7 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .host-grid { display: grid; gap: 16px; }
 .control-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; margin-top: 16px; }
 .control-grid .button { min-height: 50px; padding: 0 10px; font-size: .84rem; }
+.host-room-actions { display: grid; grid-template-columns: 1fr 1.3fr; gap: 9px; }
 .host-stat { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(185, 219, 255, .15); color: #cfe0fc; font-size: .86rem; }
 .host-stat strong { color: var(--gold-soft); }
 .rank-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
