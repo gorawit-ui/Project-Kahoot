@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
+import { LobbyMascot } from "@/components/jixgo-3d/lobby-mascot";
 
 export default function LobbyPage() {
   const [room, setRoom] = useState("142426");
@@ -41,6 +42,7 @@ export default function LobbyPage() {
         {entering ? <div className="portal-transition" role="status" aria-live="polite"><div className="portal-transition-ring">✦</div><span>กำลังเปิดประตูสู่โลกของ Jixgo…</span></div> : null}
         <div className={`panel lobby-center guest-pass ${entering ? "guest-pass-arrive" : ""}`}>
           <div className="eyebrow-small">WELCOME, {nickname.toUpperCase()}</div>
+          <LobbyMascot />
           <div className="guest-pass-label">MAGICAL GUEST PASS</div>
           <div className="guest-pass-name">{nickname}</div>
           <div className="guest-pass-title">{guestTitle(nickname)} ✦</div>

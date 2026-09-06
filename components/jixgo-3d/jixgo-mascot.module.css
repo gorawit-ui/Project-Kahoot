@@ -1,0 +1,9 @@
+.root, .fallback { display: block; width: clamp(112px, 34vw, 174px); height: clamp(142px, 43vw, 222px); pointer-events: none; user-select: none; }
+.root canvas { display: block; width: 100% !important; height: 100% !important; }
+.fallback { object-fit: contain; filter: drop-shadow(0 12px 14px rgba(0, 6, 35, .35)); }
+.greeting { animation: greeting-enter .7s cubic-bezier(.18,.88,.28,1) both; }
+.celebrate { animation: celebrate-bounce .7s ease-in-out both; }
+.countdown { filter: drop-shadow(0 0 13px rgba(255, 210, 111, .6)); }
+@keyframes greeting-enter { from { opacity: 0; transform: translateY(12px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes celebrate-bounce { 35% { transform: translateY(-8px) scale(1.04); } 70% { transform: translateY(2px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { .greeting, .celebrate { animation: none; } }
