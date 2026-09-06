@@ -1,0 +1,2 @@
+export function MagicalBackground() { return <div className="magical-world" aria-hidden="true"><div className="kingdom-castle" /><div className="kingdom-path" /><i className="mw-spark s1">✦</i><i className="mw-spark s2">✧</i><i className="mw-spark s3">✦</i><i className="mw-spark s4">✧</i></div>; }
+export function MagicalLogo() { return <img className="magical-logo" src="/assets/logo-jixgo-full.png" alt="JIXGO Magical 24" />; }
