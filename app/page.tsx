@@ -58,8 +58,6 @@ export default function HomePage() {
           </div>
           <div className="join-secondary">ยังไม่มีรหัสห้อง? <Link href="/join">เข้าร่วมเกมที่นี่</Link></div>
         </div>
-
-        <Link className="host-link" href="/host">สำหรับ Host / ทีมงาน <span>→</span></Link>
       </section>
     </main>
   );
