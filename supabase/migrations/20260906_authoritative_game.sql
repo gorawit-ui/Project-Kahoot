@@ -142,8 +142,44 @@ begin
   return public.public_room_state(v_room.code);
 end $$;
 
+-- This is deliberately Host-only: it returns participant names and scores, but never correct answers.
+create or replace function public.host_room_state(p_code text, p_host_token text)
+returns jsonb language plpgsql security definer set search_path = public as $$
+declare v_room public.rooms;
+begin
+  select * into v_room from rooms where code = upper(trim(p_code)) and host_token_hash = crypt(p_host_token, host_token_hash);
+  if v_room.id is null then raise exception 'HOST_UNAUTHORIZED'; end if;
+  return jsonb_build_object(
+    'state', public.public_room_state(v_room.code),
+    'playerCount', (select count(*) from players where room_id = v_room.id),
+    'leaderboard', coalesce((select jsonb_agg(jsonb_build_object('nickname', nickname, 'score', total_score) order by total_score desc, joined_at asc)
+      from players where room_id = v_room.id), '[]'::jsonb)
+  );
+end $$;
+
+-- Seeding uses the service_role only. It hashes the Host secret inside Postgres, so no hash or
+-- answer key ever needs to be generated in the browser.
+create or replace function public.initialize_game_room(p_quiz_id uuid, p_code text, p_host_token text)
+returns jsonb language plpgsql security definer set search_path = public as $$
+declare v_room public.rooms;
+begin
+  select * into v_room from rooms where code = upper(trim(p_code));
+  if v_room.id is null then
+    insert into rooms(quiz_id, code, host_token_hash)
+    values (p_quiz_id, upper(trim(p_code)), crypt(p_host_token, gen_salt('bf')))
+    returning * into v_room;
+  elsif v_room.quiz_id <> p_quiz_id then
+    raise exception 'ROOM_CODE_IN_USE';
+  else
+    update rooms set host_token_hash = crypt(p_host_token, gen_salt('bf')) where id = v_room.id returning * into v_room;
+  end if;
+  return jsonb_build_object('code', v_room.code, 'status', v_room.status);
+end $$;
+
 revoke all on all tables in schema public from anon, authenticated;
 grant select on public.rooms, public.players, public.quizzes to anon, authenticated;
-grant execute on function public.public_room_state(text), public.join_room(text, text, text), public.submit_answer(text, text, jsonb), public.host_set_question(text, text, integer, public.room_status) to anon, authenticated;
+grant execute on function public.public_room_state(text), public.join_room(text, text, text), public.submit_answer(text, text, jsonb), public.host_set_question(text, text, integer, public.room_status), public.host_room_state(text, text) to anon, authenticated;
+revoke execute on function public.initialize_game_room(uuid, text, text) from public, anon, authenticated;
+grant execute on function public.initialize_game_room(uuid, text, text) to service_role;
 
 alter publication supabase_realtime add table public.rooms, public.players;
