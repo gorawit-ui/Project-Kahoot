@@ -67,3 +67,4 @@ export function bonusPoints(correctCount: number) {
   if (correctCount === 1) return 100;
   return 0;
 }
+import "server-only";
