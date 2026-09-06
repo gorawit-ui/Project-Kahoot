@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 type QuestionProgressProps = { current: number; total?: number };
 
 export function QuestionProgress({ current, total = 20 }: QuestionProgressProps) {
@@ -11,4 +13,3 @@ export function QuestionProgress({ current, total = 20 }: QuestionProgressProps)
     })}
   </ol>;
 }
-import { useEffect, useRef } from "react";
