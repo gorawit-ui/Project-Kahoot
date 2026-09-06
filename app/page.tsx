@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import { MagicBackdrop } from "@/components/magic-backdrop";
+import { MagicalBackground } from "@/components/magical-world";
 
 export default function HomePage() {
   const [room, setRoom] = useState("");
 
   return (
     <main className="page-shell home-shell">
-      <div className="hero-art" aria-hidden="true" />
+      <MagicalBackground variant="arrival" />
       <MagicBackdrop />
       <div className="magic-portal-ring ring-one" aria-hidden="true" />
       <div className="magic-portal-ring ring-two" aria-hidden="true" />

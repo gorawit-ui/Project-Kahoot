@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { guestTitle } from "@/lib/guest-title";
+import { MagicalBackground } from "@/components/magical-world";
 
 export default function JoinPage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function JoinPage() {
   }
 
   return (
-    <main className="page-shell join-world-shell">
+    <main className="page-shell join-world-shell"><MagicalBackground variant="arrival" />
       <section className="shell-content">
         <Link className="back-link" href="/">← กลับหน้าแรก</Link>
         <div className="panel join-card" style={{ marginTop: 24 }}>
