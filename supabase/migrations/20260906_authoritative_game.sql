@@ -96,7 +96,7 @@ begin
   select * into v_room from rooms where code = upper(trim(p_code));
   if v_room.id is null or v_room.status = 'finished' then raise exception 'ROOM_UNAVAILABLE'; end if;
   insert into players(room_id, nickname, session_token_hash)
-  values (v_room.id, trim(p_nickname), crypt(p_session_token, gen_salt('bf')))
+  values (v_room.id, trim(p_nickname), extensions.crypt(p_session_token, extensions.gen_salt('bf')))
   returning * into v_player;
   return jsonb_build_object('playerId', v_player.id, 'roomCode', v_room.code, 'status', v_room.status);
 exception when unique_violation then raise exception 'NICKNAME_TAKEN';
@@ -109,7 +109,7 @@ declare v_correct boolean := false; v_points integer := 0; v_count integer := 0;
 begin
   select * into v_room from rooms where code = upper(trim(p_code));
   if v_room.status <> 'question' or v_room.question_deadline_at is null or now() > v_room.question_deadline_at then raise exception 'ANSWER_LOCKED'; end if;
-  select * into v_player from players where room_id = v_room.id and session_token_hash = crypt(p_session_token, session_token_hash);
+  select * into v_player from players where room_id = v_room.id and session_token_hash = extensions.crypt(p_session_token, session_token_hash);
   if v_player.id is null then raise exception 'PLAYER_NOT_FOUND'; end if;
   select * into v_question from questions where quiz_id = v_room.quiz_id and position = v_room.current_position;
   if v_question.kind = 'choice' then
@@ -133,7 +133,7 @@ create or replace function public.host_set_question(p_code text, p_host_token te
 returns jsonb language plpgsql security definer set search_path = public as $$
 declare v_room public.rooms; v_question public.questions; v_deadline timestamptz;
 begin
-  select * into v_room from rooms where code = upper(trim(p_code)) and host_token_hash = crypt(p_host_token, host_token_hash);
+  select * into v_room from rooms where code = upper(trim(p_code)) and host_token_hash = extensions.crypt(p_host_token, host_token_hash);
   if v_room.id is null then raise exception 'HOST_UNAUTHORIZED'; end if;
   select * into v_question from questions where quiz_id = v_room.quiz_id and position = p_position;
   if v_question.id is null then raise exception 'QUESTION_NOT_FOUND'; end if;
@@ -147,7 +147,7 @@ create or replace function public.host_room_state(p_code text, p_host_token text
 returns jsonb language plpgsql security definer set search_path = public as $$
 declare v_room public.rooms;
 begin
-  select * into v_room from rooms where code = upper(trim(p_code)) and host_token_hash = crypt(p_host_token, host_token_hash);
+  select * into v_room from rooms where code = upper(trim(p_code)) and host_token_hash = extensions.crypt(p_host_token, host_token_hash);
   if v_room.id is null then raise exception 'HOST_UNAUTHORIZED'; end if;
   return jsonb_build_object(
     'state', public.public_room_state(v_room.code),
@@ -166,12 +166,12 @@ begin
   select * into v_room from rooms where code = upper(trim(p_code));
   if v_room.id is null then
     insert into rooms(quiz_id, code, host_token_hash)
-    values (p_quiz_id, upper(trim(p_code)), crypt(p_host_token, gen_salt('bf')))
+    values (p_quiz_id, upper(trim(p_code)), extensions.crypt(p_host_token, extensions.gen_salt('bf')))
     returning * into v_room;
   elsif v_room.quiz_id <> p_quiz_id then
     raise exception 'ROOM_CODE_IN_USE';
   else
-    update rooms set host_token_hash = crypt(p_host_token, gen_salt('bf')) where id = v_room.id returning * into v_room;
+    update rooms set host_token_hash = extensions.crypt(p_host_token, extensions.gen_salt('bf')) where id = v_room.id returning * into v_room;
   end if;
   return jsonb_build_object('code', v_room.code, 'status', v_room.status);
 end $$;
