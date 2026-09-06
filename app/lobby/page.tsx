@@ -10,6 +10,9 @@ export default function LobbyPage() {
   const [nickname, setNickname] = useState("Guest");
   const [entering, setEntering] = useState(false);
   const [live, setLive] = useState(false);
+  const [readyCount, setReadyCount] = useState<number | null>(null);
+  const [readying, setReadying] = useState(false);
+  const [readyMessage, setReadyMessage] = useState("");
   const navigating = useRef(false);
 
   useEffect(() => {
@@ -21,10 +24,11 @@ export default function LobbyPage() {
     setEntering(shouldAnimate);
     const activeRoom = queryRoom || "142426";
     const pollRoom = async () => {
-      const response = await fetch(`/api/game/state?room=${activeRoom}`, { cache: "no-store" });
+      const response = await fetch(`/api/game/state?room=${activeRoom}&t=${Date.now()}`, { cache: "no-store" });
       if (!response.ok) return;
       const game = await response.json();
       setLive(true);
+      setReadyCount(typeof game.room.readyCount === "number" ? game.room.readyCount : null);
       if (game.room.status === "question" && !navigating.current) { navigating.current = true; window.location.href = `/play?room=${activeRoom}`; }
     };
     void pollRoom();
@@ -35,6 +39,27 @@ export default function LobbyPage() {
     }
     return () => window.clearInterval(poll);
   }, []);
+
+  async function markReady() {
+    if (readying) return;
+    setReadying(true);
+    setReadyMessage("กำลังยืนยันความพร้อม…");
+    try {
+      const response = await fetch("/api/game/ready", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room }) });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setReadyMessage(payload.error === "PLAYER_SESSION_REQUIRED" ? "เซสชันหมดอายุ · กลับไปเข้าร่วมห้องใหม่" : "ยังยืนยันความพร้อมไม่ได้ · ลองอีกครั้ง");
+        return;
+      }
+      setReadyCount(payload.readyCount ?? null);
+      navigating.current = true;
+      window.location.assign(`/play?room=${room}`);
+    } catch {
+      setReadyMessage("การเชื่อมต่อสะดุด · ลองอีกครั้ง");
+    } finally {
+      setReadying(false);
+    }
+  }
 
   return (
     <main className="page-shell lobby-world-shell"><MagicalBackground />
@@ -49,11 +74,12 @@ export default function LobbyPage() {
           <div className="guest-pass-title">{guestTitle(nickname)} ✦</div>
           <h1 className="title">พร้อมหรือยัง?</h1>
           <p className="waiting">คุณพร้อมแล้ว — ประตูเวทมนตร์กำลังจะเปิด</p>
-          <p className="player-count">ผู้เล่นในห้องนี้ <strong>กำลังอัปเดต</strong></p>
+          <p className="player-count">{readyCount === null ? <>ผู้พร้อมแล้ว <strong>กำลังอัปเดต</strong></> : <>ผู้พร้อมแล้ว <strong>{readyCount} คน</strong></>}</p>
           <span className="pill">LIVE MODE · 20 QUESTIONS</span>
           <div className="lobby-waiting-note">นี่คือบัตรเข้างานดิจิทัลของคุณ เก็บไว้เป็นความทรงจำได้เลย</div>
           <div className="live-status">{live ? "● เชื่อมต่อกับห้องจริงแล้ว" : "โหมดตัวอย่าง · ยังไม่ได้เชื่อม Supabase"}</div>
-          <Link className="button primary lobby-start" href={`/play?room=${room}`}>ฉันพร้อมแล้ว ✦</Link>
+          {readyMessage ? <p className="ready-message" role="status">{readyMessage}</p> : null}
+          <button className="button primary lobby-start" type="button" disabled={readying || !live} onClick={() => void markReady()}>{readying ? "กำลังยืนยัน…" : "ฉันพร้อมแล้ว ✦"}</button>
         </div>
       </section>
     </main>
