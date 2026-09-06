@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
-import { LobbyMascot } from "@/components/jixgo-3d/lobby-mascot";
+import { GameStartCountdown, LobbyMascot } from "@/components/jixgo-3d/lobby-mascot";
 
 export default function LobbyPage() {
   const [room, setRoom] = useState("142426");
   const [nickname, setNickname] = useState("Guest");
   const [entering, setEntering] = useState(false);
   const [live, setLive] = useState(false);
+  const [opening, setOpening] = useState(false);
+  const navigating = useRef(false);
 
   useEffect(() => {
     const queryRoom = new URLSearchParams(window.location.search).get("room");
@@ -24,7 +26,7 @@ export default function LobbyPage() {
       if (!response.ok) return;
       const game = await response.json();
       setLive(true);
-      if (game.room.status === "question") window.location.href = `/play?room=${activeRoom}`;
+      if (game.room.status === "question" && !navigating.current) { navigating.current = true; setOpening(true); window.setTimeout(() => { window.location.href = `/play?room=${activeRoom}`; }, 1200); }
     };
     void pollRoom();
     const poll = window.setInterval(() => void pollRoom(), 1000);
@@ -40,6 +42,7 @@ export default function LobbyPage() {
       <section className="shell-content">
         <div className="topbar"><span className="pill">ROOM {room}</span><Link className="back-link" href="/join">เปลี่ยนชื่อ</Link></div>
         {entering ? <div className="portal-transition" role="status" aria-live="polite"><div className="portal-transition-ring">✦</div><span>กำลังเปิดประตูสู่โลกของ Jixgo…</span></div> : null}
+        {opening ? <GameStartCountdown /> : null}
         <div className={`panel lobby-center guest-pass ${entering ? "guest-pass-arrive" : ""}`}>
           <div className="eyebrow-small">WELCOME, {nickname.toUpperCase()}</div>
           <LobbyMascot />
