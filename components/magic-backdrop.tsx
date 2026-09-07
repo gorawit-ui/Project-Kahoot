@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 
 type Spark = { x: number; y: number; r: number; a: number; tw: number; };
-type Burst = { x: number; y: number; age: number; max: number; hue: number; };
 
 export function MagicBackdrop() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,8 +17,8 @@ export function MagicBackdrop() {
     let height = 0;
     let frame = 0;
     let last = 0;
+    let hidden = document.hidden;
     const sparks: Spark[] = [];
-    const bursts: Burst[] = [];
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resize = () => {
@@ -38,6 +37,7 @@ export function MagicBackdrop() {
     };
 
     const draw = (time: number) => {
+      if (hidden) return;
       const delta = Math.min((time - last) / 1000, .05);
       last = time;
       context.clearRect(0, 0, width, height);
@@ -50,40 +50,21 @@ export function MagicBackdrop() {
         context.fill();
       }
 
-      if (!reduced && Math.random() < delta * .45) {
-        bursts.push({ x: Math.random() * width, y: Math.random() * height * .48 + height * .08, age: 0, max: .9, hue: Math.random() > .5 ? 42 : 205 });
-      }
-
-      for (let i = bursts.length - 1; i >= 0; i--) {
-        const burst = bursts[i];
-        burst.age += delta;
-        const progress = burst.age / burst.max;
-        if (progress >= 1) { bursts.splice(i, 1); continue; }
-        context.save();
-        context.translate(burst.x, burst.y);
-        context.globalAlpha = 1 - progress;
-        context.strokeStyle = burst.hue === 42 ? "#ffe2a0" : "#b8d8ff";
-        context.lineWidth = 1.2;
-        for (let ray = 0; ray < 12; ray++) {
-          const angle = ray / 12 * Math.PI * 2;
-          const length = 10 + progress * 42;
-          context.beginPath();
-          context.moveTo(Math.cos(angle) * length * .25, Math.sin(angle) * length * .25);
-          context.lineTo(Math.cos(angle) * length, Math.sin(angle) * length);
-          context.stroke();
-        }
-        context.restore();
-      }
-
       frame = requestAnimationFrame(draw);
     };
 
     resize();
     window.addEventListener("resize", resize);
+    const visibility = () => {
+      hidden = document.hidden;
+      if (!hidden) { last = performance.now(); frame = requestAnimationFrame(draw); }
+    };
+    document.addEventListener("visibilitychange", visibility);
     frame = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", visibility);
     };
   }, []);
 

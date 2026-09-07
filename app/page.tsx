@@ -9,7 +9,6 @@ export default function HomePage() {
 
   return (
     <main className="page-shell home-shell">
-      <div className="hero-art" aria-hidden="true" />
       <MagicBackdrop />
       <div className="magic-portal-ring ring-one" aria-hidden="true" />
       <div className="magic-portal-ring ring-two" aria-hidden="true" />
