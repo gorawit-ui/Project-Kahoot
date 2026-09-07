@@ -1,4 +1,35 @@
-undefined
+/* Global visual anchor: retain the approved Jixgo Magical castle artwork on every route. */
+.page-shell {
+  background:
+    linear-gradient(180deg, rgba(5, 18, 64, .16) 0%, rgba(4, 12, 43, .54) 55%, rgba(4, 10, 33, .84) 100%),
+    url("/assets/background-00.jpg") center top / cover fixed;
+}
+
+.page-shell::before {
+  z-index: -2;
+  opacity: .26;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 236, 180, .92) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 84% 42%, rgba(255, 236, 180, .72) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 31% 71%, rgba(185, 219, 255, .65) 0 1px, transparent 1.7px);
+  background-size: 87px 103px, 131px 149px, 173px 191px;
+}
+
+/* The castle already exists in the approved artwork; no geometric replacement skyline. */
+.magical-world { background: transparent; }
+.world-horizon, .world-logo-watermark { display: none; }
+.world-focus, .world-reveal, .world-finale { background: transparent; }
+.world-focus .world-aurora { opacity: .3; }
+.world-reveal .world-aurora, .world-finale .world-aurora { opacity: .46; }
+
+/* Keep content legible over the shared art without hiding the scene. */
+.join-world-shell, .lobby-world-shell { background: transparent; }
+.question-screen::after { background: linear-gradient(180deg, rgba(4, 14, 50, .25), rgba(4, 10, 33, .78)); }
+.question-screen .panel, .reveal-card, .result-card, .host-grid > .panel { backdrop-filter: blur(8px); }
+
+@media (max-width: 700px) {
+  .page-shell { background-attachment: scroll; background-position: center top; }
+}
 
 /* Stage 6 — a readable magical chamber for the active player. */
 .question-screen .player-question-card {
@@ -20,75 +51,51 @@ undefined
   font-size: 1.25rem;
   text-shadow: 0 0 12px rgba(255, 229, 164, .58);
 }
-
-.question-screen .player-question-card::before {
-  content: "✦";
-  top: 10px;
-  left: 13px;
-}
-
-.question-screen .player-question-card::after {
-  content: "✧";
-  right: 13px;
-  bottom: 10px;
-}
-
-.question-screen .player-question-card > * {
-  position: relative;
-  z-index: 1;
-}
+.question-screen .player-question-card::before { content: "✦"; top: 10px; left: 13px; }
+.question-screen .player-question-card::after { content: "✧"; right: 13px; bottom: 10px; }
+.question-screen .player-question-card > * { position: relative; z-index: 1; }
 
 .question-screen .question-prompt-banner {
   border-color: rgba(255, 237, 186, .86);
   background: linear-gradient(105deg, #fffaf0 0%, #f8e8bf 48%, #fff5dc 100%);
-  box-shadow: 0 2px 0 rgba(255, 255, 255, .68) inset, 0 8px 20px rgba(0, 5, 35, .22);
+  box-shadow: 0 2px 0 rgba(255,255,255,.68) inset, 0 8px 20px rgba(0, 5, 35, .22);
 }
 
 .question-screen .choice {
   border-color: rgba(190, 218, 255, .46);
   background: linear-gradient(110deg, rgba(39, 87, 171, .9), rgba(17, 55, 128, .86));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 5px 14px rgba(0, 5, 35, .16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 5px 14px rgba(0,5,35,.16);
 }
-
 .question-screen .choice:hover:not(:disabled),
 .question-screen .choice.selected {
   border-color: #ffe3a8;
   background: linear-gradient(110deg, rgba(73, 132, 220, .96), rgba(28, 78, 160, .94));
-  box-shadow: 0 0 0 3px rgba(244, 201, 107, .13), inset 0 1px 0 rgba(255, 255, 255, .22), 0 8px 17px rgba(0, 5, 35, .2);
+  box-shadow: 0 0 0 3px rgba(244, 201, 107, .13), inset 0 1px 0 rgba(255,255,255,.22), 0 8px 17px rgba(0,5,35,.2);
 }
 
 .bonus-card .bonus-heading {
   border-color: rgba(255, 229, 164, .76);
   background: radial-gradient(ellipse at 50% 0, rgba(255, 218, 126, .2), rgba(13, 47, 115, .55) 45%, rgba(4, 20, 64, .92) 100%);
 }
-
-.bonus-card .bonus-rule {
-  border: 1px solid rgba(255, 222, 141, .28);
-}
-
+.bonus-card .bonus-rule { border: 1px solid rgba(255, 222, 141, .28); }
 .bonus-card .bonus-entry {
   border-color: rgba(185, 219, 255, .4);
   background: linear-gradient(135deg, rgba(27, 71, 149, .84), rgba(9, 35, 91, .86));
 }
-
 .bonus-card .bonus-entry:focus-within {
   border-color: rgba(255, 225, 146, .9);
   box-shadow: 0 0 0 3px rgba(244, 201, 107, .13), 0 9px 18px rgba(0, 6, 35, .18);
 }
-
 .bonus-card .bonus-entry input {
   border-color: rgba(194, 218, 255, .48);
   background: rgba(3, 23, 73, .62);
 }
-
 .bonus-card .bonus-entry input:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(244, 201, 107, .16), inset 0 1px 0 rgba(255, 255, 255, .12);
+  box-shadow: 0 0 0 3px rgba(244, 201, 107, .16), inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .question-screen .player-question-card::before,
-  .question-screen .player-question-card::after {
-    text-shadow: none;
-  }
+  .question-screen .player-question-card::after { text-shadow: none; }
 }
