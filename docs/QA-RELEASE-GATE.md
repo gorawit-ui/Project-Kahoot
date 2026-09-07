@@ -12,6 +12,8 @@ No Preview is described as ready for UAT or Production until every applicable ga
 ## Gate 2 — Functional QA
 For any Host or room change, test this exact path in the target Preview environment:
 
+Run `JIXGO_QA_BASE_URL=<exact-preview-url> JIXGO_QA_HOST_CONTROL_KEY=<qa-key> npm run qa:live-room` first. This is a real API smoke test; it creates one isolated six-digit QA room and verifies Host login, room setup, Host state, Player join, and Player state.
+
 1. Open `/host` without a Host session: the dashboard is unavailable.
 2. Sign in using the configured Preview Host control key.
 3. Select **Create new room** once: a six-digit code is generated, seeded, and connected without an intermediate “room not found” message.
