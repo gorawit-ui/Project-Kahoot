@@ -1,0 +1,32 @@
+/* Global visual anchor: retain the approved Jixgo Magical castle artwork on every route. */
+.page-shell {
+  background:
+    linear-gradient(180deg, rgba(5, 18, 64, .16) 0%, rgba(4, 12, 43, .54) 55%, rgba(4, 10, 33, .84) 100%),
+    url("/assets/background-00.jpg") center top / cover fixed;
+}
+
+.page-shell::before {
+  z-index: -2;
+  opacity: .26;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 236, 180, .92) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 84% 42%, rgba(255, 236, 180, .72) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 31% 71%, rgba(185, 219, 255, .65) 0 1px, transparent 1.7px);
+  background-size: 87px 103px, 131px 149px, 173px 191px;
+}
+
+/* The castle already exists in the approved artwork; no geometric replacement skyline. */
+.magical-world { background: transparent; }
+.world-horizon, .world-logo-watermark { display: none; }
+.world-focus, .world-reveal, .world-finale { background: transparent; }
+.world-focus .world-aurora { opacity: .3; }
+.world-reveal .world-aurora, .world-finale .world-aurora { opacity: .46; }
+
+/* Keep content legible over the shared art without hiding the scene. */
+.join-world-shell, .lobby-world-shell { background: transparent; }
+.question-screen::after { background: linear-gradient(180deg, rgba(4, 14, 50, .25), rgba(4, 10, 33, .78)); }
+.question-screen .panel, .reveal-card, .result-card, .host-grid > .panel { backdrop-filter: blur(8px); }
+
+@media (max-width: 700px) {
+  .page-shell { background-attachment: scroll; background-position: center top; }
+}
