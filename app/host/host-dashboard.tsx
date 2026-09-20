@@ -70,11 +70,12 @@ export default function HostDashboard() {
         setData(payload);
         setMessage("เชื่อมต่อห้องจริงแล้ว · อัปเดตอัตโนมัติ");
         return true;
-      } catch {
+      } catch (error) {
+        const detail = error instanceof Error ? error.message : "NETWORK_ERROR";
         if (preparingRoom.current !== code) {
-          setMessage("การเชื่อมต่อสะดุด · กำลังลองใหม่");
+          setMessage(`อ่านสถานะห้อง ${code} ไม่สำเร็จ: ${detail}`);
         }
-        return false;
+        return detail;
       }
     },
     [room],
