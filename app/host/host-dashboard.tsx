@@ -56,10 +56,15 @@ export default function HostDashboard() {
         const payload = await response.json().catch(() => ({}));
 
         if (!response.ok) {
-          if (preparingRoom.current === code) return false;
+          const error = typeof payload.error === "string" ? payload.error : null;
+          if (preparingRoom.current === code) return error ?? false;
           setData(null);
-          setMessage(`ยังไม่พบห้อง ${code} · กด “สร้างห้องใหม่” หรือ “เตรียมห้อง / seed คำถาม”`);
-          return false;
+          setMessage(
+            error
+              ? `อ่านสถานะห้อง ${code} ไม่สำเร็จ: ${error}`
+              : `ยังไม่พบห้อง ${code} · กด “สร้างห้องใหม่” หรือ “เตรียมห้อง / seed คำถาม”`,
+          );
+          return error ?? false;
         }
 
         setData(payload);
@@ -117,8 +122,10 @@ export default function HostDashboard() {
       setRoom(payload.room);
       setMessage(`เตรียมห้อง ${payload.room} พร้อมแล้ว`);
       const connected = await refresh(payload.room);
-      if (!connected) {
-        setMessage(`เตรียมห้อง ${payload.room} แล้ว แต่ยังอ่านสถานะไม่ได้ · ตรวจ migration และ Environment`);
+      if (connected !== true) {
+        setMessage(
+          `เตรียมห้อง ${payload.room} แล้ว แต่ยังอ่านสถานะไม่ได้: ${typeof connected === "string" ? connected : "ตรวจ migration และ Environment"}`,
+        );
       }
     } finally {
       preparingRoom.current = null;
