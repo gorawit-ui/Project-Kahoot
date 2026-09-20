@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./event-world.css";
 
 export const metadata: Metadata = {
   title: "JIXGO Magical 24",

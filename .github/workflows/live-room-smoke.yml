@@ -1,0 +1,46 @@
+name: Live room smoke
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Exact Preview deployment URL
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jixgo-live-room-smoke
+  cancel-in-progress: false
+
+jobs:
+  live-room:
+    name: Host and Player live smoke
+    if: >-
+      vars.QA_LIVE_SMOKE_ENABLED == 'true' &&
+      (
+        github.event_name == 'workflow_dispatch' ||
+        (
+          github.event.deployment_status.state == 'success' &&
+          github.event.deployment_status.environment_url != '' &&
+          github.event.deployment.environment != 'Production' &&
+          github.event.deployment.environment != 'production'
+        )
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run live room smoke
+        env:
+          JIXGO_QA_BASE_URL: ${{ inputs.base_url || github.event.deployment_status.environment_url }}
+          JIXGO_QA_HOST_CONTROL_KEY: ${{ secrets.JIXGO_QA_HOST_CONTROL_KEY }}
+        run: node scripts/qa-live-room.mjs
