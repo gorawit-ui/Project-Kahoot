@@ -15,7 +15,7 @@ type PlayerSummary = { player: ScoreRow; leaderboard: ScoreRow[]; currentRespons
 type State = { room: { code: string; status: "lobby" | "question" | "reveal" | "paused" | "q20_summary" | "finished"; currentPosition: number; deadlineAt: string | null }; question: Question | null; distribution?: ChoiceDistribution | null; bonusSummary?: BonusSummary | null; summary?: PlayerSummary | null; summaryError?: string | null };
 
 export default function PlayPage() {
-  const [room, setRoom] = useState(""); const [state, setState] = useState<State | null>(null); const [selected, setSelected] = useState<number | null>(null); const [answers, setAnswers] = useState<string[]>(Array(10).fill("")); const [submitted, setSubmitted] = useState(false); const [sending, setSending] = useState(false); const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…"); const [now, setNow] = useState(Date.now()); const ranks = useRef<Record<string, number>>({}); const refreshInFlight = useRef(false); const refreshVersion = useRef(0);
+  const [room, setRoom] = useState(""); const [state, setState] = useState<State | null>(null); const [selected, setSelected] = useState<number | null>(null); const [answers, setAnswers] = useState<string[]>(Array(10).fill("")); const [submitted, setSubmitted] = useState(false); const [sending, setSending] = useState(false); const [message, setMessage] = useState("กำลังเชื่อมต่อกับห้อง…"); const [now, setNow] = useState(Date.now()); const ranks = useRef<Record<string, number>>({}); const answerLock = useRef(false); const questionId = useRef<string | null>(null); const refreshInFlight = useRef(false); const refreshVersion = useRef(0);
   const nickname = typeof window === "undefined" ? "Guest" : localStorage.getItem("jixgo-nickname") || "Guest";
   const refresh = useCallback(async (code: string) => {
     if (refreshInFlight.current) return;
@@ -31,12 +31,16 @@ export default function PlayPage() {
       }
       const next = await response.json() as State;
       if (version !== refreshVersion.current || !next.room) return;
-      setState(current => {
-        if (current?.question?.id !== next.question?.id) {
-          setSelected(null); setAnswers(Array(10).fill("")); setSubmitted(false); setSending(false);
-        }
-        return next;
-      });
+      if (questionId.current !== (next.question?.id ?? null)) {
+        questionId.current = next.question?.id ?? null;
+        answerLock.current = false;
+        setSelected(null);
+        setAnswers(Array(10).fill(""));
+        setSubmitted(false);
+        setSending(false);
+        if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      }
+      setState(next);
       setMessage("");
     } catch (error) {
       if ((error as Error).name !== "AbortError") setMessage("การเชื่อมต่อสะดุด · กำลังลองใหม่");
@@ -47,12 +51,12 @@ export default function PlayPage() {
   }, []);
   useEffect(() => { const code = new URLSearchParams(window.location.search).get("room")?.trim().toUpperCase() || ""; setRoom(code); if (!code) { setMessage("ต้องเข้าร่วมห้องก่อนเริ่มเล่น"); return; } void refresh(code); const poll = window.setInterval(() => void refresh(code), 1000); const clock = window.setInterval(() => setNow(Date.now()), 250); return () => { window.clearInterval(poll); window.clearInterval(clock); }; }, [refresh]);
   const question = state?.question; const summary = state?.summary ?? null; const seconds = useMemo(() => state?.room.deadlineAt ? Math.max(0, Math.ceil((new Date(state.room.deadlineAt).getTime() - now) / 1000)) : 0, [state?.room.deadlineAt, now]); const canAnswer = state?.room.status === "question" && seconds > 0 && !submitted && !sending;
-  async function submit(response: { option?: string; answers?: string[] }) { if (!room || !canAnswer) return; setSending(true); setMessage("กำลังล็อกคำตอบ…"); try { const result = await fetch("/api/game/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room, response }) }); if (!result.ok) { setMessage("ส่งคำตอบไม่สำเร็จหรือหมดเวลาแล้ว"); return; } setSubmitted(true); setMessage("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ"); } finally { setSending(false); } }
+  async function submit(response: { option?: string; answers?: string[] }) { if (!room || !canAnswer || answerLock.current) return; answerLock.current = true; setSending(true); setMessage("กำลังล็อกคำตอบ…"); try { const result = await fetch("/api/game/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room, response }) }); if (!result.ok) { answerLock.current = false; setMessage("ส่งคำตอบไม่สำเร็จหรือหมดเวลาแล้ว"); return; } setSubmitted(true); setMessage("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ"); } catch { answerLock.current = false; setMessage("การเชื่อมต่อสะดุด · แตะส่งคำตอบอีกครั้งได้"); } finally { setSending(false); } }
   if (state?.room.status === "finished") return <Finish nickname={nickname} summary={summary} summaryError={state?.summaryError} ranks={ranks.current} />;
   if (!question || (state?.room.status !== "question" && state?.room.status !== "reveal" && state?.room.status !== "q20_summary")) return <Waiting room={room} message={message} />;
   if (state.room.status === "q20_summary") return <RoomQ20Summary summary={state.bonusSummary} />;
   if (state.room.status === "reveal") return <RevealWithDistribution question={question} selected={selected} submitted={submitted} summary={summary} summaryError={state.summaryError} ranks={ranks.current} distribution={state.distribution} />;
-  return <main className="page-shell question-screen"><QuestionAtmosphere /><section className="shell-content player-shell"><QuestionProgress current={question.position} /><div className="topbar player-topbar"><span className="question-number">QUESTION {String(question.position).padStart(2, "0")} / 20 · LIVE</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}><small>TIME</small><strong>{seconds}</strong><em>SEC</em></span></div><div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>{question.kind === "choice" ? <Choice question={question} selected={selected} disabled={!canAnswer} choose={(index) => { setSelected(index); void submit({ option: String(question.options[index]) }); }} /> : <Bonus question={question} answers={answers} disabled={!canAnswer} change={(i, value) => setAnswers(current => current.map((answer, index) => index === i ? value : answer))} submit={() => void submit({ answers })} />}<div className={`answer-status ${submitted ? "submitted" : seconds === 0 ? "expired" : ""}`}>{sending ? "กำลังล็อกคำตอบ…" : submitted ? message : seconds === 0 ? "หมดเวลาแล้ว · เฉลยจะแสดงใน 3 วินาที" : "คำตอบจะถูกล็อกเมื่อส่งหรือหมดเวลา"}</div><Link className="back-link player-exit" href="/">ออกจากเกม</Link></div></section></main>;
+  return <main className="page-shell question-screen"><QuestionAtmosphere /><section className="shell-content player-shell"><QuestionProgress current={question.position} /><div className="topbar player-topbar"><span className="question-number">QUESTION {String(question.position).padStart(2, "0")} / 20 · LIVE</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}><small>TIME</small><strong>{seconds}</strong><em>SEC</em></span></div><div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>{question.kind === "choice" ? <Choice key={question.id} question={question} selected={selected} disabled={!canAnswer} choose={(index) => { if (answerLock.current) return; setSelected(index); void submit({ option: String(question.options[index]) }); }} /> : <Bonus question={question} answers={answers} disabled={!canAnswer} change={(i, value) => setAnswers(current => current.map((answer, index) => index === i ? value : answer))} submit={() => void submit({ answers })} />}<div className={`answer-status ${submitted ? "submitted" : seconds === 0 ? "expired" : ""}`}>{sending ? "กำลังล็อกคำตอบ…" : submitted ? message : seconds === 0 ? "หมดเวลาแล้ว · เฉลยจะแสดงใน 3 วินาที" : "คำตอบจะถูกล็อกเมื่อส่งหรือหมดเวลา"}</div><Link className="back-link player-exit" href="/">ออกจากเกม</Link></div></section></main>;
 }
 
 function Choice({ question, selected, disabled, choose }: { question: Question; selected: number | null; disabled: boolean; choose: (index: number) => void }) { const choices = question.options as string[]; const media = question.media; return <>{media.type === "emoji" ? <div className="emoji-question-frame"><div className="emoji-question-line">{media.displayClues ?? media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={media.src} alt="ภาพประกอบคำถาม" /></div>}<h1 className="question-text question-prompt-banner">{question.prompt}</h1><div className="choices">{choices.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} disabled={disabled} onClick={() => choose(index)}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}</div></>; }
