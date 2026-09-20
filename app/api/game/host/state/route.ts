@@ -10,7 +10,12 @@ export async function GET(request: NextRequest) {
   const supabase = getSupabaseAdmin();
   if (!room || !isValidHostSession(session) || !hostKey) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
   if (!supabase) return NextResponse.json({ error: "GAME_NOT_CONFIGURED" }, { status: 503 });
-  const { data, error } = await supabase.rpc("host_room_state", { p_code: room, p_host_token: hostKey });
-  if (error) return NextResponse.json({ error: error.message }, { status: 403 });
-  return NextResponse.json(data, { headers: { "Cache-Control": "no-store" } });
+  try {
+    const { data, error } = await supabase.rpc("host_room_state", { p_code: room, p_host_token: hostKey });
+    if (error) return NextResponse.json({ error: error.message }, { status: 403 });
+    return NextResponse.json(data, { headers: { "Cache-Control": "no-store" } });
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "HOST_STATE_UNEXPECTED";
+    return NextResponse.json({ error: detail }, { status: 500 });
+  }
 }
