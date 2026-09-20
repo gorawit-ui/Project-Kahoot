@@ -32,16 +32,23 @@ const phase: Record<RoomStatus, string> = {
 };
 
 export default function HostDashboard() {
-  const [room, setRoom] = useState("142426");
+  const [room, setRoom] = useState("");
   const [data, setData] = useState<HostState | null>(null);
   const [busy, setBusy] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [message, setMessage] = useState("กำลังเชื่อมต่อห้องจริง…");
   const [now, setNow] = useState(Date.now());
   const preparingRoom = useRef<string | null>(null);
+  const isRoomCode = /^\\d{6}$/.test(room);
 
   const refresh = useCallback(
     async (code = room) => {
+      if (!/^\\d{6}$/.test(code)) {
+        setData(null);
+        setMessage("ยังไม่มีห้อง · กด “สร้างห้องใหม่” เพื่อเริ่มเกม");
+        return false;
+      }
+
       try {
         const response = await fetch(`/api/game/host/state?room=${code}&t=${Date.now()}`, {
           cache: "no-store",
@@ -175,6 +182,7 @@ export default function HostDashboard() {
                 รหัสห้อง
                 <input
                   className="code-input"
+                  placeholder="รหัสห้อง 6 หลัก"
                   value={room}
                   onChange={(event) => setRoom(event.target.value.replace(/\D/g, "").slice(0, 6))}
                   required
@@ -184,7 +192,7 @@ export default function HostDashboard() {
                 <button className="button ghost" type="button" onClick={() => void createRoom()} disabled={busy}>
                   สร้างห้องใหม่
                 </button>
-                <button className="button ghost" type="submit" disabled={busy}>
+                <button className="button ghost" type="submit" disabled={busy || !isRoomCode}>
                   เตรียมห้อง / seed คำถาม
                 </button>
               </div>
