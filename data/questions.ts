@@ -45,7 +45,7 @@ export const sampleQuestions: QuizQuestion[] = [
   { id: 17, kind: "choice", prompt: "เรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["WALL-E", "Cars", "Zootopia", "Toy Story"], correctIndex: 3, answer: "Toy Story", media: emoji("🤠👨‍🚀🦖🐷🚀"), timeSeconds: 15 },
   { id: 18, kind: "choice", prompt: "เรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["Peter Pan", "Pirates of the Caribbean", "The Little Mermaid", "Alice in Wonderland"], correctIndex: 0, answer: "Peter Pan", media: emoji("👦🏻🧚🏼‍♀️🌙🪟🐊🏴‍☠️"), timeSeconds: 15 },
   { id: 19, kind: "choice", prompt: "เรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["The Nightmare Before Christmas", "Monsters, Inc.", "Lilo & Stitch", "Inside Out"], correctIndex: 1, answer: "Monsters, Inc.", media: emoji("👁️👹👧🏾🚪🏢"), timeSeconds: 15 },
-  { id: 20, kind: "bonus", prompt: "Bonus Magic Time", intro: "เติมชื่อเพลงให้ครบทุกตัวอักษร แล้วส่งคำตอบทั้ง 10 เพลงภายใน 60 วินาที", timeSeconds: 60, bonusEntries: [
+  { id: 20, kind: "bonus", prompt: "Bonus Magic Time", intro: "เติมชื่อเพลงให้ครบทุกตัวอักษร แล้วส่งคำตอบทั้ง 10 เพลงภายใน 120 วินาที", timeSeconds: 120, bonusEntries: [
     { id: "20.1", prompt: "ฮ _ ล ใ จ", answer: "ฮีลใจ" },
     { id: "20.2", prompt: "ร _ บ _ ย ม _", answer: "ระบายมา" },
     { id: "20.3", prompt: "_ธ _ ช่ ว ย ท _ง เ ร _ ได_ ไห_", answer: "เธอช่วยทิ้งเราได้ไหม" },
