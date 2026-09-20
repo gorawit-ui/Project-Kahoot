@@ -39,11 +39,11 @@ export default function HostDashboard() {
   const [message, setMessage] = useState("กำลังเชื่อมต่อห้องจริง…");
   const [now, setNow] = useState(Date.now());
   const preparingRoom = useRef<string | null>(null);
-  const isRoomCode = /^\\d{6}$/.test(room);
+  const isRoomCode = /^\d{6}$/.test(room);
 
   const refresh = useCallback(
     async (code = room) => {
-      if (!/^\\d{6}$/.test(code)) {
+      if (!/^\d{6}$/.test(code)) {
         setData(null);
         setMessage("ยังไม่มีห้อง · กด “สร้างห้องใหม่” เพื่อเริ่มเกม");
         return false;
