@@ -5,6 +5,19 @@ import assert from "node:assert/strict";
 const base = process.argv[2] ?? "http://127.0.0.1:3101";
 const routes = ["join", "answer", "ready", "host/login", "host", "reset", "setup"];
 let passed = 0;
+const session = await fetch(`${base}/api/game/session`);
+assert.equal(session.status, 200);
+assert.equal(session.headers.get("cache-control"), "no-store");
+const sessionCookie = session.headers.get("set-cookie");
+assert.match(sessionCookie, /HttpOnly/i);
+const cookie = sessionCookie.split(";")[0];
+assert.match(cookie, /^jixgo_player_token=[0-9a-f-]{36}$/);
+assert.deepEqual(await session.json(), { ok: true });
+passed++;
+const repeatedSession = await fetch(`${base}/api/game/session`, { headers: { Cookie: cookie } });
+assert.equal(repeatedSession.status, 200);
+assert.equal(repeatedSession.headers.get("set-cookie").split(";")[0], cookie, "Session bootstrap must preserve the returning player identity");
+passed++;
 for (const route of routes) {
   for (const body of ['{"room":', "", "null", "[]", "{}"] ) {
     const response = await fetch(`${base}/api/game/${route}`, {

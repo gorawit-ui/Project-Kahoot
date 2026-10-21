@@ -1,5 +1,7 @@
 # Stability phase 2 — 21 October 2026
 
+Later checkpoint: the user confirmed 40–45 attendees. See [45-player rehearsal](LOAD45_REPORT_20261021.md) for the actual production API burst results and the still-pending lookup optimization.
+
 **Release decision: not ready to certify for the live event.** Backend regression and local tests pass. Deployment, real browser/device QA and event-size concurrency testing remain required.
 This addendum supersedes the deployment-blocker status in phase 1; it preserves the original QA baseline.
 

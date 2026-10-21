@@ -1,0 +1,2002 @@
+[
+  {
+    "phase": "join",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 44,
+    "errors": 1,
+    "p50": 9.993,
+    "p95": 11.374,
+    "max": 11.388,
+    "wallSeconds": 11.416,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 10.702,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 10.47,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 9.019,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 9.012,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 11.388,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 9.129,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 8.996,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 11.385,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 9.186,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 9.579,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 10.179,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 11.321,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 10.59,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 9.435,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 8.982,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 9.914,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 9.993,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 9.132,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 10.446,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 9.737,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 10.077,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 10.961,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 9.357,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 10.09,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 11.216,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 9.547,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 11.113,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 9.43,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 9.993,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 11.336,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 9.011,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 9.232,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 9.104,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 10.474,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 10.604,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 9.787,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 11.198,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 9.253,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 9.349,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 11.294,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 409,
+        "seconds": 9.003,
+        "ok": false,
+        "error": "JWT issued at future"
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 10.479,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 11.374,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 11.343,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 9.453,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "join_retry",
+    "players": 1,
+    "success": 1,
+    "errors": 0,
+    "player": "LOAD_41",
+    "seconds": 7.237,
+    "status": 200,
+    "rejoined": false,
+    "note": "Single retry after first-wave JWT issued at future; no prior player was created for this failed join."
+  },
+  {
+    "phase": "ready",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 9.181,
+    "p95": 10.3,
+    "max": 10.338,
+    "wallSeconds": 10.374,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 7.901,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 9.516,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 9.589,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 8.345,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 8.136,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 9.729,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 8.758,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 10.012,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 9.756,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 9.488,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 9.535,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 8.21,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 8.327,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 10.114,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 8.08,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 10.238,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 10.295,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 8.264,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 8.844,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 9.652,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 8.18,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 10.32,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 10.098,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 9.096,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 8.886,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 7.555,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 10.3,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 9.181,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 8.097,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 10.338,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 8.283,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 8.106,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 8.203,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 10.274,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 9.95,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 8.788,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 10.197,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 7.478,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 9.773,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 9.412,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 200,
+        "seconds": 9.168,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 8.892,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 9.089,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 9.393,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 9.479,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "poll",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 9.975,
+    "p95": 11.062,
+    "max": 11.209,
+    "wallSeconds": 11.235,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 9.371,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 9.293,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 8.443,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 7.937,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 10.29,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 9.048,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 9.547,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 11.07,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 11.062,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 10.574,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 8.411,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 8.336,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 10.831,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 10.873,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 8.951,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 8.878,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 9.175,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 9.979,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 9.566,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 10.975,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 10.972,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 10.022,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 8.057,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 10.889,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 10.759,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 8.927,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 11.209,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 10.631,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 8.822,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 10.662,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 8.889,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 9.144,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 10.7,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 9.376,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 9.374,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 8.697,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 10.946,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 10.835,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 10.879,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 10.131,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 200,
+        "seconds": 8.581,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 10.224,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 9.98,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 9.466,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 9.975,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "baseline",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 6.923,
+    "p95": 6.963,
+    "max": 6.983,
+    "wallSeconds": 7.014,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 400,
+        "seconds": 6.929,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 400,
+        "seconds": 6.878,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 400,
+        "seconds": 6.983,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 400,
+        "seconds": 6.913,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 400,
+        "seconds": 6.923,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 400,
+        "seconds": 6.939,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 400,
+        "seconds": 6.927,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 400,
+        "seconds": 6.932,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 400,
+        "seconds": 6.879,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 400,
+        "seconds": 6.942,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 400,
+        "seconds": 6.939,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 400,
+        "seconds": 6.914,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 400,
+        "seconds": 6.935,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 400,
+        "seconds": 6.927,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 400,
+        "seconds": 6.867,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 400,
+        "seconds": 6.908,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 400,
+        "seconds": 6.851,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 400,
+        "seconds": 6.935,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 400,
+        "seconds": 6.9,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 400,
+        "seconds": 6.917,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 400,
+        "seconds": 6.904,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 400,
+        "seconds": 6.956,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 400,
+        "seconds": 6.865,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 400,
+        "seconds": 6.947,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 400,
+        "seconds": 6.859,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 400,
+        "seconds": 6.921,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 400,
+        "seconds": 6.917,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 400,
+        "seconds": 6.945,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 400,
+        "seconds": 6.937,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 400,
+        "seconds": 6.863,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 400,
+        "seconds": 6.862,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 400,
+        "seconds": 6.941,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 400,
+        "seconds": 6.884,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 400,
+        "seconds": 6.911,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 400,
+        "seconds": 6.929,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 400,
+        "seconds": 6.896,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 400,
+        "seconds": 6.937,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 400,
+        "seconds": 6.916,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 400,
+        "seconds": 6.941,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 400,
+        "seconds": 6.954,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 400,
+        "seconds": 6.911,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 400,
+        "seconds": 6.933,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 400,
+        "seconds": 6.912,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 400,
+        "seconds": 6.963,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 400,
+        "seconds": 6.977,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "rejoin",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 7.172,
+    "p95": 8.385,
+    "max": 8.405,
+    "wallSeconds": 8.444,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 6.452,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 8.275,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 6.423,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 6.904,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 8.163,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 6.91,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 6.823,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 7.192,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 6.853,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 8.385,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 8.296,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 6.486,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 6.688,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 6.834,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 6.1,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 7.602,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 8.089,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 7.345,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 8.068,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 7.203,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 8.347,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 7.432,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 7.787,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 6.363,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 7.946,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 7.114,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 6.118,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 6.733,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 8.328,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 7.172,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 5.924,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 7.026,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 8.402,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 6.495,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 6.805,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 6.747,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 6.452,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 7.779,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 6.008,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 7.745,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 200,
+        "seconds": 7.73,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 8.145,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 8.405,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 6.23,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 7.888,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "answer",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 10.501,
+    "p95": 11.509,
+    "max": 11.524,
+    "wallSeconds": 11.556,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 11.068,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 11.117,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 8.774,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 8.838,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 10.403,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 11.086,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 9.53,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 11.476,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 9.653,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 11.404,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 9.501,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 10.501,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 9.145,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 11.221,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 9.513,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 11.246,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 11.421,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 10.468,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 9.775,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 10.232,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 11.523,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 11.126,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 10.574,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 9.118,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 11.453,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 10.181,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 9.079,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 10.966,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 10.318,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 11.156,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 8.981,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 10.287,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 11.524,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 10.862,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 10.291,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 9.572,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 8.847,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 11.018,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 10.936,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 10.996,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 200,
+        "seconds": 10.217,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 10.569,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 11.509,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 10.234,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 10.878,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "recover",
+    "players": 45,
+    "base": "https://jixgo-magical-24.vercel.app",
+    "room": "919605",
+    "success": 45,
+    "errors": 0,
+    "p50": 10.192,
+    "p95": 11.287,
+    "max": 15.1,
+    "wallSeconds": 15.142,
+    "requests": [
+      {
+        "player": "LOAD_01",
+        "status": 200,
+        "seconds": 8.778,
+        "ok": true
+      },
+      {
+        "player": "LOAD_02",
+        "status": 200,
+        "seconds": 10.494,
+        "ok": true
+      },
+      {
+        "player": "LOAD_03",
+        "status": 200,
+        "seconds": 10.55,
+        "ok": true
+      },
+      {
+        "player": "LOAD_04",
+        "status": 200,
+        "seconds": 10.805,
+        "ok": true
+      },
+      {
+        "player": "LOAD_05",
+        "status": 200,
+        "seconds": 11.136,
+        "ok": true
+      },
+      {
+        "player": "LOAD_06",
+        "status": 200,
+        "seconds": 10.816,
+        "ok": true
+      },
+      {
+        "player": "LOAD_07",
+        "status": 200,
+        "seconds": 9.206,
+        "ok": true
+      },
+      {
+        "player": "LOAD_08",
+        "status": 200,
+        "seconds": 9.262,
+        "ok": true
+      },
+      {
+        "player": "LOAD_09",
+        "status": 200,
+        "seconds": 10.415,
+        "ok": true
+      },
+      {
+        "player": "LOAD_10",
+        "status": 200,
+        "seconds": 9.818,
+        "ok": true
+      },
+      {
+        "player": "LOAD_11",
+        "status": 200,
+        "seconds": 9.914,
+        "ok": true
+      },
+      {
+        "player": "LOAD_12",
+        "status": 200,
+        "seconds": 8.902,
+        "ok": true
+      },
+      {
+        "player": "LOAD_13",
+        "status": 200,
+        "seconds": 10.512,
+        "ok": true
+      },
+      {
+        "player": "LOAD_14",
+        "status": 200,
+        "seconds": 10.042,
+        "ok": true
+      },
+      {
+        "player": "LOAD_15",
+        "status": 200,
+        "seconds": 10.97,
+        "ok": true
+      },
+      {
+        "player": "LOAD_16",
+        "status": 200,
+        "seconds": 10.32,
+        "ok": true
+      },
+      {
+        "player": "LOAD_17",
+        "status": 200,
+        "seconds": 8.356,
+        "ok": true
+      },
+      {
+        "player": "LOAD_18",
+        "status": 200,
+        "seconds": 10.94,
+        "ok": true
+      },
+      {
+        "player": "LOAD_19",
+        "status": 200,
+        "seconds": 10.747,
+        "ok": true
+      },
+      {
+        "player": "LOAD_20",
+        "status": 200,
+        "seconds": 9.82,
+        "ok": true
+      },
+      {
+        "player": "LOAD_21",
+        "status": 200,
+        "seconds": 12.251,
+        "ok": true
+      },
+      {
+        "player": "LOAD_22",
+        "status": 200,
+        "seconds": 9.464,
+        "ok": true
+      },
+      {
+        "player": "LOAD_23",
+        "status": 200,
+        "seconds": 10.468,
+        "ok": true
+      },
+      {
+        "player": "LOAD_24",
+        "status": 200,
+        "seconds": 10.864,
+        "ok": true
+      },
+      {
+        "player": "LOAD_25",
+        "status": 200,
+        "seconds": 10.926,
+        "ok": true
+      },
+      {
+        "player": "LOAD_26",
+        "status": 200,
+        "seconds": 10.832,
+        "ok": true
+      },
+      {
+        "player": "LOAD_27",
+        "status": 200,
+        "seconds": 9.855,
+        "ok": true
+      },
+      {
+        "player": "LOAD_28",
+        "status": 200,
+        "seconds": 15.1,
+        "ok": true
+      },
+      {
+        "player": "LOAD_29",
+        "status": 200,
+        "seconds": 10.005,
+        "ok": true
+      },
+      {
+        "player": "LOAD_30",
+        "status": 200,
+        "seconds": 10.151,
+        "ok": true
+      },
+      {
+        "player": "LOAD_31",
+        "status": 200,
+        "seconds": 8.722,
+        "ok": true
+      },
+      {
+        "player": "LOAD_32",
+        "status": 200,
+        "seconds": 9.459,
+        "ok": true
+      },
+      {
+        "player": "LOAD_33",
+        "status": 200,
+        "seconds": 11.287,
+        "ok": true
+      },
+      {
+        "player": "LOAD_34",
+        "status": 200,
+        "seconds": 8.422,
+        "ok": true
+      },
+      {
+        "player": "LOAD_35",
+        "status": 200,
+        "seconds": 9.262,
+        "ok": true
+      },
+      {
+        "player": "LOAD_36",
+        "status": 200,
+        "seconds": 10.96,
+        "ok": true
+      },
+      {
+        "player": "LOAD_37",
+        "status": 200,
+        "seconds": 10.192,
+        "ok": true
+      },
+      {
+        "player": "LOAD_38",
+        "status": 200,
+        "seconds": 8.082,
+        "ok": true
+      },
+      {
+        "player": "LOAD_39",
+        "status": 200,
+        "seconds": 9.837,
+        "ok": true
+      },
+      {
+        "player": "LOAD_40",
+        "status": 200,
+        "seconds": 10.881,
+        "ok": true
+      },
+      {
+        "player": "LOAD_41",
+        "status": 200,
+        "seconds": 10.551,
+        "ok": true
+      },
+      {
+        "player": "LOAD_42",
+        "status": 200,
+        "seconds": 10.19,
+        "ok": true
+      },
+      {
+        "player": "LOAD_43",
+        "status": 200,
+        "seconds": 9.153,
+        "ok": true
+      },
+      {
+        "player": "LOAD_44",
+        "status": 200,
+        "seconds": 10.453,
+        "ok": true
+      },
+      {
+        "player": "LOAD_45",
+        "status": 200,
+        "seconds": 10.048,
+        "ok": true
+      }
+    ]
+  }
+]

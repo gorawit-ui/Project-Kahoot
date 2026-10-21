@@ -73,6 +73,23 @@ test("Lobby explains a missing room and disables Ready", async () => {
   assert.equal(screen.getByRole("button",{name:"ฉันพร้อมแล้ว ✦"}).disabled,true);
   assert.equal(screen.queryByText(/โหมดตัวอย่าง/),null);
 });
+test("Join establishes identity before creating a player and can retry a lost response", async () => {
+  const calls=[];let attempts=0;
+  globalThis.fetch=async(url)=>{
+    calls.push(url);
+    if(url==="/api/game/session") return json({ok:true});
+    if(++attempts===1) throw new TypeError("accepted response lost");
+    return json({rejoined:true});
+  };
+  render(React.createElement(Join));
+  fireEvent.change(screen.getByLabelText("รหัสห้อง"),{target:{value:"142426"}});
+  fireEvent.change(screen.getByLabelText("ชื่อที่ใช้เล่น"),{target:{value:"QA"}});
+  fireEvent.click(screen.getByRole("button",{name:"เข้าร่วมเกม ✦"}));
+  await screen.findByRole("alert");
+  fireEvent.click(screen.getByRole("button",{name:"เข้าร่วมเกม ✦"}));
+  await waitFor(()=>assert.equal(globalThis.qaNavigation.length,1));
+  assert.deepEqual(calls,["/api/game/session","/api/game/join","/api/game/session","/api/game/join"]);
+});
 test("Lobby retries a dropped connection and enables Ready after recovery", async () => {
   let calls=0; globalThis.fetch=async()=>{ if (++calls===1) throw new TypeError("offline"); return json({room:{status:"lobby",readyCount:0}}); };
   render(React.createElement(Lobby));
