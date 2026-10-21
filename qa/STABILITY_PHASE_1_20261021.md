@@ -1,5 +1,7 @@
 # Stability phase 1 — 21 October 2026
 
+Historical checkpoint: the Supabase blocker below was resolved later the same day. See [phase 2](STABILITY_PHASE_2_20261021.md) for current verification and release status.
+
 Base: `main` at `241c7a2deb3d4bea5f7a76e6aff521a2b8794c92`.
 Target rehearsal: Friday, 23 October 2026.
 This is a retest addendum; the original 79-case QA baseline remains unchanged.

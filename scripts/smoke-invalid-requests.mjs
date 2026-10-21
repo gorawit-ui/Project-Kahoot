@@ -23,8 +23,24 @@ const unauthorized = [
   ["host", { room: "142426", position: 1, status: "question" }, 403],
   ["reset", { room: "142426" }, 403],
   ["ready", { room: "142426" }, 401],
-  ["answer", { room: "142426", response: { option: "A" } }, 400],
+  ["answer", { room: "142426", questionId: "00000000-0000-4000-8000-000000000001", response: { option: "A" } }, 400],
 ];
+const validQuestionId = "00000000-0000-4000-8000-000000000001";
+for (const body of [
+  { room: "142426", response: { option: "A" } },
+  { room: "142426", questionId: "not-a-uuid", response: { option: "A" } },
+  { room: "142426", questionId: validQuestionId, response: {} },
+  { room: "142426", questionId: validQuestionId, response: { answers: Array(9).fill("") } },
+  { room: "142426", questionId: validQuestionId, response: { option: "A", answers: Array(10).fill("") } },
+]) {
+  const response = await fetch(`${base}/api/game/answer`, {
+    method: "POST", headers: { "Content-Type": "application/json", "Cookie": "jixgo_player_token=synthetic-test-only" },
+    body: JSON.stringify(body), signal: AbortSignal.timeout(10000),
+  });
+  assert.equal(response.status, 400, "Answer question UUID and response shape validation");
+  assert.equal(typeof (await response.json()).error, "string");
+  passed++;
+}
 for (const [route, body, status] of unauthorized) {
   const response = await fetch(`${base}/api/game/${route}`, {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
