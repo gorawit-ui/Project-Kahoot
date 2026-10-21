@@ -170,3 +170,39 @@ test("Play recovers when an accepted answer's HTTP response is lost", async () =
   await screen.findByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
   assert.equal(screen.getByRole("button",{name:/A\s*Alpha/}).disabled,true);
 });
+
+// New browsers may return a scrolling Promise. React must never receive it as
+// an effect destructor when QuestionProgress unmounts at the first reveal.
+test("First answer reaches reveal when scrollIntoView returns a Promise", async () => {
+  window.history.replaceState(null,"","/play?room=142426");
+  const originalScroll = window.HTMLElement.prototype.scrollIntoView;
+  window.HTMLElement.prototype.scrollIntoView = () => Promise.resolve();
+  let state = activeState();
+  globalThis.fetch = async (url) => {
+    if (url === "/api/game/answer") {
+      state = { ...state, room: { ...state.room, status: "reveal" },
+        question: { ...state.question, reveal: { correctOption: "Alpha" } },
+        summary: { ...state.summary, currentResponse: { option: "Alpha" } } };
+      return json({ accepted: true });
+    }
+    return json(state);
+  };
+  const errors = [];
+  class Boundary extends React.Component {
+    state = { failed: false };
+    static getDerivedStateFromError() { return { failed: true }; }
+    componentDidCatch(error) { errors.push(error.message); }
+    render() { return this.state.failed ? React.createElement("p", null, "QA crash") : this.props.children; }
+  }
+  try {
+    render(React.createElement(Boundary, null, React.createElement(Play)));
+    await screen.findByText("Question one");
+    fireEvent.click(screen.getByRole("button", { name: /A\s*Alpha/ }));
+    await waitFor(() => assert.ok(screen.queryByRole("heading", { name: "คำตอบถูกต้อง!" }) || screen.queryByText("QA crash")), { timeout: 2500 });
+    assert.deepEqual(errors, []);
+    assert.ok(screen.getByRole("heading", { name: "คำตอบถูกต้อง!" }));
+  } finally {
+    cleanup();
+    window.HTMLElement.prototype.scrollIntoView = originalScroll;
+  }
+});
