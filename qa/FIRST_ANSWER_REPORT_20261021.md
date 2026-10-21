@@ -31,3 +31,18 @@ The separate pending session-lookup migration remains unapplied and is not neede
 ## Fixture cleanup
 
 Only isolated fixture room 835734 / quiz a3301cb2-ee0e-49c5-87de-dc0ea7fc08c9 was used. It was deleted with matching quiz ID and title guards. Restored counts verified: 1 quiz, 20 questions, 26 rooms, 17 players, 107 answers. Existing game data was unchanged.
+
+
+## Follow-up: 22 October 2026, Asia/Bangkok
+
+GitHub/Vercel automatic deployment was verified: deployment dpl_D1Xpcp5XdiTjPzd6mofUEAehCm6g is READY, preview target (not production), exact commit 1ff47a9d844777bd5b33436a00cd0a73328581b0. Previous statements that the fix had not been deployed were incomplete: it had reached a protected preview, but not production. The connector can read specific project/deployment metadata without a team selector. Team-scoped listings/logs still fail.
+
+With explicit user authorization, the connector attempted temporary protected-preview access. Vercel returned actual HTTP 403 at read_protection_bypass, on GET /v2/deployments/dpl_D1Xpcp5XdiTjPzd6mofUEAehCm6g/aliases. No share link was created and no protection setting was changed. Browser sign-in was separately attempted using the user's selected GitHub → Google flow. Google displayed “Too many failed attempts”; automated sign-in stopped. No credentials or OAuth state are recorded in this report. These are provider authorization/authentication blockers, not a failed gameplay test.
+
+The same expression-bodied scrolling effect was found in the Host-only question preview component. A new regression failed before correction when changing questions with a Promise-returning scrollIntoView. It now uses a block-bodied effect to discard the scrolling return value, matching the player correction. This change does not alter Host access control.
+
+Added full-game component coverage: 19 choice question → answer → reveal cycles, unlocking each next question, ten bonus inputs and submission, bonus reveal, room Q20 summary and final ranking. Scrolling returns a Promise throughout, exercising repeated cleanup. The test verifies exactly 20 submissions bound to the visible question IDs and no error-boundary crashes. HTTP responses/scoring are synthetic; this does not validate real cloud scoring, actual browsers, or 45-player concurrency.
+
+Release gate remains NOT APPROVED until the candidate can be tested through an authenticated/shareable preview. No production release, merge to main, pending session-lookup migration, or real game-data changes were made in this follow-up.
+
+Validation of follow-up: 16/16 component tests pass; typecheck and clean production build pass (19 routes). The local generated Turbopack cache again required regeneration after a persistence-directory parse error.

@@ -38,6 +38,7 @@ const Lobby = await page("app/lobby/page.tsx", "lobby");
 const Login = await page("app/host/host-login.tsx", "login");
 const Host = await page("app/host/host-dashboard.tsx", "host");
 const Play = await page("app/play/page.tsx", "play");
+const Preview = await page("app/preview/preview-client.tsx", "preview");
 const json = (payload, status=200) => new Response(JSON.stringify(payload), { status, headers: { "Content-Type": "application/json" } });
 const activeState = (id="00000000-0000-4000-8000-000000000001") => ({
   serverNow: new Date(Date.now()-60000).toISOString(),
@@ -201,6 +202,97 @@ test("First answer reaches reveal when scrollIntoView returns a Promise", async 
     await waitFor(() => assert.ok(screen.queryByRole("heading", { name: "คำตอบถูกต้อง!" }) || screen.queryByText("QA crash")), { timeout: 2500 });
     assert.deepEqual(errors, []);
     assert.ok(screen.getByRole("heading", { name: "คำตอบถูกต้อง!" }));
+  } finally {
+    cleanup();
+    window.HTMLElement.prototype.scrollIntoView = originalScroll;
+  }
+});
+
+test("A player completes 19 choice reveals, bonus answers, room summary and final ranking", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const originalScroll = window.HTMLElement.prototype.scrollIntoView;
+  window.HTMLElement.prototype.scrollIntoView = () => Promise.resolve();
+  let state = activeState();
+  const submissions = [];
+  const bonusAnswers = Array.from({ length: 10 }, (_, index) => `Song ${index + 1}`);
+  globalThis.fetch = async (url, init) => {
+    if (url === "/api/game/answer") {
+      const body = JSON.parse(init.body);
+      submissions.push(body);
+      assert.equal(body.questionId, state.question.id);
+      state.summary.currentResponse = body.response;
+      state.summary.player.score += 100;
+      return json({ accepted: true });
+    }
+    return json(state);
+  };
+  const errors = [];
+  class Boundary extends React.Component {
+    state = { failed: false };
+    static getDerivedStateFromError() { return { failed: true }; }
+    componentDidCatch(error) { errors.push(error.message); }
+    render() { return this.state.failed ? React.createElement("p", null, "QA full-game crash") : this.props.children; }
+  }
+  try {
+    render(React.createElement(Boundary, null, React.createElement(Play)));
+    for (let position = 1; position <= 20; position++) {
+      state = activeState(`00000000-0000-4000-8000-${String(position).padStart(12, "0")}`);
+      state.room.currentPosition = position;
+      state.question.position = position;
+      state.question.prompt = `QA question ${position}`;
+      state.summary.player.score = (position - 1) * 100;
+      if (position === 20) {
+        state.question.kind = "bonus";
+        state.question.options = bonusAnswers.map((_, index) => ({ id: `20.${index + 1}`, prompt: `Clue ${index + 1}` }));
+      }
+      await screen.findByRole("heading", { name: state.question.prompt }, { timeout: 2500 });
+      if (position < 20) {
+        const answer = screen.getByRole("button", { name: /A\s*Alpha/ });
+        assert.equal(answer.disabled, false, `question ${position} must unlock`);
+        fireEvent.click(answer);
+      } else {
+        const fields = screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง");
+        assert.equal(fields.length, 10);
+        fields.forEach((field, index) => fireEvent.change(field, { target: { value: bonusAnswers[index] } }));
+        fireEvent.click(screen.getByRole("button", { name: "ส่งคาถาทั้ง 10 เพลง ✦" }));
+      }
+      await screen.findByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+      state.room.status = "reveal";
+      state.question.reveal = position < 20 ? { correctOption: "Alpha" } : { correctAnswers: bonusAnswers };
+      if (position < 20) state.distribution = { totalPlayers: 1, answered: 1, unanswered: 0, options: [
+        { option: "Alpha", count: 1, percent: 100, correct: true },
+        { option: "Beta", count: 0, percent: 0, correct: false },
+      ] };
+      await screen.findByRole("heading", { name: position < 20 ? "คำตอบถูกต้อง!" : "เฉลย Bonus Magic Time" }, { timeout: 2500 });
+      if (position === 20) assert.equal(screen.getAllByText("ตอบถูก").length, 10);
+      assert.deepEqual(errors, []);
+    }
+    assert.equal(submissions.length, 20);
+    assert.deepEqual(submissions[19].response.answers, bonusAnswers);
+    state.room.status = "q20_summary";
+    state.bonusSummary = { totalPlayers: 1, submitted: 1, notSubmitted: 0, perfect: 1,
+      rows: bonusAnswers.map((_, index) => ({ id: `20.${index + 1}`, correct: 1, wrong: 0, unanswered: 0 })) };
+    await screen.findByRole("heading", { name: "บันทึกบทสุดท้ายของทั้งห้อง" }, { timeout: 2500 });
+    state.room.status = "finished";
+    state.summary.leaderboard = [{ nickname: "QA", score: 2000, rank: 1 }];
+    await screen.findByRole("heading", { name: "จบการเดินทางแล้ว ✦" }, { timeout: 2500 });
+    assert.ok(screen.getByText("FINAL LEADERBOARD"));
+    assert.ok(screen.getByText("คะแนน · อันดับ #1"));
+    assert.deepEqual(errors, []);
+  } finally {
+    cleanup();
+    window.HTMLElement.prototype.scrollIntoView = originalScroll;
+  }
+});
+
+test("Host question preview can change questions and close when scrolling returns a Promise", () => {
+  const originalScroll = window.HTMLElement.prototype.scrollIntoView;
+  window.HTMLElement.prototype.scrollIntoView = () => Promise.resolve();
+  try {
+    const view = render(React.createElement(Preview, { initialQuestionId: 1 }));
+    assert.doesNotThrow(() => view.rerender(React.createElement(Preview, { initialQuestionId: 2 })));
+    assert.equal(screen.getByRole("link", { name: "02", exact: true }).getAttribute("aria-current"), "page");
+    assert.doesNotThrow(() => view.unmount());
   } finally {
     cleanup();
     window.HTMLElement.prototype.scrollIntoView = originalScroll;

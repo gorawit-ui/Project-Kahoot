@@ -11,7 +11,9 @@ export default function PreviewClient({ initialQuestionId }: PreviewClientProps)
   const activeIndexRef = useRef<HTMLAnchorElement>(null);
   const question = publicPreviewQuestions[questionIndex];
 
-  useEffect(() => activeIndexRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" }), [questionIndex]);
+  useEffect(() => {
+    activeIndexRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [questionIndex]);
 
   function questionHref(index: number) {
     return `/preview?question=${publicPreviewQuestions[index].id}`;
