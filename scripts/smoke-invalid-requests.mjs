@@ -1,0 +1,37 @@
+import assert from "node:assert/strict";
+
+// Run against a local production build: node scripts/smoke-invalid-requests.mjs
+// Uses invalid bodies and unauthenticated requests only; creates no game data.
+const base = process.argv[2] ?? "http://127.0.0.1:3101";
+const routes = ["join", "answer", "ready", "host/login", "host", "reset", "setup"];
+let passed = 0;
+for (const route of routes) {
+  for (const body of ['{"room":', "", "null", "[]", "{}"] ) {
+    const response = await fetch(`${base}/api/game/${route}`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body,
+      signal: AbortSignal.timeout(10000),
+    });
+    assert.equal(response.status, 400, `${route}: invalid body ${JSON.stringify(body)}`);
+    const payload = await response.json();
+    assert.equal(typeof payload.error, "string");
+    assert.equal(response.headers.has("set-cookie"), false, `${route}: no session on rejection`);
+    passed++;
+  }
+}
+const unauthorized = [
+  ["host/login", { hostKey: "qa-invalid-host-key" }, 403],
+  ["host", { room: "142426", position: 1, status: "question" }, 403],
+  ["reset", { room: "142426" }, 403],
+  ["ready", { room: "142426" }, 401],
+  ["answer", { room: "142426", response: { option: "A" } }, 400],
+];
+for (const [route, body, status] of unauthorized) {
+  const response = await fetch(`${base}/api/game/${route}`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+    signal: AbortSignal.timeout(10000),
+  });
+  assert.equal(response.status, status, `${route}: session required`);
+  assert.equal(response.headers.has("set-cookie"), false);
+  passed++;
+}
+console.log(JSON.stringify({ passed, failed: 0, base, scope: "invalid JSON, invalid schema, authentication boundaries" }));

@@ -6,7 +6,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-server";
 const readySchema = z.object({ room: z.string().regex(/^\d{6}$/) });
 
 export async function POST(request: Request) {
-  const body = readySchema.safeParse(await request.json());
+  const body = readySchema.safeParse(await request.json().catch(() => null));
   const supabase = getSupabaseAdmin();
   const token = (await cookies()).get("jixgo_player_token")?.value;
 

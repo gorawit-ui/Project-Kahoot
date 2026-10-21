@@ -7,7 +7,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-server";
 const joinSchema = z.object({ room: z.string().regex(/^\d{6}$/), nickname: z.string().trim().min(1).max(24) });
 
 export async function POST(request: Request) {
-  const body = joinSchema.safeParse(await request.json());
+  const body = joinSchema.safeParse(await request.json().catch(() => null));
   if (!body.success) return NextResponse.json({ error: "INVALID_JOIN" }, { status: 400 });
   const supabase = getSupabaseAdmin();
   if (!supabase) return NextResponse.json({ error: "GAME_NOT_CONFIGURED" }, { status: 503 });

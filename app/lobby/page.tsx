@@ -10,6 +10,7 @@ export default function LobbyPage() {
   const [nickname, setNickname] = useState("Guest");
   const [entering, setEntering] = useState(false);
   const [live, setLive] = useState(false);
+  const [connectionMessage, setConnectionMessage] = useState("กำลังเชื่อมต่อกับห้อง…");
   const [readyCount, setReadyCount] = useState<number | null>(null);
   const [readying, setReadying] = useState(false);
   const [readyMessage, setReadyMessage] = useState("");
@@ -18,26 +19,45 @@ export default function LobbyPage() {
   useEffect(() => {
     const queryRoom = new URLSearchParams(window.location.search).get("room");
     setRoom(queryRoom || "142426");
-    const savedNickname = localStorage.getItem("jixgo-nickname") || "Guest";
-    setNickname(savedNickname);
+    try { setNickname(localStorage.getItem("jixgo-nickname") || "Guest"); } catch { /* Storage is optional. */ }
     const shouldAnimate = new URLSearchParams(window.location.search).get("enter") === "1";
     setEntering(shouldAnimate);
     const activeRoom = queryRoom || "142426";
+    let stopped = false;
+    let poll: number | undefined;
+    let controller: AbortController | undefined;
     const pollRoom = async () => {
-      const response = await fetch(`/api/game/state?room=${activeRoom}&t=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) return;
-      const game = await response.json();
-      setLive(true);
-      setReadyCount(typeof game.room.readyCount === "number" ? game.room.readyCount : null);
-      if (game.room.status === "question" && !navigating.current) { navigating.current = true; window.location.href = `/play?room=${activeRoom}`; }
+      controller = new AbortController();
+      const timeout = window.setTimeout(() => controller?.abort(), 7000);
+      try {
+        const response = await fetch(`/api/game/state?room=${encodeURIComponent(activeRoom)}&t=${Date.now()}`, { cache: "no-store", signal: controller.signal });
+        if (stopped) return;
+        if (!response.ok) {
+          setLive(false);
+          setReadyCount(null);
+          setConnectionMessage(response.status === 404 ? "ไม่พบห้องนี้ · ตรวจรหัสห้องแล้วเข้าร่วมใหม่" : response.status === 503 ? "ระบบห้องกำลังตั้งค่าอยู่ · กรุณารอทีมงาน" : "ติดต่อห้องไม่ได้ · กำลังลองเชื่อมต่อใหม่");
+          return;
+        }
+        const game = await response.json();
+        if (stopped) return;
+        setLive(true);
+        setConnectionMessage("● เชื่อมต่อกับห้องจริงแล้ว");
+        setReadyCount(typeof game.room.readyCount === "number" ? game.room.readyCount : null);
+        if (game.room.status === "question" && !navigating.current) { navigating.current = true; window.location.href = `/play?room=${encodeURIComponent(activeRoom)}`; }
+      } catch {
+        if (!stopped) {
+          setLive(false);
+          setReadyCount(null);
+          setConnectionMessage("การเชื่อมต่อสะดุด · กำลังลองเชื่อมต่อใหม่");
+        }
+      } finally {
+        window.clearTimeout(timeout);
+        if (!stopped) poll = window.setTimeout(() => void pollRoom(), 1000);
+      }
     };
     void pollRoom();
-    const poll = window.setInterval(() => void pollRoom(), 1000);
-    if (shouldAnimate) {
-      const timer = window.setTimeout(() => setEntering(false), 1400);
-      return () => { window.clearTimeout(timer); window.clearInterval(poll); };
-    }
-    return () => window.clearInterval(poll);
+    const timer = shouldAnimate ? window.setTimeout(() => setEntering(false), 1400) : undefined;
+    return () => { stopped = true; controller?.abort(); window.clearTimeout(timer); window.clearTimeout(poll); };
   }, []);
 
   async function markReady() {
@@ -45,7 +65,7 @@ export default function LobbyPage() {
     setReadying(true);
     setReadyMessage("กำลังยืนยันความพร้อม…");
     try {
-      const response = await fetch("/api/game/ready", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room }) });
+      const response = await fetch("/api/game/ready", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room }), signal: AbortSignal.timeout(10000) });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
         setReadyMessage(payload.error === "PLAYER_SESSION_REQUIRED" ? "เซสชันหมดอายุ · กลับไปเข้าร่วมห้องใหม่" : "ยังยืนยันความพร้อมไม่ได้ · ลองอีกครั้ง");
@@ -77,7 +97,7 @@ export default function LobbyPage() {
           <p className="player-count">{readyCount === null ? <>ผู้พร้อมแล้ว <strong>กำลังอัปเดต</strong></> : <>ผู้พร้อมแล้ว <strong>{readyCount} คน</strong></>}</p>
           <span className="pill">LIVE MODE · 20 QUESTIONS</span>
           <div className="lobby-waiting-note">นี่คือบัตรเข้างานดิจิทัลของคุณ เก็บไว้เป็นความทรงจำได้เลย</div>
-          <div className="live-status">{live ? "● เชื่อมต่อกับห้องจริงแล้ว" : "โหมดตัวอย่าง · ยังไม่ได้เชื่อม Supabase"}</div>
+          <div className="live-status" role="status">{connectionMessage}</div>
           {readyMessage ? <p className="ready-message" role="status">{readyMessage}</p> : null}
           <button className="button primary lobby-start" type="button" disabled={readying || !live} onClick={() => void markReady()}>{readying ? "กำลังยืนยัน…" : "ฉันพร้อมแล้ว ✦"}</button>
         </div>

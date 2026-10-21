@@ -6,7 +6,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-server";
 const answerSchema = z.object({ room: z.string().regex(/^\d{6}$/), response: z.object({ option: z.string().optional(), answers: z.array(z.string()).optional() }) });
 
 export async function POST(request: Request) {
-  const body = answerSchema.safeParse(await request.json());
+  const body = answerSchema.safeParse(await request.json().catch(() => null));
   const token = (await cookies()).get("jixgo_player_token")?.value;
   const supabase = getSupabaseAdmin();
   if (!body.success || !token) return NextResponse.json({ error: "INVALID_ANSWER" }, { status: 400 });
