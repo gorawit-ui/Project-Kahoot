@@ -57,13 +57,13 @@ export default function HostDashboard() {
 
   const refresh = useCallback(
     async (code = room) => {
+      const version = ++refreshVersion.current;
       if (!/^\d{6}$/.test(code)) {
         setData(null);
         setMessage("ยังไม่มีห้อง · กด “สร้างห้องใหม่” เพื่อเริ่มเกม");
         return false;
       }
 
-      const version = ++refreshVersion.current;
       try {
         const response = await fetch(`/api/game/host/state?room=${code}&t=${Date.now()}`, {
           cache: "no-store", signal: AbortSignal.timeout(7000),
@@ -83,6 +83,11 @@ export default function HostDashboard() {
           return error ?? false;
         }
 
+        if (payload?.state?.room?.code !== code) {
+          setData(null);
+          setMessage(`ข้อมูลห้อง ${code} ยังไม่พร้อม · กำลังลองใหม่`);
+          return false;
+        }
         setData(payload);
         setMessage("เชื่อมต่อห้องจริงแล้ว · อัปเดตอัตโนมัติ");
         return true;
@@ -114,7 +119,10 @@ export default function HostDashboard() {
     };
   }, [refresh]);
 
-  const game = data?.state.room;
+  // A changed room code must not reuse the old room's position or controls while
+  // the new room's state is still loading.
+  const currentData = data?.state.room.code === room ? data : null;
+  const game = currentData?.state.room;
   const position = game?.currentPosition ?? 1;
   const seconds = useMemo(
     () =>
@@ -173,7 +181,7 @@ export default function HostDashboard() {
   }
 
   async function command(status: RoomStatus, next = position) {
-    if (busy) return;
+    if (busy || !currentData) return;
     setBusy(true);
     try {
       const response = await fetch("/api/game/host", {
@@ -194,11 +202,11 @@ export default function HostDashboard() {
 
   const board =
     game?.status === "reveal" && position < 20 ? (
-      <ChoiceDistributionBoard distribution={data?.state.distribution} />
+      <ChoiceDistributionBoard distribution={currentData?.state.distribution} />
     ) : game?.status === "q20_summary" ? (
-      <BonusDistributionGrid summary={data?.state.bonusSummary} />
+      <BonusDistributionGrid summary={currentData?.state.bonusSummary} />
     ) : null;
-  const rows = showAll ? (data?.leaderboard ?? []) : (data?.leaderboard.slice(0, 5) ?? []);
+  const rows = showAll ? (currentData?.leaderboard ?? []) : (currentData?.leaderboard.slice(0, 5) ?? []);
 
   return (
     <main className="page-shell">
@@ -240,9 +248,9 @@ export default function HostDashboard() {
             <p className="answer-status">{message}</p>
             <Monitor
               game={game}
-              players={data?.playerCount ?? 0}
-              ready={data?.readyCount ?? 0}
-              answered={data?.answerCount ?? 0}
+              players={currentData?.playerCount ?? 0}
+              ready={currentData?.readyCount ?? 0}
+              answered={currentData?.answerCount ?? 0}
               seconds={seconds}
             />
             {board}
@@ -250,7 +258,7 @@ export default function HostDashboard() {
             <div className="control-grid">
               <button
                 className="button primary"
-                disabled={busy || !data || game?.status === "q20_summary"}
+                disabled={busy || !currentData || game?.status === "q20_summary"}
                 onClick={() => void command("question")}
               >
                 {game?.status === "question" ? "เริ่มเวลาใหม่" : position === 1 ? "เริ่มเกม" : "เริ่มข้อนี้"}
@@ -258,7 +266,7 @@ export default function HostDashboard() {
               {position < 20 ? (
                 <button
                   className="button ghost"
-                  disabled={busy || !data || game?.status !== "reveal"}
+                  disabled={busy || !currentData || game?.status !== "reveal"}
                   onClick={() => void command("question", position + 1)}
                 >
                   ข้อต่อไป
@@ -266,7 +274,7 @@ export default function HostDashboard() {
               ) : null}
               <button
                 className="button ghost"
-                disabled={busy || !data || game?.status !== "question"}
+                disabled={busy || !currentData || game?.status !== "question"}
                 onClick={() => void command("reveal")}
               >
                 {position === 20 ? "แสดงเฉลย Q20" : "แสดงเฉลยข้อนี้"}
@@ -283,7 +291,7 @@ export default function HostDashboard() {
               ) : null}
               <button
                 className="button ghost"
-                disabled={busy || !data || position === 20}
+                disabled={busy || !currentData || position === 20}
                 onClick={() => void command("paused")}
               >
                 พักเกม

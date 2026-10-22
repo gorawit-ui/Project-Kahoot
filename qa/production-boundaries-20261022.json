@@ -1,0 +1,98 @@
+{
+  "passed": 13,
+  "failed": 0,
+  "scope": "production malformed JSON and unauthorized actions; no Host key or fixture writes",
+  "rows": [
+    {
+      "path": "/api/game/join",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.629
+    },
+    {
+      "path": "/api/game/answer",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.638
+    },
+    {
+      "path": "/api/game/ready",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.628
+    },
+    {
+      "path": "/api/game/host/login",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.685
+    },
+    {
+      "path": "/api/game/host",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.652
+    },
+    {
+      "path": "/api/game/reset",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.532
+    },
+    {
+      "path": "/api/game/setup",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.531
+    },
+    {
+      "path": "/api/game/host/login",
+      "status": 403,
+      "expected": 403,
+      "ok": true,
+      "seconds": 6.505
+    },
+    {
+      "path": "/api/game/host",
+      "status": 403,
+      "expected": 403,
+      "ok": true,
+      "seconds": 6.49
+    },
+    {
+      "path": "/api/game/reset",
+      "status": 403,
+      "expected": 403,
+      "ok": true,
+      "seconds": 6.479
+    },
+    {
+      "path": "/api/game/ready",
+      "status": 401,
+      "expected": 401,
+      "ok": true,
+      "seconds": 6.489
+    },
+    {
+      "path": "/api/game/answer",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.5
+    },
+    {
+      "path": "/api/game/state",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "seconds": 6.496
+    }
+  ]
+}

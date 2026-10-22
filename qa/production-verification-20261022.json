@@ -1,0 +1,88 @@
+{
+  "deployment": {
+    "id": "dpl_JKQq5yu7SArL6vm1sULSw2azoKzM",
+    "commit": "9fbb01c514e6c85227a14e89dd1199fc5e63c070",
+    "target": "production",
+    "status": "READY",
+    "regions": [
+      "hnd1"
+    ],
+    "buildMilliseconds": 27570,
+    "productionUrl": "https://jixgo-magical-24.vercel.app"
+  },
+  "applicationCommit": "4aa476e2ff37328581f8d1273e07ecae65945778",
+  "browser": {
+    "engines": 1,
+    "protocolSessions": 44,
+    "productionQuestionsPlayed": 2,
+    "firstAnswerAccepted": true,
+    "firstRevealWithoutCrash": true,
+    "firstScore": 140,
+    "reloadPreservesScoreAndIdentity": true,
+    "secondAnswerAccepted": true,
+    "secondRevealWithoutCrash": true,
+    "secondScore": 276,
+    "rank": 1,
+    "playerErrorBoundaryLogs": 0,
+    "hostLoginPageRenders": true,
+    "realHostCredentialLoginTested": false
+  },
+  "database": [
+    {
+      "room": "864209",
+      "answers": 89,
+      "players": 45,
+      "browserScore": 0,
+      "answerScoreSum": 0,
+      "duplicatePairs": 0,
+      "playerScoreSum": 0
+    },
+    {
+      "room": "864210",
+      "answers": 90,
+      "players": 45,
+      "browserScore": 276,
+      "answerScoreSum": 276,
+      "duplicatePairs": 0,
+      "playerScoreSum": 276
+    }
+  ],
+  "cleanup": {
+    "rooms": 26,
+    "answers": 107,
+    "players": 17,
+    "quizzes": 1,
+    "questions": 20,
+    "lookupColumnPresent": false,
+    "lookupHelperPresent": false
+  },
+  "postgresLogCategories": [
+    {
+      "category": "ANSWER_LOCKED",
+      "n": 44
+    },
+    {
+      "category": "QUESTION_CHANGED",
+      "n": 44
+    },
+    {
+      "category": "ALREADY_ANSWERED",
+      "n": 44
+    }
+  ],
+  "runtimeLogs": {
+    "status": 403,
+    "result": "Vercel runtime logs unavailable; no CLI installed; not represented as a clean scan"
+  },
+  "blockedOptimization": {
+    "name": "index_player_session_lookup",
+    "applied": false,
+    "reason": "Automatic approval rejected production schema/index and four core-RPC rewrite without exact specific user approval"
+  },
+  "limitations": [
+    "Protocol RTT still exceeds browser deadlines in this environment",
+    "Event iPhone/Android and Wi-Fi capacity not tested",
+    "Production smoke covers two questions; earlier full 20-question rehearsal was on Preview",
+    "Host session authentication tested locally with synthetic key, not real production credential"
+  ]
+}

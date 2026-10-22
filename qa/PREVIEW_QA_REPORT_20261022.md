@@ -1,5 +1,7 @@
 # JIXGO Preview QA — 22 October 2026 (Asia/Bangkok)
 
+Latest production status: released at main 9fbb01c514e6c85227a14e89dd1199fc5e63c070. See [RELEASE_REPORT_20261022.md](RELEASE_REPORT_20261022.md) for live-site checks and remaining blocked database optimization. The Preview findings below are the earlier dated snapshot.
+
 ## Result and scope
 
 The original first-reveal crash is fixed and reproduced successfully on the deployed preview. A fresh full-game rehearsal completed with 45 participants: one actual Chrome browser plus 44 independent HTTP sessions. These are not 45 real phones/browsers. Host transitions were exercised through the existing public Supabase RPC with a synthetic, room-specific Host token; the application's Host-login UI was not exercised in this cloud run.

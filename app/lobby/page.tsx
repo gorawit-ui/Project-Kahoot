@@ -14,6 +14,7 @@ export default function LobbyPage() {
   const [readyCount, setReadyCount] = useState<number | null>(null);
   const [readying, setReadying] = useState(false);
   const [readyMessage, setReadyMessage] = useState("");
+  const [needsSessionRecovery, setNeedsSessionRecovery] = useState(false);
   const navigating = useRef(false);
 
   useEffect(() => {
@@ -40,7 +41,14 @@ export default function LobbyPage() {
         }
         const game = await response.json();
         if (stopped) return;
+        if (game.summaryError === "PLAYER_SESSION_REQUIRED" || game.summaryError?.includes("PLAYER_NOT_FOUND")) {
+          setLive(false);
+          setNeedsSessionRecovery(true);
+          setConnectionMessage("เซสชันผู้เล่นไม่พร้อม · กรุณากลับไปเข้าร่วมห้องใหม่");
+          return;
+        }
         setLive(true);
+        setNeedsSessionRecovery(false);
         setConnectionMessage("● เชื่อมต่อกับห้องจริงแล้ว");
         setReadyCount(typeof game.room.readyCount === "number" ? game.room.readyCount : null);
         if (game.room.status === "question" && !navigating.current) { navigating.current = true; window.location.href = `/play?room=${encodeURIComponent(activeRoom)}`; }
@@ -68,7 +76,9 @@ export default function LobbyPage() {
       const response = await fetch("/api/game/ready", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ room }), signal: AbortSignal.timeout(10000) });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
-        setReadyMessage(payload.error === "PLAYER_SESSION_REQUIRED" ? "เซสชันหมดอายุ · กลับไปเข้าร่วมห้องใหม่" : "ยังยืนยันความพร้อมไม่ได้ · ลองอีกครั้ง");
+        const missingSession = payload.error === "PLAYER_SESSION_REQUIRED" || (typeof payload.error === "string" && payload.error.includes("PLAYER_NOT_FOUND"));
+        if (missingSession) { setNeedsSessionRecovery(true); setLive(false); }
+        setReadyMessage(missingSession ? "เซสชันหมดอายุหรือไม่พบข้อมูลผู้เล่น · กลับไปเข้าร่วมห้องใหม่" : "ยังยืนยันความพร้อมไม่ได้ · ลองอีกครั้ง");
         return;
       }
       setReadyCount(payload.readyCount ?? null);
@@ -84,7 +94,7 @@ export default function LobbyPage() {
   return (
     <main className="page-shell lobby-world-shell"><MagicalBackground />
       <section className="shell-content">
-        <div className="topbar"><span className="pill">MAGICAL GUEST PASS</span><Link className="back-link" href="/join">เปลี่ยนชื่อ</Link></div>
+        <div className="topbar"><span className="pill">MAGICAL GUEST PASS</span><Link className="back-link" href={/^\d{6}$/.test(room) ? `/join?room=${encodeURIComponent(room)}` : "/join"}>เปลี่ยนชื่อ</Link></div>
         {entering ? <div className="portal-transition" role="status" aria-live="polite"><div className="portal-transition-ring">✦</div><span>กำลังเปิดประตูสู่โลกของ Jixgo…</span></div> : null}
         <div className={`panel lobby-center guest-pass ${entering ? "guest-pass-arrive" : ""}`}>
           <MagicalLogo />
@@ -99,6 +109,7 @@ export default function LobbyPage() {
           <div className="lobby-waiting-note">นี่คือบัตรเข้างานดิจิทัลของคุณ เก็บไว้เป็นความทรงจำได้เลย</div>
           <div className="live-status" role="status">{connectionMessage}</div>
           {readyMessage ? <p className="ready-message" role="status">{readyMessage}</p> : null}
+          {needsSessionRecovery ? <Link className="back-link" href={/^\d{6}$/.test(room) ? `/join?room=${encodeURIComponent(room)}` : "/join"}>กลับไปเข้าร่วมห้อง</Link> : null}
           <button className="button primary lobby-start" type="button" disabled={readying || !live} onClick={() => void markReady()}>{readying ? "กำลังยืนยัน…" : "ฉันพร้อมแล้ว ✦"}</button>
         </div>
       </section>

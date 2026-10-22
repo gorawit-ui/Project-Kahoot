@@ -1,4 +1,5 @@
--- PENDING: not applied to production; explicit approval is required.
+-- Explicitly approved and applied to Supabase on 23 October 2026 (Asia/Bangkok).
+-- Recorded database migration version: 20261022174111.
 -- Add an indexed token fingerprint to avoid checking every player's bcrypt hash.
 -- Bcrypt remains the authentication check. Existing cookies/hashes stay valid and
 -- acquire their lookup fingerprint after their next successful authentication.

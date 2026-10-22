@@ -40,7 +40,7 @@ try {
     return Math.round(times.reduce((a,b)=>a+b)/times.length*100)/100;
   };
   const beforeMs=await timings();
-  await db.exec(await readFile("qa/proposed-migrations/20261021153202_index_player_session_lookup.sql", "utf8"));
+  await db.exec(await readFile("supabase/migrations/20261022174111_index_player_session_lookup.sql", "utf8"));
   // One successful legacy verification upgrades only the lookup fingerprint.
   await db.query("select public.player_room_summary('987654',$1)",[tokens[44]]);
   const afterMs=await timings();
