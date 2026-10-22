@@ -298,3 +298,21 @@ test("Host question preview can change questions and close when scrolling return
     window.HTMLElement.prototype.scrollIntoView = originalScroll;
   }
 });
+
+test("Missing or reset player sessions show a room-preserving recovery link in every game phase", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  for (const status of ["question", "reveal", "q20_summary", "finished"]) {
+    for (const reason of ["PLAYER_SESSION_REQUIRED", "PLAYER_NOT_FOUND"]) {
+      const state = activeState();
+      state.room.status = status;
+      state.summary = null;
+      state.summaryError = reason;
+      globalThis.fetch = async () => json(state);
+      const view = render(React.createElement(Play));
+      await screen.findByRole("heading", { name: "เซสชันผู้เล่นไม่พร้อม" });
+      assert.equal(screen.getByRole("link", { name: "กลับไปเข้าร่วมห้อง" }).getAttribute("href"), "/join?room=142426");
+      assert.equal(screen.queryByText("กำลังโหลดคะแนนจากห้อง…"), null);
+      view.unmount();
+    }
+  }
+});

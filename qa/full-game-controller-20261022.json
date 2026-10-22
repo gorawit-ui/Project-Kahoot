@@ -1,0 +1,422 @@
+[
+  {
+    "position": 1,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 1,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 1,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 1,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 2,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 2,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 2,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 2,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 3,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 3,
+    "browserStatus": "intentionally_unanswered",
+    "ok": true
+  },
+  {
+    "position": 3,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 3,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 4,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 4,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 4,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 4,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 5,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 5,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 5,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 5,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 6,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 6,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 6,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 6,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 7,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 7,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 7,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 7,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 8,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 8,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 8,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 8,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 9,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 9,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 9,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 9,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 10,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 10,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 10,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 10,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 11,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 11,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 11,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 11,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 12,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 12,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 12,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 12,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 13,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 13,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 13,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 13,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 14,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 14,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 14,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 14,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 15,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 15,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 15,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 15,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 16,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 16,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 16,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 16,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 17,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 17,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 17,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 17,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 18,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 18,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 18,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 18,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 19,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 19,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 19,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 19,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "hostStatus": "question",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "browserStatus": "submitted",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "hostStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "browserStatus": "reveal",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "hostStatus": "q20_summary",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "browserStatus": "q20_summary",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "hostStatus": "finished",
+    "ok": true
+  },
+  {
+    "position": 20,
+    "browserStatus": "finished",
+    "ok": true
+  }
+]

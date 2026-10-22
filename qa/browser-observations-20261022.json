@@ -1,0 +1,222 @@
+[
+  {
+    "position": 1,
+    "status": "submitted",
+    "at": "2026-10-22T09:58:51.001Z"
+  },
+  {
+    "position": 1,
+    "status": "reveal",
+    "at": "2026-10-22T09:59:12.691Z"
+  },
+  {
+    "position": 2,
+    "status": "submitted",
+    "at": "2026-10-22T09:59:50.675Z"
+  },
+  {
+    "position": 2,
+    "status": "reveal",
+    "at": "2026-10-22T10:00:36.960Z"
+  },
+  {
+    "position": 3,
+    "status": "intentionally_unanswered",
+    "at": "2026-10-22T10:01:22.812Z"
+  },
+  {
+    "position": 3,
+    "status": "reveal",
+    "at": "2026-10-22T10:01:44.500Z"
+  },
+  {
+    "position": 4,
+    "status": "submitted",
+    "at": "2026-10-22T10:02:39.762Z"
+  },
+  {
+    "position": 4,
+    "status": "reveal",
+    "at": "2026-10-22T10:03:08.303Z"
+  },
+  {
+    "position": 5,
+    "status": "submitted",
+    "at": "2026-10-22T10:04:04.688Z"
+  },
+  {
+    "position": 5,
+    "status": "reveal",
+    "at": "2026-10-22T10:04:42.238Z"
+  },
+  {
+    "position": 6,
+    "status": "submitted",
+    "at": "2026-10-22T10:05:24.630Z"
+  },
+  {
+    "position": 6,
+    "status": "reveal",
+    "at": "2026-10-22T10:06:58.024Z"
+  },
+  {
+    "position": 7,
+    "status": "submitted",
+    "at": "2026-10-22T10:07:16.145Z"
+  },
+  {
+    "position": 7,
+    "status": "reveal",
+    "at": "2026-10-22T10:08:15.026Z"
+  },
+  {
+    "position": 8,
+    "status": "submitted",
+    "at": "2026-10-22T10:08:30.107Z"
+  },
+  {
+    "position": 8,
+    "status": "reveal",
+    "at": "2026-10-22T10:09:41.269Z"
+  },
+  {
+    "position": 9,
+    "status": "submitted",
+    "at": "2026-10-22T10:10:40.751Z"
+  },
+  {
+    "position": 9,
+    "status": "reveal",
+    "at": "2026-10-22T10:10:54.316Z"
+  },
+  {
+    "position": 10,
+    "status": "submitted",
+    "at": "2026-10-22T10:11:11.940Z"
+  },
+  {
+    "position": 10,
+    "status": "reveal",
+    "at": "2026-10-22T10:13:05.497Z"
+  },
+  {
+    "position": 10,
+    "status": "reveal",
+    "at": "2026-10-22T10:13:12.563Z"
+  },
+  {
+    "position": 11,
+    "status": "submitted",
+    "at": "2026-10-22T10:13:18.022Z"
+  },
+  {
+    "position": 11,
+    "status": "reveal",
+    "at": "2026-10-22T10:13:42.339Z"
+  },
+  {
+    "position": 12,
+    "status": "submitted",
+    "at": "2026-10-22T10:14:27.466Z"
+  },
+  {
+    "position": 12,
+    "status": "reveal",
+    "at": "2026-10-22T10:14:38.204Z"
+  },
+  {
+    "position": 13,
+    "status": "submitted",
+    "at": "2026-10-22T10:14:58.692Z"
+  },
+  {
+    "position": 13,
+    "status": "reload_after_answer",
+    "at": "2026-10-22T10:15:51.987Z"
+  },
+  {
+    "position": 13,
+    "status": "reveal",
+    "at": "2026-10-22T10:16:02.019Z"
+  },
+  {
+    "position": 14,
+    "status": "submitted",
+    "at": "2026-10-22T10:16:13.584Z"
+  },
+  {
+    "position": 14,
+    "status": "reveal",
+    "at": "2026-10-22T10:16:38.399Z"
+  },
+  {
+    "position": 15,
+    "status": "submitted",
+    "at": "2026-10-22T10:17:59.808Z"
+  },
+  {
+    "position": 15,
+    "status": "reveal",
+    "at": "2026-10-22T10:18:11.372Z"
+  },
+  {
+    "position": 16,
+    "status": "submitted",
+    "at": "2026-10-22T10:18:32.149Z"
+  },
+  {
+    "position": 16,
+    "status": "reveal",
+    "at": "2026-10-22T10:18:56.404Z"
+  },
+  {
+    "position": 17,
+    "status": "submitted",
+    "at": "2026-10-22T10:19:15.749Z"
+  },
+  {
+    "position": 17,
+    "status": "reveal",
+    "at": "2026-10-22T10:19:55.687Z"
+  },
+  {
+    "position": 18,
+    "status": "submitted",
+    "at": "2026-10-22T10:20:07.594Z"
+  },
+  {
+    "position": 18,
+    "status": "reveal",
+    "at": "2026-10-22T10:20:34.359Z"
+  },
+  {
+    "position": 19,
+    "status": "submitted",
+    "at": "2026-10-22T10:21:38.668Z"
+  },
+  {
+    "position": 19,
+    "status": "reveal",
+    "at": "2026-10-22T10:21:49.775Z"
+  },
+  {
+    "position": 20,
+    "status": "submitted",
+    "at": "2026-10-22T10:22:09.915Z"
+  },
+  {
+    "position": 20,
+    "status": "reveal",
+    "at": "2026-10-22T10:22:39.962Z"
+  },
+  {
+    "position": 20,
+    "status": "q20_summary",
+    "at": "2026-10-22T10:22:53.386Z"
+  },
+  {
+    "position": 20,
+    "status": "finished",
+    "at": "2026-10-22T10:23:19.314Z"
+  }
+]

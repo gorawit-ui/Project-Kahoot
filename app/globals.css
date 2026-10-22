@@ -85,6 +85,9 @@ input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244, 201, 10
 .host-stat strong { color: var(--gold-soft); }
 .rank-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .rank-list li { display: flex; justify-content: space-between; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.06); }
+.scoreboard .score-list > li { gap: 12px; }
+.scoreboard .score-list > li > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scoreboard .score-list > li > strong { flex-shrink: 0; font-variant-numeric: tabular-nums; }
 @media (min-width: 740px) {
   .page-shell { padding: 32px; }
   .shell-content { padding-top: 28px; }

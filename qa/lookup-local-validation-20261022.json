@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "rollbackVerified": true,
+  "environment": "isolated PGlite WASM PostgreSQL; not cloud or concurrency benchmark",
+  "legacyPlayersRecovered": 45,
+  "bcryptHashesPreserved": true,
+  "fingerprintAloneRejected": true,
+  "newPlayersIndexed": true,
+  "privateAccessPreserved": true,
+  "backendFlowPassed": true,
+  "beforeLookupMeanMs": 331.61,
+  "afterLookupMeanMs": 9.94
+}
