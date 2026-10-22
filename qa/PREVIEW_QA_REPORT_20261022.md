@@ -4,7 +4,7 @@
 
 The original first-reveal crash is fixed and reproduced successfully on the deployed preview. A fresh full-game rehearsal completed with 45 participants: one actual Chrome browser plus 44 independent HTTP sessions. These are not 45 real phones/browsers. Host transitions were exercised through the existing public Supabase RPC with a synthetic, room-specific Host token; the application's Host-login UI was not exercised in this cloud run.
 
-Tested application commit: 35f8379ee291762aea67ffb1154b7bb57366d931. Configured preview deployment: dpl_1T9cfWm6XTLr12QA3dD5ca5FEr6Y. Production remains at the existing main build; no main merge or production deployment has been performed.
+Full-game application commit: 35f8379ee291762aea67ffb1154b7bb57366d931. Configured preview deployment: dpl_1T9cfWm6XTLr12QA3dD5ca5FEr6Y. Targeted follow-up commit: 79d7f2a5121554f7303ecced45d4d1d7f9742bfe; deployment dpl_6TPDdGeceJoLyUR9eL1oy4ni2QLH is READY. Follow-up changes add missing-session recovery, scoreboard spacing and timing instrumentation. Production remains at the existing main build; no main merge or production deployment has been performed.
 
 ## Environment correction
 
@@ -29,8 +29,9 @@ The preview initially returned GAME_NOT_CONFIGURED. Inspection without decryptin
 | QA-13 | Browser reload preserves player/answer/score | After Q13 submission, reload displays the same nickname, answer result and 149 points | PASS |
 | QA-14 | Submit ten bonus inputs and render both bonus screens | 45 ten-item bonus submissions stored; browser bonus reveal and room summary pass | PASS |
 | QA-15 | Scores reconcile and final rank renders | 899 answer rows (one intentional non-answer), 45 positive-score players; player score sum = answer score sum = 12839; browser final score 298/rank 1 | PASS |
-| QA-16 | A missing/reset session cannot show endless score loading | Found after an overnight pause; recovery UI and room-prefilled link added, 8 phase/reason combinations pass in component regression | FIXED; deployed follow-up pending |
-| QA-17 | Long nicknames cannot touch/overlap the score | Found on final scoreboard; scoped CSS truncates nickname and preserves score width | FIXED; visual follow-up pending |
+| QA-16 | A missing/reset session cannot show endless score loading | Missing-cookie HTTP returns PLAYER_SESSION_REQUIRED; actual browser with deleted own QA player shows recovery heading, follows link to Join with room 962754 prefilled; 8 phase/reason combinations pass locally | PASS |
+| QA-17 | Long nicknames cannot touch/overlap the score | Actual deployed final leaderboard screenshot and DOM measurements confirm every visible name/score pair has at least 12px separation; final score remains 298/rank 1 | PASS |
+| QA-18 | State/answer response time stays below the application timeout on representative event devices/network | Protocol RTT exceeds 7s state / 10s answer thresholds; cloud browser completes, but event mobile/Wi-Fi remains untested | OPEN — release gate |
 
 ## Protocol counts for the fresh full-game run
 
@@ -44,9 +45,9 @@ A roughly 15-hour interruption exceeded the app's eight-hour player-cookie lifet
 
 ## Performance and remaining verification
 
-Fresh-run answer p95 peaked at 11.634 seconds; state-read p95 peaked at 19.893 seconds from the protocol test environment. No application errors occurred, but these round trips exceed the client's 7/10-second timeout thresholds and cannot certify mobile-network responsiveness. The real cloud browser completed the game successfully. A Server-Timing measurement is added to the follow-up candidate to distinguish in-function execution time from the overall client round trip; follow-up measurements are pending.
+Fresh-run answer p95 peaked at 11.634 seconds; state-read p95 peaked at 19.893 seconds from the protocol test environment. No application errors occurred, but these round trips exceed the client's 7/10-second timeout thresholds and cannot certify mobile-network responsiveness. The real cloud browser completed the game successfully. The follow-up adds Server-Timing app duration measured from route-handler entry through database calls. At 44 simultaneous state reads: first batch 44/44 pass, RTT p50/p95/max 15.875/17.015/17.289 seconds, in-function p95/max 3417.5/3630.1ms. A later paired control returns ROOM_REQUIRED without database access in 44/44 requests (RTT p50/p95/max 8.506/8.609/8.848 seconds); the following 44/44 authenticated state reads pass with RTT p50/p95/max 10.636/11.931/12.023 seconds and in-function p95/max 4413.7/4501.3ms. The no-database control itself is slow in this environment. This supports substantial overhead outside the measured handler, but does not isolate Vercel scheduling/cold starts from transport/proxy delay or prove all latency is networking. The protocol harness uses a 25-second timeout, so its success rate must not be equated with passing the shorter browser deadlines.
 
-Remaining release checks: verify the follow-up candidate's absent-session UI, long-name layout and timing header; representative iPhone Safari/Android Chrome on the event network; actual Host login/control UI. This report does not certify zero bugs or universal 45-device/network capacity.
+Targeted follow-up checks pass: missing-session API and actual recovery/link UI, long-name layout and timing header. Additional protocol checks after the full rehearsal: 132/132 expected outcomes (two 44-player state bursts and the 44-player no-database control); these are separate from the 2269-request full-game tally. Remaining release checks: representative iPhone Safari/Android Chrome on the event network with simultaneous polling/submission and actual Host login/control UI. Release readiness remains OPEN because latency and the remaining device/Host checks are unresolved. This report does not certify zero bugs or universal 45-device/network capacity.
 
 ## Change safety and regression checks
 
@@ -59,7 +60,9 @@ Local execution notes: a generated Turbopack persistence cache needed regenerati
 - preview-rehearsal-20261022.json: all request rows, including the separate expired/absent-cookie run.
 - full-game-controller-20261022.json: scoped Host transition/browser confirmation sequence.
 - browser-observations-20261022.json: actual browser observations.
+- preview-followup-20261022.json: targeted UI/layout checks, clean-up counts and timing summary.
+- missing-session-http-20261022.json: absent-cookie HTTP result.
 - lookup-local-validation-20261022.json: isolated proposal/rollback result.
 - FIRST_ANSWER_REPORT_20261021.md: original production failure, stack diagnosis and red/green regression.
 
-QA fixtures are retained temporarily for the targeted follow-up; exact guarded cleanup and restored base counts must be recorded before completion.
+Both isolated rooms (962754 and 768791) were deleted using the exact cloned quiz UUID and title guards, followed by that cloned quiz. Original data counts were restored and verified after cleanup: quizzes 1, questions 20, rooms 26, players 17, answers 107. The unused QA_RESUME player was first removed with exact fixture/nickname/UUID and no-answer guards to exercise PLAYER_NOT_FOUND. No real room, player or answer was removed. Test-room links are consequently no longer playable.

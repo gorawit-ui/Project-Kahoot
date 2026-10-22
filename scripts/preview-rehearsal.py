@@ -23,7 +23,7 @@ phase = sys.argv[1]
 config = json.loads(Path("qa/.cache/preview-rehearsal-config.json").read_text())
 base, room, count = config["base"], config["room"], config["players"]
 assert 1 <= count <= 45
-assert phase in ("join", "ready", "state", "answer", "recover", "rejoin", "duplicate", "stale", "monitor")
+assert phase in ("join", "ready", "state", "answer", "recover", "rejoin", "duplicate", "stale", "monitor", "baseline")
 barrier = threading.Barrier(count)
 cache = Path("qa/.cache/preview-sessions")
 cache.mkdir(parents=True, exist_ok=True)
@@ -88,6 +88,8 @@ def run_player(index):
     iterations = 0
     while True:
         path, body = "/api/game/state?room=" + room, None
+        if phase == "baseline":
+            path = "/api/game/state"
         if phase in ("join", "rejoin"):
             path, body = "/api/game/join", {"room": room, "nickname": nickname}
         elif phase == "ready":
@@ -99,6 +101,8 @@ def run_player(index):
         status, payload = request(path, body)
         elapsed = time.perf_counter() - before
         ok = status == 200
+        if phase == "baseline":
+            ok = status == 400 and payload.get("error") == "ROOM_REQUIRED"
         summary = payload.get("summary") or {}
         if phase in ("state", "recover", "monitor"):
             ok = ok and (summary.get("player") or {}).get("nickname") == nickname

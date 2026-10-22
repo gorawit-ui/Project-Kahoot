@@ -1,8 +1,10 @@
-# First-answer crash: reproduced and fix prepared
+# First-answer crash: original diagnosis and follow-ups
+
+Latest status: the corrected preview completed a 45-participant, 20-question rehearsal. See [PREVIEW_QA_REPORT_20261022.md](PREVIEW_QA_REPORT_20261022.md) for current evidence and remaining release gates. The dated sections below preserve the investigation history.
 
 Date: 22 October 2026, Asia/Bangkok (UTC reproduction: 21 October 17:01–17:06).
 Production: jixgo-magical-24.vercel.app, main 241c7a2.
-Severity: Critical / release blocker. Production remains affected; fix is not deployed.
+Severity: Critical / release blocker. Production remains affected; the fix is deployed and tested on Preview only.
 
 ## Observed scenarios
 
