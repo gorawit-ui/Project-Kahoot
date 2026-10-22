@@ -72,7 +72,7 @@ def run_player(index):
                 return error.code, {"error": "NON_JSON_RESPONSE"}
         except Exception as error:
             # Exception text may contain request URLs; never log it.
-            return 0, {"error": type(error).__name__}
+            return 0, {"error": type(error).__name__, "causeType": type(getattr(error, "reason", error)).__name__, "errno": getattr(getattr(error, "reason", error), "errno", None)}
 
     rows = []
     if phase == "join" and not cookie_path.exists():
@@ -123,6 +123,9 @@ def run_player(index):
             row["serverAppMs"] = payload["_qa_app_ms"]
         if not ok:
             row["error"] = str(payload.get("error", payload.get("summaryError", "UNEXPECTED_RESPONSE")))[:100]
+            if "causeType" in payload:
+                row["causeType"] = payload["causeType"]
+                row["errno"] = payload["errno"]
         if phase in ("state", "monitor"):
             row["position"] = (payload.get("room") or {}).get("currentPosition")
             row["roomStatus"] = (payload.get("room") or {}).get("status")

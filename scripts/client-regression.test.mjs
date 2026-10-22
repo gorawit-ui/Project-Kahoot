@@ -10,13 +10,13 @@ import React from "react";
 // Component integration tests use a DOM simulation and mocked HTTP responses.
 // They do not replace real-device or deployed Host/player end-to-end tests.
 const dom = new JSDOM("<!doctype html><html><body></body></html>", { url: "http://localhost/join" });
-for (const key of ["window", "document", "HTMLElement", "localStorage", "MutationObserver"]) globalThis[key] = dom.window[key];
+for (const key of ["window", "document", "HTMLElement", "localStorage", "sessionStorage", "MutationObserver"]) globalThis[key] = dom.window[key];
 Object.defineProperty(globalThis, "navigator", { value: dom.window.navigator, configurable: true });
 // jsdom has no layout/scroll engine; scrolling is covered by real-browser QA.
 dom.window.HTMLElement.prototype.scrollIntoView = function () {};
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 globalThis.qaNavigation = [];
-const { render, screen, fireEvent, waitFor, cleanup } = await import("@testing-library/react");
+const { render, screen, fireEvent, waitFor, cleanup, act } = await import("@testing-library/react");
 const require = createRequire(import.meta.url);
 const cache = path.resolve("qa/.cache");
 await mkdir(cache, { recursive: true });
@@ -46,7 +46,7 @@ const activeState = (id="00000000-0000-4000-8000-000000000001") => ({
   question: { id, position: 1, kind: "choice", prompt: id.endsWith("2") ? "Question two" : "Question one", media: { type: "emoji", clues: "QA" }, options: ["Alpha", "Beta"], timeLimitSeconds: 30 },
   summary: { player: { nickname: "QA", score: 0, rank: 1 }, leaderboard: [], currentResponse: null },
 });
-beforeEach(() => { window.history.replaceState(null,"","/join"); localStorage.clear(); globalThis.qaNavigation = []; });
+beforeEach(() => { window.history.replaceState(null,"","/join"); localStorage.clear(); sessionStorage.clear(); globalThis.qaNavigation = []; });
 afterEach(() => { cleanup(); });
 
 test("Join rejects a spaces-only nickname without sending a request", async () => {
@@ -315,4 +315,203 @@ test("Missing or reset player sessions show a room-preserving recovery link in e
       view.unmount();
     }
   }
+});
+
+test("Host changing room cannot command the new room with the old room's question", async () => {
+  window.history.replaceState(null, "", "/host?room=142426");
+  let releaseNewRoom;
+  const newRoomRead = new Promise(resolve => { releaseNewRoom = resolve; });
+  const commands = [];
+  let newReads = 0;
+  globalThis.fetch = async (url, init) => {
+    if (url === "/api/game/host") { commands.push(JSON.parse(init.body)); return json({ ok: true }); }
+    if (String(url).includes("room=999999")) {
+      newReads++;
+      await newRoomRead;
+      return json({ state: { room: { code: "999999", status: "lobby", currentPosition: 1 } }, playerCount: 0, leaderboard: [] });
+    }
+    return json({ state: { room: { code: "142426", status: "reveal", currentPosition: 7 } }, playerCount: 2, leaderboard: [] });
+  };
+  const view = render(React.createElement(Host));
+  try {
+    await waitFor(() => assert.equal(screen.getByRole("button", { name: "ข้อต่อไป" }).disabled, false));
+    fireEvent.change(screen.getByLabelText("รหัสห้อง"), { target: { value: "999999" } });
+    await waitFor(() => assert.ok(newReads > 0));
+    const advance = screen.queryByRole("button", { name: "ข้อต่อไป" });
+    assert.ok(!advance || advance.disabled, "old-room controls must disable while the new room is loading");
+    if (advance) fireEvent.click(advance);
+    assert.deepEqual(commands, []);
+    releaseNewRoom();
+    await waitFor(() => assert.equal(screen.getByRole("button", { name: "เริ่มเกม" }).disabled, false));
+    fireEvent.click(screen.getByRole("button", { name: "เริ่มเกม" }));
+    await waitFor(() => assert.equal(commands.length, 1));
+    assert.deepEqual(commands[0], { room: "999999", position: 1, status: "question" });
+  } finally { releaseNewRoom(); view.unmount(); }
+});
+
+const bonusState = (id = "00000000-0000-4000-8000-000000000020") => {
+  const state = activeState(id);
+  state.room.currentPosition = 20;
+  state.question.position = 20;
+  state.question.kind = "bonus";
+  state.question.prompt = "QA draft bonus";
+  state.question.options = Array.from({ length: 10 }, (_, index) => ({ id: `20.${index + 1}`, prompt: `Draft clue ${index + 1}` }));
+  return state;
+};
+
+test("Bonus draft survives remount and StrictMode reload without submitting", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const state = bonusState();
+  let submissions = 0;
+  globalThis.fetch = async (url) => { if (url === "/api/game/answer") submissions++; return json(state); };
+  let view = render(React.createElement(Play));
+  await screen.findByRole("heading", { name: "QA draft bonus" });
+  let fields = screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง");
+  fireEvent.change(fields[0], { target: { value: "First unsent song" } });
+  fireEvent.change(fields[9], { target: { value: "Tenth unsent song" } });
+  view.unmount();
+  view = render(React.createElement(React.StrictMode, null, React.createElement(Play)));
+  try {
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    await waitFor(() => {
+      fields = screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง");
+      assert.equal(fields[0].value, "First unsent song");
+      assert.equal(fields[9].value, "Tenth unsent song");
+    });
+    assert.equal(submissions, 0, "restoring an unsent draft must never submit it");
+  } finally { view.unmount(); }
+});
+
+test("Bonus draft is isolated by authenticated player, room and question", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  let state = bonusState();
+  globalThis.fetch = async () => json(state);
+  let view = render(React.createElement(Play));
+  await screen.findByRole("heading", { name: "QA draft bonus" });
+  fireEvent.change(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0], { target: { value: "Only QA's draft" } });
+  view.unmount();
+  for (const identity of ["other-player", "other-room", "other-question"]) {
+    state = bonusState();
+    window.history.replaceState(null, "", identity === "other-room" ? "/play?room=999999" : "/play?room=142426");
+    if (identity === "other-player") state.summary.player.nickname = "Other QA";
+    if (identity === "other-room") state.room.code = "999999";
+    if (identity === "other-question") state.question.id = "00000000-0000-4000-8000-000000000120";
+    view = render(React.createElement(Play));
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    assert.equal(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0].value, "", identity);
+    view.unmount();
+  }
+  state = bonusState();
+  window.history.replaceState(null, "", "/play?room=142426");
+  view = render(React.createElement(Play));
+  try {
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    await waitFor(() => assert.equal(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0].value, "Only QA's draft"));
+  } finally { view.unmount(); }
+});
+
+test("Accepted Bonus response replaces and clears an older unsent draft", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const state = bonusState();
+  globalThis.fetch = async () => json(state);
+  let view = render(React.createElement(Play));
+  await screen.findByRole("heading", { name: "QA draft bonus" });
+  fireEvent.change(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0], { target: { value: "Old draft" } });
+  view.unmount();
+  const accepted = Array.from({ length: 10 }, (_, index) => `Accepted song ${index + 1}`);
+  state.summary.currentResponse = { answers: accepted };
+  view = render(React.createElement(Play));
+  await screen.findByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+  assert.deepEqual(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง").map(field => field.value), accepted);
+  view.unmount();
+  state.summary.currentResponse = null;
+  view = render(React.createElement(Play));
+  try {
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    assert.equal(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0].value, "");
+  } finally { view.unmount(); }
+});
+
+test("Unavailable browser storage cannot block Bonus editing or submission", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const state = bonusState();
+  const storage = window.Storage.prototype;
+  const originalGet = storage.getItem;
+  const originalSet = storage.setItem;
+  const originalRemove = storage.removeItem;
+  const submissions = [];
+  storage.getItem = storage.setItem = storage.removeItem = () => { throw new Error("QA storage unavailable"); };
+  globalThis.fetch = async (url, init) => {
+    if (url === "/api/game/answer") { submissions.push(JSON.parse(init.body)); return json({ accepted: true }); }
+    return json(state);
+  };
+  let view;
+  try {
+    view = render(React.createElement(Play));
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    fireEvent.change(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0], { target: { value: "Storage-free song" } });
+    fireEvent.click(screen.getByRole("button", { name: "ส่งคาถาทั้ง 10 เพลง ✦" }));
+    await screen.findByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+    assert.equal(submissions.length, 1);
+    assert.equal(submissions[0].response.answers[0], "Storage-free song");
+  } finally {
+    view?.unmount();
+    storage.getItem = originalGet; storage.setItem = originalSet; storage.removeItem = originalRemove;
+  }
+});
+
+test("Lobby missing player sessions disable Ready and preserve the recovery room", async () => {
+  window.history.replaceState(null, "", "/lobby?room=999999");
+  for (const summaryError of ["PLAYER_SESSION_REQUIRED", "PLAYER_NOT_FOUND"]) {
+    globalThis.fetch = async () => json({ room: { code: "999999", status: "lobby", readyCount: 1 }, summary: null, summaryError });
+    const view = render(React.createElement(Lobby));
+    try {
+      const recovery = await screen.findByRole("link", { name: "กลับไปเข้าร่วมห้อง" });
+      assert.equal(recovery.getAttribute("href"), "/join?room=999999");
+      assert.equal(screen.getByRole("button", { name: "ฉันพร้อมแล้ว ✦" }).disabled, true);
+    } finally { view.unmount(); }
+  }
+});
+
+test("Lobby Ready rejection recovers to a room-prefilled Join route", async () => {
+  window.history.replaceState(null, "", "/lobby?room=999999");
+  let rejected = false;
+  globalThis.fetch = async (url) => {
+    if (url === "/api/game/ready") { rejected = true; return json({ error: "PLAYER_NOT_FOUND" }, 409); }
+    return json({ room: { code: "999999", status: "lobby", readyCount: 1 }, ...(rejected ? { summaryError: "PLAYER_NOT_FOUND" } : {}) });
+  };
+  render(React.createElement(Lobby));
+  await screen.findByText(/เชื่อมต่อกับห้องจริงแล้ว/);
+  fireEvent.click(screen.getByRole("button", { name: "ฉันพร้อมแล้ว ✦" }));
+  const recovery = await screen.findByRole("link", { name: "กลับไปเข้าร่วมห้อง" });
+  assert.equal(recovery.getAttribute("href"), "/join?room=999999");
+  assert.equal(screen.getByRole("button", { name: "ฉันพร้อมแล้ว ✦" }).disabled, true);
+});
+
+test("A stale pre-submit Bonus poll cannot erase an accepted answer's visible inputs", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const state = bonusState();
+  const beforeSubmission = structuredClone(state);
+  let releaseStaleRead;
+  const staleRead = new Promise(resolve => { releaseStaleRead = resolve; });
+  let reads = 0;
+  let readInFlight = false;
+  globalThis.fetch = async (url) => {
+    if (url === "/api/game/answer") return json({ accepted: true });
+    if (++reads >= 2) { readInFlight = true; return staleRead; }
+    return json(state);
+  };
+  const view = render(React.createElement(Play));
+  try {
+    await screen.findByRole("heading", { name: "QA draft bonus" });
+    fireEvent.change(screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง")[0], { target: { value: "Visible accepted song" } });
+    await waitFor(() => assert.ok(readInFlight), { timeout: 2500 });
+    fireEvent.click(screen.getByRole("button", { name: "ส่งคาถาทั้ง 10 เพลง ✦" }));
+    await screen.findByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+    await act(async () => { releaseStaleRead(json(beforeSubmission)); await Promise.resolve(); });
+    const fields = screen.getAllByPlaceholderText("พิมพ์ชื่อเพลง");
+    assert.equal(fields[0].value, "Visible accepted song");
+    assert.equal(fields[0].disabled, true);
+    assert.ok(screen.getByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ"));
+  } finally { releaseStaleRead(json(beforeSubmission)); view.unmount(); }
 });
