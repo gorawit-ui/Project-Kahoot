@@ -5,7 +5,9 @@ The user explicitly requested fixing the known issues and releasing the website 
 ## Release checks
 
 - Client regression: 17/17 pass.
+- Server gateway regression: 3/3 pass (bounded identical-credential retry; ordinary authorization failures remain failures; non-JSON/aborted requests do not retry).
 - Typecheck and production build: pass (19 routes).
+- API/schema/authentication smoke: 47/47 pass against the local production build.
 - Isolated lookup proposal: legacy 45-player identity/hash preservation, wrong-fingerprint rejection, full backend flow and rollback pass. This is not a cloud capacity result.
 - Prior actual full-game rehearsal: 20 questions, 1 browser + 44 protocol sessions, 2269/2269 expected outcomes.
 - Preview with the region configuration and production post-deploy checks: pending at this commit.
@@ -21,3 +23,7 @@ Consequently, the region change must not be described as resolving all 45-player
 Previous main: 241c7a2deb3d4bea5f7a76e6aff521a2b8794c92. Previous production deployment: dpl_6swYTrwVAwncuTJ3rxNif94pgUtP. If post-deploy gameplay fails, restore that deployment. No new database migration is part of this release, so a website rollback requires no database rollback.
 
 QA fixture for release verification only: room 864209, cloned quiz 4902f6c9-998d-4c84-b621-943b8b3c3bcb, title QA_RELEASE_20261022_a6d5. Delete this exact fixture after testing; never change the event room.
+
+## Transient gateway rejection
+
+The initial 44-player Join burst recorded 43 successes and one JWT issued at future error from the database gateway. A subsequent burst recovered all 44 with their original cookies, without duplicate players. The server fetch now retries this exact gateway clock rejection once after 250ms with unchanged credentials/body. It does not bypass JWT verification or retry ordinary authorization failures. The first failure is retained in raw evidence.
