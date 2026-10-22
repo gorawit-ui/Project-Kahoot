@@ -39,6 +39,20 @@ export default function HostDashboard() {
   const [message, setMessage] = useState("กำลังเชื่อมต่อห้องจริง…");
   const [now, setNow] = useState(Date.now());
   const preparingRoom = useRef<string | null>(null);
+  const refreshVersion = useRef(0);
+  useEffect(() => {
+    try {
+      const saved = new URLSearchParams(window.location.search).get("room") || localStorage.getItem("jixgo-host-room") || "";
+      if (/^\d{6}$/.test(saved)) setRoom(saved);
+    } catch { /* Storage is optional. */ }
+  }, []);
+  useEffect(() => {
+    if (!/^\d{6}$/.test(room)) return;
+    try { localStorage.setItem("jixgo-host-room", room); } catch { /* Storage is optional. */ }
+    const url = new URL(window.location.href);
+    url.searchParams.set("room", room);
+    window.history.replaceState(null, "", url);
+  }, [room]);
   const isRoomCode = /^\d{6}$/.test(room);
 
   const refresh = useCallback(
@@ -49,11 +63,13 @@ export default function HostDashboard() {
         return false;
       }
 
+      const version = ++refreshVersion.current;
       try {
         const response = await fetch(`/api/game/host/state?room=${code}&t=${Date.now()}`, {
-          cache: "no-store",
+          cache: "no-store", signal: AbortSignal.timeout(7000),
         });
         const payload = await response.json().catch(() => ({}));
+        if (version !== refreshVersion.current) return false;
 
         if (!response.ok) {
           const error = typeof payload.error === "string" ? payload.error : null;
@@ -71,6 +87,8 @@ export default function HostDashboard() {
         setMessage("เชื่อมต่อห้องจริงแล้ว · อัปเดตอัตโนมัติ");
         return true;
       } catch (error) {
+        if (version !== refreshVersion.current) return false;
+        setData(null);
         const detail = error instanceof Error ? error.message : "NETWORK_ERROR";
         if (preparingRoom.current !== code) {
           setMessage(`อ่านสถานะห้อง ${code} ไม่สำเร็จ: ${detail}`);
@@ -82,12 +100,17 @@ export default function HostDashboard() {
   );
 
   useEffect(() => {
-    void refresh();
-    const poll = setInterval(() => void refresh(), 1500);
+    let active = true;
+    let poll: ReturnType<typeof setTimeout> | undefined;
+    const tick = async () => {
+      await refresh();
+      if (active) poll = setTimeout(() => void tick(), 1500);
+    };
+    void tick();
     const clock = setInterval(() => setNow(Date.now()), 250);
     return () => {
-      clearInterval(poll);
-      clearInterval(clock);
+      active = false; refreshVersion.current++;
+      clearTimeout(poll); clearInterval(clock);
     };
   }, [refresh]);
 
@@ -102,6 +125,7 @@ export default function HostDashboard() {
   );
 
   async function prepareRoom(code: string) {
+    if (busy || !/^\d{6}$/.test(code)) return;
     preparingRoom.current = code;
     setBusy(true);
     setData(null);
@@ -112,6 +136,7 @@ export default function HostDashboard() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ room: code }),
+        signal: AbortSignal.timeout(15000),
       });
       const payload = await response.json().catch(() => ({}));
 
@@ -128,6 +153,8 @@ export default function HostDashboard() {
           `เตรียมห้อง ${payload.room} แล้ว แต่ยังอ่านสถานะไม่ได้: ${typeof connected === "string" ? connected : "ตรวจ migration และ Environment"}`,
         );
       }
+    } catch {
+      setMessage("การเชื่อมต่อสะดุด · ตรวจสถานะห้องก่อนลองเตรียมห้องอีกครั้ง");
     } finally {
       preparingRoom.current = null;
       setBusy(false);
@@ -146,19 +173,23 @@ export default function HostDashboard() {
   }
 
   async function command(status: RoomStatus, next = position) {
+    if (busy) return;
     setBusy(true);
-    const response = await fetch("/api/game/host", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ room, position: next, status }),
-    });
-    setBusy(false);
-
-    if (!response.ok) {
-      setMessage("สั่งเกมไม่สำเร็จ: สถานะห้องเปลี่ยนหรือ migration ยังไม่ครบ");
-      return;
-    }
-    void refresh();
+    try {
+      const response = await fetch("/api/game/host", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ room, position: next, status }),
+        signal: AbortSignal.timeout(10000),
+      });
+      if (!response.ok) {
+        setMessage("สั่งเกมไม่สำเร็จ · ตรวจสถานะห้องก่อนลองอีกครั้ง");
+        return;
+      }
+      await refresh();
+    } catch {
+      setMessage("การเชื่อมต่อสะดุด · กำลังตรวจสถานะห้องก่อนสั่งเกมอีกครั้ง");
+      await refresh();
+    } finally { setBusy(false); }
   }
 
   const board =

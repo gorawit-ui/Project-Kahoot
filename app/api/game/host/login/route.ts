@@ -5,8 +5,9 @@ import { createHostSession, HOST_SESSION_COOKIE, isValidHostKey } from "@/lib/ho
 const loginSchema = z.object({ hostKey: z.string().min(1) });
 
 export async function POST(request: Request) {
-  const body = loginSchema.safeParse(await request.json());
-  if (!body.success || !isValidHostKey(body.data.hostKey)) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
+  const body = loginSchema.safeParse(await request.json().catch(() => null));
+  if (!body.success) return NextResponse.json({ error: "INVALID_LOGIN" }, { status: 400 });
+  if (!isValidHostKey(body.data.hostKey)) return NextResponse.json({ error: "HOST_UNAUTHORIZED" }, { status: 403 });
   const session = createHostSession();
   if (!session) return NextResponse.json({ error: "GAME_NOT_CONFIGURED" }, { status: 503 });
   const response = NextResponse.json({ ok: true });

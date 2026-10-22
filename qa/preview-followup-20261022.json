@@ -1,0 +1,81 @@
+{
+  "commit": "79d7f2a5121554f7303ecced45d4d1d7f9742bfe",
+  "deployment": "dpl_6TPDdGeceJoLyUR9eL1oy4ni2QLH",
+  "actualBrowser": {
+    "finalScore": 298,
+    "rank": 1,
+    "leaderboardVisibleRows": 10,
+    "minimumNameScoreGapPx": 12,
+    "resetPlayerRecoveryHeading": "เซสชันผู้เล่นไม่พร้อม",
+    "recoveryLink": "/join?room=962754",
+    "followedJoinRoomInput": "962754"
+  },
+  "httpMissingCookie": "PLAYER_SESSION_REQUIRED",
+  "protocolFollowup": [
+    {
+      "phase": "state",
+      "players": 44,
+      "requests": 44,
+      "success": 44,
+      "atUTC": "2026-10-22T10:30:15.403605+00:00",
+      "errors": 0,
+      "p50": 15.875,
+      "p95": 17.015,
+      "max": 17.289,
+      "wallSeconds": 17.401,
+      "room": "768791",
+      "base": "https://project-kahoot-git-codex-stability-ph-05a8f8-gorawitjs-projects.vercel.app",
+      "questionId": "a5e2b21b-3efd-437e-affb-3dc6febf6123",
+      "serverAppMs": {
+        "n": 44,
+        "p50": 2274.6000000000004,
+        "p95": 3417.5,
+        "max": 3630.1
+      }
+    },
+    {
+      "phase": "baseline",
+      "players": 44,
+      "requests": 44,
+      "success": 44,
+      "atUTC": "2026-10-22T11:20:41.199274+00:00",
+      "errors": 0,
+      "p50": 8.506,
+      "p95": 8.609,
+      "max": 8.848,
+      "wallSeconds": 8.895,
+      "room": "768791",
+      "base": "https://project-kahoot-git-codex-stability-ph-05a8f8-gorawitjs-projects.vercel.app",
+      "questionId": "a5e2b21b-3efd-437e-affb-3dc6febf6123"
+    },
+    {
+      "phase": "state",
+      "players": 44,
+      "requests": 44,
+      "success": 44,
+      "atUTC": "2026-10-22T11:20:53.345988+00:00",
+      "errors": 0,
+      "p50": 10.636,
+      "p95": 11.931,
+      "max": 12.023,
+      "wallSeconds": 12.069,
+      "room": "768791",
+      "base": "https://project-kahoot-git-codex-stability-ph-05a8f8-gorawitjs-projects.vercel.app",
+      "questionId": "a5e2b21b-3efd-437e-affb-3dc6febf6123",
+      "serverAppMs": {
+        "n": 44,
+        "p50": 3128.6,
+        "p95": 4413.7,
+        "max": 4501.3
+      }
+    }
+  ],
+  "fixtureCleanup": {
+    "quizzes": 1,
+    "questions": 20,
+    "rooms": 26,
+    "players": 17,
+    "answers": 107
+  },
+  "releaseGate": "OPEN: event devices/network latency and Host login/control UI not validated"
+}
