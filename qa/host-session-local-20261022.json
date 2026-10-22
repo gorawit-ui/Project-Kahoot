@@ -1,0 +1,5 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "scope": "local production build with synthetic Host key; login and cookie flags, valid session reaches backend configuration boundary, absent/forged session rejected, logout expires cookie; no real Host key or live Host controls used"
+}

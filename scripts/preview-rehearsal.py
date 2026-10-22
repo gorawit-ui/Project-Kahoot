@@ -23,7 +23,7 @@ phase = sys.argv[1]
 config = json.loads(Path("qa/.cache/preview-rehearsal-config.json").read_text())
 base, room, count = config["base"], config["room"], config["players"]
 assert 1 <= count <= 45
-assert phase in ("join", "ready", "state", "answer", "recover", "rejoin", "duplicate", "stale", "monitor", "baseline")
+assert phase in ("join", "ready", "state", "answer", "recover", "rejoin", "duplicate", "stale", "monitor", "baseline", "locked")
 barrier = threading.Barrier(count)
 cache = Path("qa/.cache/preview-sessions")
 cache.mkdir(parents=True, exist_ok=True)
@@ -76,7 +76,7 @@ def run_player(index):
 
     rows = []
     if phase == "join" and not cookie_path.exists():
-        status, _ = request("/?" + urllib.parse.urlencode({"_vercel_share": config["share"]}))
+        status, _ = request("/" + ("?" + urllib.parse.urlencode({"_vercel_share": config["share"]}) if config.get("share") else ""))
         if status != 200:
             return [{"player": nickname, "ok": False, "status": status, "seconds": 0, "error": "PREVIEW_ACCESS_FAILED"}]
         status, payload = request("/api/game/session")
@@ -94,7 +94,7 @@ def run_player(index):
             path, body = "/api/game/join", {"room": room, "nickname": nickname}
         elif phase == "ready":
             path, body = "/api/game/ready", {"room": room}
-        elif phase in ("answer", "duplicate", "stale"):
+        elif phase in ("answer", "duplicate", "stale", "locked"):
             question_id = config["previousQuestionId"] if phase == "stale" else config["questionId"]
             path, body = "/api/game/answer", {"room": room, "questionId": question_id, "response": config["response"]}
         before = time.perf_counter()
@@ -114,6 +114,8 @@ def run_player(index):
             ok = ok and payload.get("accepted") is True
         if phase == "duplicate":
             ok = status == 409 and payload.get("error") == "ALREADY_ANSWERED"
+        if phase == "locked":
+            ok = status == 409 and payload.get("error") == "ANSWER_LOCKED"
         if phase == "stale":
             ok = status == 409 and payload.get("error") == "QUESTION_CHANGED"
         row = {"player": nickname, "status": status, "seconds": round(elapsed, 3), "ok": ok}

@@ -1,6 +1,6 @@
 # First-answer crash: original diagnosis and follow-ups
 
-Latest status: the corrected preview completed a 45-participant, 20-question rehearsal. See [PREVIEW_QA_REPORT_20261022.md](PREVIEW_QA_REPORT_20261022.md) for current evidence and remaining release gates. The dated sections below preserve the investigation history.
+Latest status: the fix is now live on production at main 9fbb01c514e6c85227a14e89dd1199fc5e63c070. Production first/second reveals pass with 45 participants. See [RELEASE_REPORT_20261022.md](RELEASE_REPORT_20261022.md) for current evidence and remaining limits. The dated sections below preserve the investigation history.
 
 Date: 22 October 2026, Asia/Bangkok (UTC reproduction: 21 October 17:01–17:06).
 Production: jixgo-magical-24.vercel.app, main 241c7a2.

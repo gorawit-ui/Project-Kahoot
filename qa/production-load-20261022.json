@@ -1,0 +1,4308 @@
+[
+  {
+    "phase": "join",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:11:48.514311+00:00",
+    "errors": 0,
+    "p50": 8.029,
+    "p95": 9.328,
+    "max": 9.381,
+    "wallSeconds": 23.911,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": null,
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 8.466,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 7.363,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 7.127,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 8.554,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 8.309,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 9.328,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 7.54,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 9.381,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 8.716,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 9.034,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 7.237,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 7.48,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 7.581,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 7.273,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 7.365,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 8.159,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 8.42,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 6.797,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 8.591,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 8.977,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 7.101,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 9.186,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 9.112,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 8.887,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 7.87,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 6.787,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 8.498,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 7.834,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 8.513,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 6.67,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 6.645,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 9.176,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 7.418,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 7.899,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 7.08,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 6.855,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 6.762,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 8.394,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 7.889,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 8.638,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 9.343,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 9.049,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 6.88,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 9.042,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "ready",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:12:00.467952+00:00",
+    "errors": 0,
+    "p50": 10.11,
+    "p95": 11.34,
+    "max": 11.372,
+    "wallSeconds": 11.642,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": null,
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 8.444,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 9.826,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 10.933,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 11.097,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 9.14,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 11.372,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 8.917,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 11.34,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 11.317,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 10.775,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 9.274,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 8.26,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 10.58,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 10.039,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 9.79,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 9.603,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 10.717,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 9.575,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 10.027,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 9.923,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 10.778,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 10.992,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 11.343,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 11.252,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 9.17,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 11.013,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 9.008,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 8.455,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 9.603,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 9.907,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 10.181,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 11.311,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 10.708,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 9.896,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 10.235,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 9.563,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 10.676,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 10.61,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 10.488,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 8.819,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 8.098,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 10.644,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 9.475,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 10.555,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "state",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:12:32.359563+00:00",
+    "errors": 0,
+    "p50": 10.355,
+    "p95": 11.318,
+    "max": 11.373,
+    "wallSeconds": 11.706,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": null,
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 9.184,
+        "ok": true,
+        "serverAppMs": 1498.5,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 10.482,
+        "ok": true,
+        "serverAppMs": 2736.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 11.318,
+        "ok": true,
+        "serverAppMs": 3685.8,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 9.9,
+        "ok": true,
+        "serverAppMs": 2213.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 11.097,
+        "ok": true,
+        "serverAppMs": 3411.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 10.868,
+        "ok": true,
+        "serverAppMs": 3133.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 11.107,
+        "ok": true,
+        "serverAppMs": 3364.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 9.874,
+        "ok": true,
+        "serverAppMs": 2213.7,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 9.917,
+        "ok": true,
+        "serverAppMs": 2243.8,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 10.109,
+        "ok": true,
+        "serverAppMs": 2391.5,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 10.148,
+        "ok": true,
+        "serverAppMs": 2306.7,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 7.892,
+        "ok": true,
+        "serverAppMs": 368.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 8.437,
+        "ok": true,
+        "serverAppMs": 803.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 11.064,
+        "ok": true,
+        "serverAppMs": 3367.8,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 10.395,
+        "ok": true,
+        "serverAppMs": 2674.1,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 10.829,
+        "ok": true,
+        "serverAppMs": 3129.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 9.851,
+        "ok": true,
+        "serverAppMs": 2200.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 10.343,
+        "ok": true,
+        "serverAppMs": 2626.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 9.615,
+        "ok": true,
+        "serverAppMs": 1949.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 9.876,
+        "ok": true,
+        "serverAppMs": 2231.8,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 11.029,
+        "ok": true,
+        "serverAppMs": 3311.4,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 10.351,
+        "ok": true,
+        "serverAppMs": 2660.2,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 11.273,
+        "ok": true,
+        "serverAppMs": 3579.2,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 11.236,
+        "ok": true,
+        "serverAppMs": 3479.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 11.072,
+        "ok": true,
+        "serverAppMs": 3384.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 11.066,
+        "ok": true,
+        "serverAppMs": 3400.7,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 11.373,
+        "ok": true,
+        "serverAppMs": 3698.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 9.299,
+        "ok": true,
+        "serverAppMs": 1638.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 10.998,
+        "ok": true,
+        "serverAppMs": 3291.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 10.051,
+        "ok": true,
+        "serverAppMs": 2403.1,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 10.358,
+        "ok": true,
+        "serverAppMs": 2389.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 10.722,
+        "ok": true,
+        "serverAppMs": 3065.0,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 8.698,
+        "ok": true,
+        "serverAppMs": 1067.1,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 7.723,
+        "ok": true,
+        "serverAppMs": 204.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 11.116,
+        "ok": true,
+        "serverAppMs": 3476.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 11.356,
+        "ok": true,
+        "serverAppMs": 3654.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 10.108,
+        "ok": true,
+        "serverAppMs": 2479.4,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 9.114,
+        "ok": true,
+        "serverAppMs": 1469.9,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 8.885,
+        "ok": true,
+        "serverAppMs": 1239.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 8.814,
+        "ok": true,
+        "serverAppMs": 1186.3,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 9.979,
+        "ok": true,
+        "serverAppMs": 2310.1,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 10.363,
+        "ok": true,
+        "serverAppMs": 2729.6,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 10.518,
+        "ok": true,
+        "serverAppMs": 2891.4,
+        "position": 1,
+        "roomStatus": "lobby"
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 10.45,
+        "ok": true,
+        "serverAppMs": 2612.1,
+        "position": 1,
+        "roomStatus": "lobby"
+      }
+    ]
+  },
+  {
+    "phase": "answer",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:13:35.108167+00:00",
+    "errors": 0,
+    "p50": 8.944,
+    "p95": 10.169,
+    "max": 10.272,
+    "wallSeconds": 10.834,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "5896e70e-2eec-41a1-b467-bd0969fdc447",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 9.618,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 8.828,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 10.272,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 7.325,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 9.219,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 9.373,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 8.452,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 9.802,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 7.263,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 10.169,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 9.971,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 9.411,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 8.448,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 8.782,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 9.632,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 7.81,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 9.507,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 7.495,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 8.624,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 10.178,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 8.824,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 9.282,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 8.434,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 8.076,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 9.487,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 7.39,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 9.214,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 10.137,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 7.768,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 9.805,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 8.184,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 9.171,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 9.061,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 9.553,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 10.071,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 8.431,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 8.181,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 8.612,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 8.78,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 9.943,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 7.46,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 9.302,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 8.138,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 8.254,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "duplicate",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:13:47.556500+00:00",
+    "errors": 0,
+    "p50": 9.677,
+    "p95": 11.044,
+    "max": 11.177,
+    "wallSeconds": 11.64,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "5896e70e-2eec-41a1-b467-bd0969fdc447",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 409,
+        "seconds": 11.059,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 409,
+        "seconds": 9.693,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 409,
+        "seconds": 10.663,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 409,
+        "seconds": 9.975,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 409,
+        "seconds": 9.78,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 409,
+        "seconds": 8.912,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 409,
+        "seconds": 9.291,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 409,
+        "seconds": 10.727,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 409,
+        "seconds": 7.403,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 409,
+        "seconds": 9.148,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 409,
+        "seconds": 9.835,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 409,
+        "seconds": 8.436,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 409,
+        "seconds": 10.771,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 409,
+        "seconds": 8.941,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 409,
+        "seconds": 9.939,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 409,
+        "seconds": 10.77,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 409,
+        "seconds": 10.633,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 409,
+        "seconds": 9.024,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 409,
+        "seconds": 9.336,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 409,
+        "seconds": 10.68,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 409,
+        "seconds": 8.389,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 409,
+        "seconds": 8.486,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 409,
+        "seconds": 9.772,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 409,
+        "seconds": 9.988,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 409,
+        "seconds": 7.539,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 409,
+        "seconds": 10.719,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 409,
+        "seconds": 10.656,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 409,
+        "seconds": 8.334,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 409,
+        "seconds": 7.592,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 409,
+        "seconds": 9.908,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 409,
+        "seconds": 11.177,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 409,
+        "seconds": 9.177,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 409,
+        "seconds": 9.832,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 409,
+        "seconds": 8.954,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 409,
+        "seconds": 8.232,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 409,
+        "seconds": 11.044,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 409,
+        "seconds": 8.359,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 409,
+        "seconds": 9.684,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 409,
+        "seconds": 8.691,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 409,
+        "seconds": 9.67,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 409,
+        "seconds": 9.812,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 409,
+        "seconds": 8.984,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 409,
+        "seconds": 9.12,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 409,
+        "seconds": 8.012,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "recover",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:15:12.760335+00:00",
+    "errors": 0,
+    "p50": 9.217,
+    "p95": 10.65,
+    "max": 10.767,
+    "wallSeconds": 11.048,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "5896e70e-2eec-41a1-b467-bd0969fdc447",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 9.627,
+        "ok": true,
+        "serverAppMs": 2866.8
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 7.568,
+        "ok": true,
+        "serverAppMs": 833.3
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 10.617,
+        "ok": true,
+        "serverAppMs": 3694.4
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 7.605,
+        "ok": true,
+        "serverAppMs": 849.1
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 10.65,
+        "ok": true,
+        "serverAppMs": 3877.8
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 10.315,
+        "ok": true,
+        "serverAppMs": 3448.0
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 10.155,
+        "ok": true,
+        "serverAppMs": 3217.0
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 7.56,
+        "ok": true,
+        "serverAppMs": 817.4
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 9.058,
+        "ok": true,
+        "serverAppMs": 2288.8
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 9.926,
+        "ok": true,
+        "serverAppMs": 3069.7
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 8.573,
+        "ok": true,
+        "serverAppMs": 1863.2
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 10.209,
+        "ok": true,
+        "serverAppMs": 3284.2
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 8.801,
+        "ok": true,
+        "serverAppMs": 2046.9
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 9.231,
+        "ok": true,
+        "serverAppMs": 2441.2
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 8.339,
+        "ok": true,
+        "serverAppMs": 1620.3
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 9.229,
+        "ok": true,
+        "serverAppMs": 2443.0
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 8.397,
+        "ok": true,
+        "serverAppMs": 1718.7
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 9.272,
+        "ok": true,
+        "serverAppMs": 2549.0
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 10.453,
+        "ok": true,
+        "serverAppMs": 3469.7
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 7.831,
+        "ok": true,
+        "serverAppMs": 928.4
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 9.205,
+        "ok": true,
+        "serverAppMs": 2489.0
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 9.052,
+        "ok": true,
+        "serverAppMs": 2253.7
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 7.618,
+        "ok": true,
+        "serverAppMs": 863.2
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 8.407,
+        "ok": true,
+        "serverAppMs": 1488.5
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 8.875,
+        "ok": true,
+        "serverAppMs": 2194.7
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 7.943,
+        "ok": true,
+        "serverAppMs": 1006.3
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 10.767,
+        "ok": true,
+        "serverAppMs": 3730.7
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 10.661,
+        "ok": true,
+        "serverAppMs": 3760.3
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 9.969,
+        "ok": true,
+        "serverAppMs": 3244.7
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 10.025,
+        "ok": true,
+        "serverAppMs": 3051.0
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 10.37,
+        "ok": true,
+        "serverAppMs": 3366.2
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 10.173,
+        "ok": true,
+        "serverAppMs": 3267.9
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 8.113,
+        "ok": true,
+        "serverAppMs": 1366.0
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 9.255,
+        "ok": true,
+        "serverAppMs": 2461.7
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 8.525,
+        "ok": true,
+        "serverAppMs": 1739.1
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 8.582,
+        "ok": true,
+        "serverAppMs": 1874.7
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 10.412,
+        "ok": true,
+        "serverAppMs": 3581.9
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 8.612,
+        "ok": true,
+        "serverAppMs": 1869.3
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 8.471,
+        "ok": true,
+        "serverAppMs": 1704.9
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 9.88,
+        "ok": true,
+        "serverAppMs": 3138.1
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 8.135,
+        "ok": true,
+        "serverAppMs": 1342.7
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 8.111,
+        "ok": true,
+        "serverAppMs": 1218.2
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 9.932,
+        "ok": true,
+        "serverAppMs": 3002.3
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 10.342,
+        "ok": true,
+        "serverAppMs": 3574.9
+      }
+    ]
+  },
+  {
+    "phase": "monitor",
+    "players": 44,
+    "requests": 176,
+    "success": 176,
+    "atUTC": "2026-10-22T12:15:48.113190+00:00",
+    "errors": 0,
+    "p50": 7.525,
+    "p95": 11.404,
+    "max": 11.515,
+    "wallSeconds": 34.858,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "5896e70e-2eec-41a1-b467-bd0969fdc447",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 8.758,
+        "ok": true,
+        "serverAppMs": 1980.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 7.649,
+        "ok": true,
+        "serverAppMs": 2659.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 7.865,
+        "ok": true,
+        "serverAppMs": 2850.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 6.524,
+        "ok": true,
+        "serverAppMs": 2946.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 10.259,
+        "ok": true,
+        "serverAppMs": 3318.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 5.94,
+        "ok": true,
+        "serverAppMs": 2653.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 7.791,
+        "ok": true,
+        "serverAppMs": 2388.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 6.143,
+        "ok": true,
+        "serverAppMs": 2650.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 9.51,
+        "ok": true,
+        "serverAppMs": 2703.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 6.369,
+        "ok": true,
+        "serverAppMs": 2918.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 6.273,
+        "ok": true,
+        "serverAppMs": 2054.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 8.22,
+        "ok": true,
+        "serverAppMs": 3804.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 9.126,
+        "ok": true,
+        "serverAppMs": 2339.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 5.816,
+        "ok": true,
+        "serverAppMs": 1297.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 7.838,
+        "ok": true,
+        "serverAppMs": 1897.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 6.695,
+        "ok": true,
+        "serverAppMs": 2193.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 9.946,
+        "ok": true,
+        "serverAppMs": 3144.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 4.652,
+        "ok": true,
+        "serverAppMs": 1251.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 9.311,
+        "ok": true,
+        "serverAppMs": 2859.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 6.68,
+        "ok": true,
+        "serverAppMs": 3322.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 8.369,
+        "ok": true,
+        "serverAppMs": 1502.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 7.638,
+        "ok": true,
+        "serverAppMs": 2076.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 6.538,
+        "ok": true,
+        "serverAppMs": 1625.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 5.921,
+        "ok": true,
+        "serverAppMs": 1525.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 8.271,
+        "ok": true,
+        "serverAppMs": 1509.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 8.993,
+        "ok": true,
+        "serverAppMs": 3586.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 7.023,
+        "ok": true,
+        "serverAppMs": 2614.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 6.483,
+        "ok": true,
+        "serverAppMs": 3123.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 11.48,
+        "ok": true,
+        "serverAppMs": 3448.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 5.856,
+        "ok": true,
+        "serverAppMs": 3515.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 7.28,
+        "ok": true,
+        "serverAppMs": 3758.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 6.706,
+        "ok": true,
+        "serverAppMs": 3682.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 8.514,
+        "ok": true,
+        "serverAppMs": 1640.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 8.982,
+        "ok": true,
+        "serverAppMs": 3702.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 3.6,
+        "ok": true,
+        "serverAppMs": 214.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 9.573,
+        "ok": true,
+        "serverAppMs": 2929.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 11.515,
+        "ok": true,
+        "serverAppMs": 3873.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 5.719,
+        "ok": true,
+        "serverAppMs": 3507.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 7.029,
+        "ok": true,
+        "serverAppMs": 2595.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 4.499,
+        "ok": true,
+        "serverAppMs": 1028.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 9.275,
+        "ok": true,
+        "serverAppMs": 2434.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 5.813,
+        "ok": true,
+        "serverAppMs": 1438.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 9.222,
+        "ok": true,
+        "serverAppMs": 2680.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 6.012,
+        "ok": true,
+        "serverAppMs": 2583.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 9.306,
+        "ok": true,
+        "serverAppMs": 2494.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 6.025,
+        "ok": true,
+        "serverAppMs": 2485.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 6.506,
+        "ok": true,
+        "serverAppMs": 1975.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 6.421,
+        "ok": true,
+        "serverAppMs": 1996.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 11.426,
+        "ok": true,
+        "serverAppMs": 3566.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 4.474,
+        "ok": true,
+        "serverAppMs": 2023.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 8.413,
+        "ok": true,
+        "serverAppMs": 2923.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 6.218,
+        "ok": true,
+        "serverAppMs": 2766.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 9.355,
+        "ok": true,
+        "serverAppMs": 2562.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 5.313,
+        "ok": true,
+        "serverAppMs": 1986.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 8.508,
+        "ok": true,
+        "serverAppMs": 3033.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 6.265,
+        "ok": true,
+        "serverAppMs": 2854.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 11.488,
+        "ok": true,
+        "serverAppMs": 3383.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 5.206,
+        "ok": true,
+        "serverAppMs": 2986.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 7.551,
+        "ok": true,
+        "serverAppMs": 2507.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 5.703,
+        "ok": true,
+        "serverAppMs": 2289.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 8.487,
+        "ok": true,
+        "serverAppMs": 1751.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 8.495,
+        "ok": true,
+        "serverAppMs": 3271.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 5.722,
+        "ok": true,
+        "serverAppMs": 1839.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 7.664,
+        "ok": true,
+        "serverAppMs": 3246.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 9.668,
+        "ok": true,
+        "serverAppMs": 2854.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 5.862,
+        "ok": true,
+        "serverAppMs": 2430.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 5.799,
+        "ok": true,
+        "serverAppMs": 1194.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 9.07,
+        "ok": true,
+        "serverAppMs": 3476.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 10.011,
+        "ok": true,
+        "serverAppMs": 3136.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 4.594,
+        "ok": true,
+        "serverAppMs": 1315.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 9.219,
+        "ok": true,
+        "serverAppMs": 2989.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 7.157,
+        "ok": true,
+        "serverAppMs": 3384.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 9.147,
+        "ok": true,
+        "serverAppMs": 2353.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 7.654,
+        "ok": true,
+        "serverAppMs": 2901.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 7.499,
+        "ok": true,
+        "serverAppMs": 3067.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 5.881,
+        "ok": true,
+        "serverAppMs": 2479.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 8.349,
+        "ok": true,
+        "serverAppMs": 1561.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 6.871,
+        "ok": true,
+        "serverAppMs": 1548.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 9.512,
+        "ok": true,
+        "serverAppMs": 3490.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 4.383,
+        "ok": true,
+        "serverAppMs": 1364.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 7.164,
+        "ok": true,
+        "serverAppMs": 374.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 10.371,
+        "ok": true,
+        "serverAppMs": 3608.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 4.67,
+        "ok": true,
+        "serverAppMs": 1247.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 8.947,
+        "ok": true,
+        "serverAppMs": 3432.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 7.911,
+        "ok": true,
+        "serverAppMs": 1143.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 6.887,
+        "ok": true,
+        "serverAppMs": 1116.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 9.598,
+        "ok": true,
+        "serverAppMs": 2241.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 5.38,
+        "ok": true,
+        "serverAppMs": 2104.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 11.503,
+        "ok": true,
+        "serverAppMs": 3772.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 4.78,
+        "ok": true,
+        "serverAppMs": 2513.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 8.513,
+        "ok": true,
+        "serverAppMs": 3572.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 4.384,
+        "ok": true,
+        "serverAppMs": 1444.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 9.298,
+        "ok": true,
+        "serverAppMs": 2454.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 8.17,
+        "ok": true,
+        "serverAppMs": 3574.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 5.376,
+        "ok": true,
+        "serverAppMs": 1930.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 5.022,
+        "ok": true,
+        "serverAppMs": 536.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 9.63,
+        "ok": true,
+        "serverAppMs": 2772.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 5.061,
+        "ok": true,
+        "serverAppMs": 1803.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 8.915,
+        "ok": true,
+        "serverAppMs": 2287.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 4.408,
+        "ok": true,
+        "serverAppMs": 1138.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 11.433,
+        "ok": true,
+        "serverAppMs": 3656.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 4.542,
+        "ok": true,
+        "serverAppMs": 2416.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 8.288,
+        "ok": true,
+        "serverAppMs": 3234.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 7.11,
+        "ok": true,
+        "serverAppMs": 3745.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 10.273,
+        "ok": true,
+        "serverAppMs": 3388.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 7.101,
+        "ok": true,
+        "serverAppMs": 3550.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 7.286,
+        "ok": true,
+        "serverAppMs": 3807.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 4.572,
+        "ok": true,
+        "serverAppMs": 1603.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 7.908,
+        "ok": true,
+        "serverAppMs": 1129.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 9.608,
+        "ok": true,
+        "serverAppMs": 3729.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 5.207,
+        "ok": true,
+        "serverAppMs": 1770.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 7.079,
+        "ok": true,
+        "serverAppMs": 2495.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 8.733,
+        "ok": true,
+        "serverAppMs": 1822.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 7.427,
+        "ok": true,
+        "serverAppMs": 2250.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 8.407,
+        "ok": true,
+        "serverAppMs": 3356.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 6.511,
+        "ok": true,
+        "serverAppMs": 3365.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 8.983,
+        "ok": true,
+        "serverAppMs": 2126.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 7.926,
+        "ok": true,
+        "serverAppMs": 2872.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 7.447,
+        "ok": true,
+        "serverAppMs": 3126.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 4.505,
+        "ok": true,
+        "serverAppMs": 1055.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 8.815,
+        "ok": true,
+        "serverAppMs": 1970.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 7.745,
+        "ok": true,
+        "serverAppMs": 2779.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 7.801,
+        "ok": true,
+        "serverAppMs": 3071.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 5.488,
+        "ok": true,
+        "serverAppMs": 2155.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 9.815,
+        "ok": true,
+        "serverAppMs": 2908.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 6.701,
+        "ok": true,
+        "serverAppMs": 3140.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 5.431,
+        "ok": true,
+        "serverAppMs": 1556.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 7.042,
+        "ok": true,
+        "serverAppMs": 2611.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 9.095,
+        "ok": true,
+        "serverAppMs": 2285.8,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 7.604,
+        "ok": true,
+        "serverAppMs": 2941.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 7.617,
+        "ok": true,
+        "serverAppMs": 2863.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 7.099,
+        "ok": true,
+        "serverAppMs": 3710.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 8.727,
+        "ok": true,
+        "serverAppMs": 1743.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 7.064,
+        "ok": true,
+        "serverAppMs": 2146.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 8.675,
+        "ok": true,
+        "serverAppMs": 3275.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 6.958,
+        "ok": true,
+        "serverAppMs": 3693.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 10.29,
+        "ok": true,
+        "serverAppMs": 3356.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 4.893,
+        "ok": true,
+        "serverAppMs": 1724.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 9.268,
+        "ok": true,
+        "serverAppMs": 3455.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 5.196,
+        "ok": true,
+        "serverAppMs": 2225.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 8.397,
+        "ok": true,
+        "serverAppMs": 1624.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 6.063,
+        "ok": true,
+        "serverAppMs": 655.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 9.865,
+        "ok": true,
+        "serverAppMs": 2874.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 4.935,
+        "ok": true,
+        "serverAppMs": 1544.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 9.79,
+        "ok": true,
+        "serverAppMs": 2983.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 5.634,
+        "ok": true,
+        "serverAppMs": 2430.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 6.638,
+        "ok": true,
+        "serverAppMs": 1518.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 6.158,
+        "ok": true,
+        "serverAppMs": 1803.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 11.404,
+        "ok": true,
+        "serverAppMs": 3356.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 5.167,
+        "ok": true,
+        "serverAppMs": 2807.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 7.913,
+        "ok": true,
+        "serverAppMs": 3482.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 7.033,
+        "ok": true,
+        "serverAppMs": 3790.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 8.998,
+        "ok": true,
+        "serverAppMs": 2214.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 7.896,
+        "ok": true,
+        "serverAppMs": 3117.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 7.416,
+        "ok": true,
+        "serverAppMs": 2584.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 4.537,
+        "ok": true,
+        "serverAppMs": 1131.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 9.019,
+        "ok": true,
+        "serverAppMs": 2278.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 6.192,
+        "ok": true,
+        "serverAppMs": 1522.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 9.149,
+        "ok": true,
+        "serverAppMs": 3237.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 6.407,
+        "ok": true,
+        "serverAppMs": 3106.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 9.208,
+        "ok": true,
+        "serverAppMs": 2393.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 8.281,
+        "ok": true,
+        "serverAppMs": 3584.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 6.815,
+        "ok": true,
+        "serverAppMs": 2550.5,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 5.177,
+        "ok": true,
+        "serverAppMs": 1846.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 11.475,
+        "ok": true,
+        "serverAppMs": 3740.4,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 3.038,
+        "ok": true,
+        "serverAppMs": 889.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 8.565,
+        "ok": true,
+        "serverAppMs": 2176.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 8.209,
+        "ok": true,
+        "serverAppMs": 3631.3,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 11.506,
+        "ok": true,
+        "serverAppMs": 3587.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 4.379,
+        "ok": true,
+        "serverAppMs": 2140.7,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 8.405,
+        "ok": true,
+        "serverAppMs": 2275.2,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 4.111,
+        "ok": true,
+        "serverAppMs": 746.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 10.253,
+        "ok": true,
+        "serverAppMs": 3333.9,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 5.311,
+        "ok": true,
+        "serverAppMs": 1899.6,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 8.722,
+        "ok": true,
+        "serverAppMs": 3349.0,
+        "position": 1,
+        "roomStatus": "reveal"
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 6.712,
+        "ok": true,
+        "serverAppMs": 3504.1,
+        "position": 1,
+        "roomStatus": "reveal"
+      }
+    ]
+  },
+  {
+    "phase": "rejoin",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:16:06.783376+00:00",
+    "errors": 0,
+    "p50": 15.271,
+    "p95": 16.786,
+    "max": 16.792,
+    "wallSeconds": 18.205,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "5896e70e-2eec-41a1-b467-bd0969fdc447",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 16.505,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 16.565,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 16.78,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 16.502,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 13.84,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 13.837,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 16.562,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 13.771,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 16.555,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 13.608,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 16.587,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 13.81,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 13.867,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 16.563,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 16.569,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 16.791,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 13.844,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 16.466,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 13.744,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 13.848,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 14.076,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 13.84,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 16.786,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 13.861,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 13.805,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 13.811,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 16.515,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 16.564,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 16.792,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 13.737,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 13.734,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 13.613,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 16.754,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 16.783,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 16.761,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 13.825,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 16.589,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 13.849,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 13.861,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 16.531,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 13.717,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 16.758,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 16.745,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 13.852,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "answer",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:17:13.411707+00:00",
+    "errors": 0,
+    "p50": 8.68,
+    "p95": 9.939,
+    "max": 10.021,
+    "wallSeconds": 10.317,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "38ec3a20-51f2-46f5-89d0-abe9e3903607",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 200,
+        "seconds": 7.509,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 200,
+        "seconds": 9.931,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 200,
+        "seconds": 8.798,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 200,
+        "seconds": 7.23,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 200,
+        "seconds": 8.207,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 200,
+        "seconds": 9.939,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 200,
+        "seconds": 9.902,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 200,
+        "seconds": 9.985,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 200,
+        "seconds": 7.298,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 200,
+        "seconds": 8.404,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 200,
+        "seconds": 9.762,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 200,
+        "seconds": 9.221,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 200,
+        "seconds": 8.192,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 200,
+        "seconds": 7.878,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 200,
+        "seconds": 8.642,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 200,
+        "seconds": 8.681,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 200,
+        "seconds": 8.68,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 200,
+        "seconds": 7.381,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 200,
+        "seconds": 9.31,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 200,
+        "seconds": 9.256,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 200,
+        "seconds": 7.703,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 200,
+        "seconds": 8.957,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 200,
+        "seconds": 9.766,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 200,
+        "seconds": 7.48,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 200,
+        "seconds": 7.897,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 200,
+        "seconds": 7.931,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 200,
+        "seconds": 9.444,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 200,
+        "seconds": 9.844,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 200,
+        "seconds": 7.611,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 200,
+        "seconds": 9.729,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 200,
+        "seconds": 7.725,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 200,
+        "seconds": 8.408,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 200,
+        "seconds": 8.145,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 200,
+        "seconds": 8.873,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 200,
+        "seconds": 8.997,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 200,
+        "seconds": 8.67,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 200,
+        "seconds": 9.32,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 200,
+        "seconds": 9.606,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 200,
+        "seconds": 9.296,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 200,
+        "seconds": 7.681,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 200,
+        "seconds": 8.041,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 200,
+        "seconds": 9.843,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 200,
+        "seconds": 10.021,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 200,
+        "seconds": 8.542,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "phase": "stale",
+    "players": 44,
+    "requests": 44,
+    "success": 44,
+    "atUTC": "2026-10-22T12:17:21.840929+00:00",
+    "errors": 0,
+    "p50": 7.405,
+    "p95": 7.596,
+    "max": 7.614,
+    "wallSeconds": 7.84,
+    "room": "864210",
+    "base": "https://jixgo-magical-24.vercel.app",
+    "questionId": "38ec3a20-51f2-46f5-89d0-abe9e3903607",
+    "rows": [
+      {
+        "player": "QA_HTTP_01_a6d5prod",
+        "status": 409,
+        "seconds": 7.353,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_02_a6d5prod",
+        "status": 409,
+        "seconds": 7.222,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_03_a6d5prod",
+        "status": 409,
+        "seconds": 7.596,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_04_a6d5prod",
+        "status": 409,
+        "seconds": 7.551,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_05_a6d5prod",
+        "status": 409,
+        "seconds": 7.573,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_06_a6d5prod",
+        "status": 409,
+        "seconds": 7.242,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_07_a6d5prod",
+        "status": 409,
+        "seconds": 6.867,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_08_a6d5prod",
+        "status": 409,
+        "seconds": 7.549,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_09_a6d5prod",
+        "status": 409,
+        "seconds": 7.192,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_10_a6d5prod",
+        "status": 409,
+        "seconds": 7.566,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_11_a6d5prod",
+        "status": 409,
+        "seconds": 7.328,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_12_a6d5prod",
+        "status": 409,
+        "seconds": 6.796,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_13_a6d5prod",
+        "status": 409,
+        "seconds": 7.484,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_14_a6d5prod",
+        "status": 409,
+        "seconds": 7.559,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_15_a6d5prod",
+        "status": 409,
+        "seconds": 7.436,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_16_a6d5prod",
+        "status": 409,
+        "seconds": 7.392,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_17_a6d5prod",
+        "status": 409,
+        "seconds": 7.612,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_18_a6d5prod",
+        "status": 409,
+        "seconds": 7.406,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_19_a6d5prod",
+        "status": 409,
+        "seconds": 6.758,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_20_a6d5prod",
+        "status": 409,
+        "seconds": 6.886,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_21_a6d5prod",
+        "status": 409,
+        "seconds": 7.161,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_22_a6d5prod",
+        "status": 409,
+        "seconds": 7.477,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_23_a6d5prod",
+        "status": 409,
+        "seconds": 7.502,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_24_a6d5prod",
+        "status": 409,
+        "seconds": 7.416,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_25_a6d5prod",
+        "status": 409,
+        "seconds": 7.313,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_26_a6d5prod",
+        "status": 409,
+        "seconds": 7.24,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_27_a6d5prod",
+        "status": 409,
+        "seconds": 6.839,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_28_a6d5prod",
+        "status": 409,
+        "seconds": 7.536,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_29_a6d5prod",
+        "status": 409,
+        "seconds": 7.342,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_30_a6d5prod",
+        "status": 409,
+        "seconds": 7.266,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_31_a6d5prod",
+        "status": 409,
+        "seconds": 7.614,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_32_a6d5prod",
+        "status": 409,
+        "seconds": 7.301,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_33_a6d5prod",
+        "status": 409,
+        "seconds": 7.578,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_34_a6d5prod",
+        "status": 409,
+        "seconds": 6.972,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_35_a6d5prod",
+        "status": 409,
+        "seconds": 7.578,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_36_a6d5prod",
+        "status": 409,
+        "seconds": 7.583,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_37_a6d5prod",
+        "status": 409,
+        "seconds": 7.184,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_38_a6d5prod",
+        "status": 409,
+        "seconds": 7.571,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_39_a6d5prod",
+        "status": 409,
+        "seconds": 7.405,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_40_a6d5prod",
+        "status": 409,
+        "seconds": 7.515,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_41_a6d5prod",
+        "status": 409,
+        "seconds": 7.414,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_42_a6d5prod",
+        "status": 409,
+        "seconds": 7.333,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_43_a6d5prod",
+        "status": 409,
+        "seconds": 7.398,
+        "ok": true
+      },
+      {
+        "player": "QA_HTTP_44_a6d5prod",
+        "status": 409,
+        "seconds": 7.576,
+        "ok": true
+      }
+    ]
+  }
+]
