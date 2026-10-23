@@ -31,7 +31,7 @@ async function page(file, name) {
         : 'exports.useRouter=()=>({push:url=>globalThis.qaNavigation.push(url)});', loader: "js", resolveDir: process.cwd() }));
     } }],
   });
-  return require(outfile).default;
+  return require(outfile).default ?? require(outfile).LeaveRoomButton ?? require(outfile).HostPlayerList;
 }
 const Join = await page("app/join/page.tsx", "join");
 const Lobby = await page("app/lobby/page.tsx", "lobby");
@@ -553,4 +553,131 @@ test("Earlier choice reveals still encourage and wait for the next question", as
     assert.ok(screen.getByText("เก่งมากเลย ✨ ข้อต่อไปเอาอีกนะ"));
     assert.ok(screen.getByText("รอ Host เริ่มข้อถัดไป ✦"));
   } finally { view.unmount(); }
+});
+
+const LeaveButton = await page('components/leave-room-button.tsx', 'leave-button');
+const HostPlayers = await page('components/host-player-list.tsx', 'host-players');
+
+
+test("Leave requires confirmation, allows cancel, and posts only the current room once", async () => {
+  const calls = []; const busy = [];
+  globalThis.fetch = async (url, init) => { calls.push({url,body:JSON.parse(init.body)}); return json({removed:true}); };
+  render(React.createElement(LeaveButton,{room:"142426",onBusyChange:value=>busy.push(value)}));
+  fireEvent.click(screen.getByRole("button",{name:"ออกจากห้อง",exact:true}));
+  assert.equal(calls.length,0);
+  fireEvent.click(screen.getByRole("button",{name:"อยู่ในห้องต่อ"}));
+  assert.equal(calls.length,0);
+  fireEvent.click(screen.getByRole("button",{name:"ออกจากห้อง",exact:true}));
+  const confirm=screen.getByRole("button",{name:"ยืนยันออกจากห้อง"});
+  fireEvent.click(confirm);fireEvent.click(confirm);
+  await waitFor(()=>assert.deepEqual(globalThis.qaNavigation,["/"]));
+  assert.deepEqual(calls,[{url:"/api/game/leave",body:{room:"142426"}}]);
+  assert.deepEqual(busy,[true]);
+});
+
+test("Leave handles lost response and idempotent retry without losing player identity", async () => {
+  let calls=0;
+  globalThis.fetch=async()=>{if(++calls===1)throw Error("lost response"); return json({removed:false});};
+  render(React.createElement(LeaveButton,{room:"142426"}));
+  fireEvent.click(screen.getByRole("button",{name:"ออกจากห้อง",exact:true}));
+  fireEvent.click(screen.getByRole("button",{name:"ยืนยันออกจากห้อง"}));
+  await screen.findByRole("alert");
+  assert.deepEqual(globalThis.qaNavigation,[]);
+  fireEvent.click(screen.getByRole("button",{name:"ยืนยันออกจากห้อง"}));
+  await waitFor(()=>assert.deepEqual(globalThis.qaNavigation,["/"]));
+  assert.equal(calls,2);
+});
+
+test("Leave refused after game start keeps the user on the current page", async () => {
+  globalThis.fetch=async()=>json({error:"LOBBY_CLOSED"},409);
+  render(React.createElement(LeaveButton,{room:"142426"}));
+  fireEvent.click(screen.getByRole("button",{name:"ออกจากห้อง",exact:true}));
+  fireEvent.click(screen.getByRole("button",{name:"ยืนยันออกจากห้อง"}));
+  await screen.findByText(/เกมเริ่มแล้ว/);
+  assert.deepEqual(globalThis.qaNavigation,[]);
+});
+
+test("Ready players can leave from the play waiting screen, but active games cannot", async () => {
+  window.history.replaceState(null,"","/play?room=142426");
+  let state=activeState();state.room.status="lobby";
+  globalThis.fetch=async()=>json(state);
+  const view=render(React.createElement(Play));
+  await screen.findByRole("button",{name:"ออกจากห้อง",exact:true});
+  state=activeState();
+  await screen.findByRole("heading",{name:"Question one"},{timeout:2500});
+  assert.equal(screen.queryByRole("button",{name:"ออกจากห้อง",exact:true}),null);
+  view.unmount();
+});
+
+const roster=Array.from({length:7},(_,i)=>({id:`00000000-0000-4000-8000-${String(i+1).padStart(12,"0")}`,nickname:`Lobby ${i+1}`,ready:i%2===0}));
+
+test("Host lists every player and removes the confirmed UUID from the exact room", async () => {
+  const calls=[];let refreshes=0;
+  globalThis.fetch=async(url,init)=>{calls.push({url,body:JSON.parse(init.body)});return json({removed:true});};
+  render(React.createElement(HostPlayers,{room:"142426",players:roster,enabled:true,busy:false,onBusyChange:()=>{},onChanged:async()=>refreshes++}));
+  fireEvent.click(screen.getByRole("button",{name:"นำ Lobby 7 ออกจากห้อง"}));
+  assert.equal(calls.length,0);
+  fireEvent.click(screen.getByRole("button",{name:"ยืนยันนำออก"}));
+  await screen.findByText("นำ Lobby 7 ออกจากห้องแล้ว");
+  assert.deepEqual(calls,[{url:"/api/game/host/remove-player",body:{room:"142426",playerId:roster[6].id}}]);
+  assert.equal(refreshes,1);
+});
+
+test("Host cannot remove during play or reuse a confirmation for a removed target", async () => {
+  const props={room:"142426",players:roster,enabled:true,busy:false,onBusyChange:()=>{},onChanged:async()=>{}};
+  const view=render(React.createElement(HostPlayers,props));
+  fireEvent.click(screen.getByRole("button",{name:"นำ Lobby 1 ออกจากห้อง"}));
+  view.rerender(React.createElement(HostPlayers,{...props,players:roster.slice(1)}));
+  assert.equal(screen.queryByRole("button",{name:"ยืนยันนำออก"}),null);
+  view.rerender(React.createElement(HostPlayers,{...props,enabled:false}));
+  assert.equal(screen.queryByRole("button",{name:/นำ Lobby/}),null);
+  assert.ok(screen.getByText(/นำชื่อออกไม่ได้/));
+});
+
+test("Host refreshes after start-race rejection instead of claiming removal", async () => {
+  let refreshes=0;
+  globalThis.fetch=async()=>json({error:"LOBBY_CLOSED"},409);
+  render(React.createElement(HostPlayers,{room:"142426",players:roster,enabled:true,busy:false,onBusyChange:()=>{},onChanged:async()=>refreshes++}));
+  fireEvent.click(screen.getByRole("button",{name:"นำ Lobby 1 ออกจากห้อง"}));
+  fireEvent.click(screen.getByRole("button",{name:"ยืนยันนำออก"}));
+  await screen.findByText("เกมเริ่มแล้ว · นำชื่อออกไม่ได้");
+  assert.equal(refreshes,1);
+});
+
+test('Lobby disables Ready while a confirmed departure is in flight', async()=>{
+  window.history.replaceState(null,'','/lobby?room=142426');
+  let finish;const pending=new Promise(resolve=>finish=resolve);let readyCalls=0;
+  globalThis.fetch=async(url)=>{
+    if(url==='/api/game/leave')return pending;
+    if(url==='/api/game/ready'){readyCalls++;return json({ready:true});}
+    return json({room:{code:'142426',status:'lobby',readyCount:0},summary:{player:{nickname:'QA'}}});
+  };
+  render(React.createElement(Lobby));
+  const leave=await screen.findByRole('button',{name:'ออกจากห้อง',exact:true});
+  await waitFor(()=>assert.equal(leave.disabled,false));
+  fireEvent.click(leave);
+  fireEvent.click(screen.getByRole('button',{name:'ยืนยันออกจากห้อง'}));
+  const ready=screen.getByRole('button',{name:'ฉันพร้อมแล้ว ✦'});
+  assert.equal(ready.disabled,true);fireEvent.click(ready);assert.equal(readyCalls,0);
+  finish(json({removed:true}));
+  await waitFor(()=>assert.deepEqual(globalThis.qaNavigation,['/']));
+});
+
+test("Bonus reveal uses the server's persisted result and preserves historical verdicts", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const expected = Array(10).fill("Cheat");
+  for (const [stored, correct] of [["Cheat", 10], ["Cheat ", 9]]) {
+    const state = bonusState();
+    state.room.status = "reveal";
+    state.question.reveal = { correctAnswers: expected };
+    state.summary.currentResponse = { answers: expected.map((s, i) => i === 6 ? stored : s) };
+    globalThis.fetch = async () => json(state);
+    const view = render(React.createElement(Play));
+    try {
+      await screen.findByText(`ตอบถูก ${correct} / 10 เพลง`);
+      const rows = document.querySelectorAll(".bonus-reveal-list li");
+      assert.equal(rows[6].classList.contains("bonus-correct"), correct === 10);
+      assert.equal(document.querySelectorAll(".bonus-correct").length, correct);
+    } finally { view.unmount(); }
+  }
 });

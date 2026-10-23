@@ -9,7 +9,9 @@
     "typecheck": "tsc --noEmit",
     "test:client": "node --test scripts/client-regression.test.mjs",
     "test:api": "node scripts/smoke-invalid-requests.mjs",
-    "test:db": "node scripts/db-lookup-regression.mjs"
+    "test:db": "node scripts/db-lookup-regression.mjs",
+    "test:bonus": "node scripts/bonus-trim-regression.mjs",
+    "test:lobby": "node --test scripts/lobby-removal-api.test.mjs && node scripts/lobby-removal-db.mjs"
   },
   "dependencies": {
     "@react-three/drei": "10.7.8",

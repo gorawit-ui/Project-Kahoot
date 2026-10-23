@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { HostPlayerList, type LobbyPlayer } from "@/components/host-player-list";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   BonusDistributionGrid,
@@ -19,6 +20,8 @@ type HostState = {
   playerCount: number;
   readyCount?: number;
   answerCount?: number;
+  canManagePlayers?: boolean;
+  players?: LobbyPlayer[];
   leaderboard: { nickname: string; score: number }[];
 };
 
@@ -229,6 +232,7 @@ export default function HostDashboard() {
                 รหัสห้อง
                 <input
                   className="code-input"
+                  disabled={busy}
                   placeholder="รหัสห้อง 6 หลัก"
                   value={room}
                   onChange={(event) => setRoom(event.target.value.replace(/\D/g, "").slice(0, 6))}
@@ -314,6 +318,7 @@ export default function HostDashboard() {
               {showAll ? "แสดง Top 5" : "แสดงทุกคน"}
             </button>
           </section>
+          {currentData ? <HostPlayerList key={room} room={room} players={currentData.players ?? []} enabled={game?.status === "lobby" && currentData.canManagePlayers === true} busy={busy} onBusyChange={setBusy} onChanged={() => refresh(room)} /> : null}
         </div>
       </section>
     </main>

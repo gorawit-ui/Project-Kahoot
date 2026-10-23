@@ -817,3 +817,12 @@ button, .button, .choice { touch-action: manipulation; -webkit-tap-highlight-col
   overflow: hidden;
   white-space: nowrap;
 }
+
+/* Lobby-only, explicit player removal controls. */
+.lobby-leave-control { margin-top: 16px; text-align: center; }
+.lobby-leave-control p, .host-player-management p { line-height: 1.6; }
+.lobby-leave-control [role="group"], .host-player-management [role="group"] { padding: 12px; border: 1px solid rgba(255,226,151,.4); border-radius: 12px; }
+.lobby-leave-control button, .host-player-management button { margin: 4px; }
+.host-player-management { grid-column: 1 / -1; }
+.host-player-management .rank-list li { gap: 12px; flex-wrap: wrap; }
+.host-player-management .rank-list span { overflow-wrap: anywhere; min-width: 0; }
