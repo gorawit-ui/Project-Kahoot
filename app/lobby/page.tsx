@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
 import { MagicalLogo } from "@/components/magical-world";
+import { LeaveRoomButton } from "@/components/leave-room-button";
 
 export default function LobbyPage() {
   const [room, setRoom] = useState("142426");
@@ -13,6 +14,8 @@ export default function LobbyPage() {
   const [connectionMessage, setConnectionMessage] = useState("กำลังเชื่อมต่อกับห้อง…");
   const [readyCount, setReadyCount] = useState<number | null>(null);
   const [readying, setReadying] = useState(false);
+  const [leaving, setLeaving] = useState(false);
+  const [canLeave, setCanLeave] = useState(false);
   const [readyMessage, setReadyMessage] = useState("");
   const [needsSessionRecovery, setNeedsSessionRecovery] = useState(false);
   const navigating = useRef(false);
@@ -48,6 +51,7 @@ export default function LobbyPage() {
           return;
         }
         setLive(true);
+        setCanLeave(game.room.status === "lobby");
         setNeedsSessionRecovery(false);
         setConnectionMessage("● เชื่อมต่อกับห้องจริงแล้ว");
         setReadyCount(typeof game.room.readyCount === "number" ? game.room.readyCount : null);
@@ -69,7 +73,7 @@ export default function LobbyPage() {
   }, []);
 
   async function markReady() {
-    if (readying) return;
+    if (readying || leaving) return;
     setReadying(true);
     setReadyMessage("กำลังยืนยันความพร้อม…");
     try {
@@ -110,7 +114,8 @@ export default function LobbyPage() {
           <div className="live-status" role="status">{connectionMessage}</div>
           {readyMessage ? <p className="ready-message" role="status">{readyMessage}</p> : null}
           {needsSessionRecovery ? <Link className="back-link" href={/^\d{6}$/.test(room) ? `/join?room=${encodeURIComponent(room)}` : "/join"}>กลับไปเข้าร่วมห้อง</Link> : null}
-          <button className="button primary lobby-start" type="button" disabled={readying || !live} onClick={() => void markReady()}>{readying ? "กำลังยืนยัน…" : "ฉันพร้อมแล้ว ✦"}</button>
+          <button className="button primary lobby-start" type="button" disabled={readying || leaving || !live} onClick={() => void markReady()}>{readying ? "กำลังยืนยัน…" : "ฉันพร้อมแล้ว ✦"}</button>
+          <LeaveRoomButton room={room} disabled={!live || !canLeave || readying} onBusyChange={value => { setLeaving(value); navigating.current = value; }} />
         </div>
       </section>
     </main>

@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
 
     const { data: roomRow, error: roomError } = await supabase
       .from("rooms")
-      .select("id, quiz_id, current_position")
+      .select("id, quiz_id, current_position, status, question_started_at")
       .eq("code", room)
       .maybeSingle();
     if (roomError || !roomRow) {
@@ -32,11 +32,18 @@ export async function GET(request: NextRequest) {
 
     const { data: players, error: playersError } = await supabase
       .from("players")
-      .select("nickname, total_score, joined_at")
+      .select("id, nickname, total_score, joined_at, ready_at")
       .eq("room_id", roomRow.id)
       .order("total_score", { ascending: false })
       .order("joined_at", { ascending: true });
     if (playersError) return NextResponse.json({ error: playersError.message }, { status: 500 });
+
+    let canManagePlayers = roomRow.status === "lobby" && roomRow.question_started_at === null;
+    if (canManagePlayers) {
+      const { count, error } = await supabase.from("answers").select("id", { count: "exact", head: true }).eq("room_id", roomRow.id);
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+      canManagePlayers = count === 0 && (players ?? []).every(player => player.total_score === 0);
+    }
 
     const { data: question, error: questionError } = await supabase
       .from("questions")
@@ -74,6 +81,8 @@ export async function GET(request: NextRequest) {
         playerCount: players?.length ?? 0,
         readyCount,
         answerCount,
+        canManagePlayers,
+        players: (players ?? []).map(({ id, nickname, ready_at }) => ({ id, nickname, ready: ready_at !== null })),
         leaderboard: (players ?? []).map(({ nickname, total_score }) => ({
           nickname,
           score: total_score,
