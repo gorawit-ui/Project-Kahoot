@@ -42,6 +42,27 @@ button, input { font: inherit; }
   --world-shade-top: rgba(4, 15, 48, .24);
   --world-shade-bottom: rgba(4, 12, 36, .86);
 }
+/* Home-only sparkle: small opacity/transform animations, no canvas or JS loop. */
+.home-sparkles { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; contain: layout paint; }
+.home-shell .hero-card { position: relative; z-index: 1; }
+.home-star { position: absolute; color: #fff0bd; font: 22px/1 Georgia, serif; opacity: .12; animation: home-star-twinkle 5.8s ease-in-out infinite both; }
+.home-star:nth-child(2n) { font-size: 15px; animation-duration: 7.2s; }
+.home-star:nth-child(3n) { animation-duration: 4.8s; }
+.home-shell .logo-spark { animation: home-star-twinkle 4.8s ease-in-out infinite both; }
+.home-shell .spark-two { animation-delay: -1.6s; }
+.home-shell .spark-three { animation-delay: -3.2s; }
+@keyframes home-star-twinkle {
+  0%, 70%, 100% { opacity: .12; transform: scale(.72); }
+  32% { opacity: .95; transform: scale(1.16); }
+  48% { opacity: .35; transform: scale(.92); }
+}
+@media (max-width: 640px) {
+  .home-star:nth-child(2n) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-sparkles { display: none; }
+  .home-shell .logo-spark { animation: none; }
+}
 @media (max-width: 640px) {
   .page-shell { --world-art: url("/assets/background-world-mobile.webp"); }
 }

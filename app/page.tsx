@@ -3,12 +3,17 @@
 import Link from "next/link";
 import { useState } from "react";
 
+// Fixed positions keep the server and browser render identical.
+const homeStars = [[8, 16], [21, 8], [82, 12], [94, 29], [13, 42], [87, 49], [5, 66], [95, 77], [23, 86], [76, 90], [37, 5], [64, 34]] as const;
+
 export default function HomePage() {
   const [room, setRoom] = useState("");
 
   return (
     <main className="page-shell home-shell">
-
+      <div className="home-sparkles" aria-hidden="true">
+        {homeStars.map(([left, top], index) => <span className="home-star" key={index} style={{ left: `${left}%`, top: `${top}%`, animationDelay: `-${index * .7}s` }}>{index % 2 ? "✧" : "✦"}</span>)}
+      </div>
       <section className="hero-card">
         <div className="presented-mark" aria-label="Jixgo Presents">
           <span>✦</span><i /><strong>Jixgo Presents</strong><i /><span>✦</span>
