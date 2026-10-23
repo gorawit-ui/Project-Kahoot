@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { guestTitle } from "@/lib/guest-title";
-import { MagicalBackground, MagicalLogo } from "@/components/magical-world";
+import { MagicalLogo } from "@/components/magical-world";
 
 export default function LobbyPage() {
   const [room, setRoom] = useState("142426");
@@ -92,7 +92,7 @@ export default function LobbyPage() {
   }
 
   return (
-    <main className="page-shell lobby-world-shell"><MagicalBackground />
+    <main className="page-shell lobby-world-shell">
       <section className="shell-content">
         <div className="topbar"><span className="pill">MAGICAL GUEST PASS</span><Link className="back-link" href={/^\d{6}$/.test(room) ? `/join?room=${encodeURIComponent(room)}` : "/join"}>เปลี่ยนชื่อ</Link></div>
         {entering ? <div className="portal-transition" role="status" aria-live="polite"><div className="portal-transition-ring">✦</div><span>กำลังเปิดประตูสู่โลกของ Jixgo…</span></div> : null}

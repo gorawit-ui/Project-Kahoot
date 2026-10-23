@@ -2,18 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { MagicBackdrop } from "@/components/magic-backdrop";
 
 export default function HomePage() {
   const [room, setRoom] = useState("");
 
   return (
     <main className="page-shell home-shell">
-      <div className="hero-art" aria-hidden="true" />
-      <MagicBackdrop />
-      <div className="magic-portal-ring ring-one" aria-hidden="true" />
-      <div className="magic-portal-ring ring-two" aria-hidden="true" />
-      <div className="light-sweep" aria-hidden="true" />
 
       <section className="hero-card">
         <div className="presented-mark" aria-label="Jixgo Presents">
@@ -22,8 +16,7 @@ export default function HomePage() {
 
         <div className="logo-stage">
           <div className="logo-plate" aria-hidden="true" />
-          <div className="logo-aura" aria-hidden="true" />
-          <img className="event-logo" src="/assets/logo-jixgo-full.png" alt="JIXGO Magical 24" width={1238} height={1046} />
+          <img className="event-logo" src="/assets/logo-jixgo-full.webp" alt="JIXGO Magical 24" width={1000} height={845} />
           <div className="logo-spark spark-one" aria-hidden="true">✦</div>
           <div className="logo-spark spark-two" aria-hidden="true">✧</div>
           <div className="logo-spark spark-three" aria-hidden="true">✦</div>
