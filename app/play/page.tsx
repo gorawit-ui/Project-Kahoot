@@ -67,7 +67,108 @@ export default function PlayPage() {
       }
       const savedResponse = next.summary?.currentResponse;
       if (next.question?.kind === "bonus" && next.summary?.player) {
-        const key = `jixgo-bonus-draft:${code}:${next.question.id}:${encodeURIComponent(next.summary.playe…3001 tokens truncated…2ย</div><div className="bonus-grid">{clues.map((clue, index) => <label className="bonus-entry" key={clue.id}><span className="bonus-id">{clue.id}</span><span className="bonus-clue">{clue.prompt}</span><input value={answers[index] ?? ""} onChange={event => change(index, event.target.value)} placeholder="พิมพ์ชื่อเพลง" disabled={disabled} autoComplete="off" /></label>)}</div><button className="button primary bonus-submit" disabled={disabled} onClick={submit}>ส่งคาถาทั้ง 10 เพลง ✦</button></>; }
+        const key = `jixgo-bonus-draft:${code}:${next.question.id}:${encodeURIComponent(next.summary.player.nickname)}`;
+        const questionEnded = next.room.status === "reveal" || next.room.status === "q20_summary" || next.room.status === "finished";
+        if (savedResponse || questionEnded) {
+          removeBonusDraft(key);
+          bonusDraftKey.current = null;
+        } else if (bonusDraftKey.current !== key) {
+          bonusDraftKey.current = key;
+          setAnswers(readBonusDraft(key) ?? Array(10).fill(""));
+        }
+      }
+      if (savedResponse) {
+        answerLock.current = true;
+        setSubmitted(true);
+        setSending(false);
+        setSelected(next.question?.kind === "choice" ? (next.question.options as string[]).indexOf(savedResponse.option ?? "") : null);
+        if (savedResponse.answers) setAnswers(savedResponse.answers);
+        setSubmissionMessage("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+      }
+      const serverTime = Date.parse(next.serverNow ?? "");
+      if (Number.isFinite(serverTime)) { serverOffset.current = serverTime - Date.now(); setNow(serverTime); }
+      setState(next);
+      setConnected(true);
+      setMessage(next.summary ? "" : "เซสชันผู้เล่นไม่พร้อม · กลับไปเข้าร่วมห้องใหม่");
+    } catch {
+      if (version === refreshVersion.current) { setConnected(false); setMessage("การเชื่อมต่อสะดุด · กำลังลองใหม่"); }
+    } finally {
+      window.clearTimeout(timeout);
+      if (version === refreshVersion.current) refreshInFlight.current = false;
+    }
+  }, []);
+  useEffect(() => {
+    refreshInFlight.current = false;
+    const code = new URLSearchParams(window.location.search).get("room")?.trim() || "";
+    setRoom(code);
+    if (!/^\d{6}$/.test(code)) { setMessage("ต้องเข้าร่วมห้องก่อนเริ่มเล่น"); return; }
+    void refresh(code);
+    const poll = window.setInterval(() => void refresh(code), 1000);
+    const clock = window.setInterval(() => setNow(Date.now() + serverOffset.current), 250);
+    return () => {
+      window.clearInterval(poll); window.clearInterval(clock);
+      refreshVersion.current++; refreshController.current?.abort();
+    };
+  }, [refresh]);
+  const question = state?.question;
+  const summary = state?.summary ?? null;
+  const seconds = useMemo(() => state?.room.deadlineAt ? Math.max(0, Math.ceil((new Date(state.room.deadlineAt).getTime() - now) / 1000)) : 0, [state?.room.deadlineAt, now]);
+  const canAnswer = connected && !!summary && state?.room.status === "question" && seconds > 0 && !submitted && !sending;
+  async function submit(response: { option?: string; answers?: string[] }) {
+    if (!room || !canAnswer || answerLock.current || !question) return;
+    const submittedQuestion = question.id;
+    answerLock.current = true;
+    setSending(true); setSubmissionMessage("กำลังล็อกคำตอบ…");
+    try {
+      const result = await fetch("/api/game/answer", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ room, questionId: submittedQuestion, response }),
+        signal: AbortSignal.timeout(10000),
+      });
+      const payload = await result.json().catch(() => ({}));
+      if (questionId.current !== submittedQuestion) return;
+      if (!result.ok && payload.error !== "ALREADY_ANSWERED") {
+        answerLock.current = false;
+        setSubmissionMessage(payload.error === "QUESTION_CHANGED" ? "คำถามเปลี่ยนแล้ว · กำลังโหลดข้อปัจจุบัน" : "ส่งคำตอบไม่สำเร็จหรือหมดเวลาแล้ว · ลองอีกครั้ง");
+        void refresh(room);
+        return;
+      }
+      setSubmitted(true); setSubmissionMessage("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ");
+      if (payload.accepted === true || payload.error === "ALREADY_ANSWERED") {
+        removeBonusDraft(bonusDraftKey.current);
+        // Keep the hydrated key until polling confirms the accepted response, so
+        // a state read started before submission cannot restore an empty draft.
+      }
+    } catch {
+      if (questionId.current !== submittedQuestion) return;
+      // A response can be lost after the server accepted it. The next poll restores
+      // the authoritative response; a retry cannot create duplicate points.
+      answerLock.current = false;
+      setSubmissionMessage("การเชื่อมต่อสะดุด · กำลังตรวจคำตอบ ลองส่งอีกครั้งได้");
+      void refresh(room);
+    } finally {
+      if (questionId.current === submittedQuestion) setSending(false);
+    }
+  }
+  function changeBonusAnswer(index: number, value: string) {
+    const next = answers.map((answer, answerIndex) => answerIndex === index ? value : answer);
+    setAnswers(next);
+    if (bonusDraftKey.current) {
+      try { window.sessionStorage.setItem(bonusDraftKey.current, JSON.stringify(next)); } catch { /* Storage is optional. */ }
+    }
+  }
+  if (connected && !summary && (state?.summaryError === "PLAYER_SESSION_REQUIRED" || state?.summaryError?.includes("PLAYER_NOT_FOUND"))) return <Waiting room={room} message="เซสชันเดิมหมดอายุหรือไม่พบข้อมูลผู้เล่น · กรุณาเข้าร่วมห้องอีกครั้ง" recovery />;
+  if (state?.room.status === "finished") return <Finish nickname={nickname} summary={summary} summaryError={state?.summaryError} ranks={ranks.current} />;
+  if (!question || (state?.room.status !== "question" && state?.room.status !== "reveal" && state?.room.status !== "q20_summary")) return <Waiting room={room} message={message} allowLeave={connected && !!summary && state?.room.status === "lobby"} />;
+  if (state.room.status === "q20_summary") return <RoomQ20Summary summary={state.bonusSummary} />;
+  if (state.room.status === "reveal") return <RevealWithDistribution question={question} selected={selected} submitted={submitted} summary={summary} summaryError={state.summaryError} ranks={ranks.current} distribution={state.distribution} />;
+  return <main className="page-shell question-screen"><section className="shell-content player-shell"><QuestionProgress current={question.position} /><div className="topbar player-topbar"><span className="question-number">QUESTION {String(question.position).padStart(2, "0")} / 20 · LIVE</span><span className={`timer ${seconds < 10 ? "danger" : ""}`}><small>TIME</small><strong>{seconds}</strong><em>SEC</em></span></div><div className={`panel question-card player-question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>{question.kind === "choice" ? <Choice key={question.id} question={question} selected={selected} disabled={!canAnswer} choose={(index) => { if (answerLock.current) return; setSelected(index); void submit({ option: String(question.options[index]) }); }} /> : <Bonus question={question} answers={answers} disabled={!canAnswer} change={changeBonusAnswer} submit={() => void submit({ answers })} />}<div className={`answer-status ${submitted ? "submitted" : seconds === 0 ? "expired" : ""}`}>{sending ? "กำลังล็อกคำตอบ…" : message || submissionMessage || (seconds === 0 ? "หมดเวลาแล้ว · เฉลยจะแสดงใน 3 วินาที" : "คำตอบจะถูกล็อกเมื่อส่งหรือหมดเวลา")}</div><Link className="back-link player-exit" href="/">ออกจากเกม</Link></div></section></main>;
+}
+
+function Choice({ question, selected, disabled, choose }: { question: Question; selected: number | null; disabled: boolean; choose: (index: number) => void }) { const choices = question.options as string[]; const media = question.media; return <>{media.type === "emoji" ? <div className="emoji-question-frame"><div className="emoji-question-line">{media.displayClues ?? media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={media.src} alt="ภาพประกอบคำถาม" /></div>}<h1 className="question-text question-prompt-banner">{question.prompt}</h1><div className="choices">{choices.map((choice, index) => <button className={`choice ${selected === index ? "selected" : ""}`} key={choice} disabled={disabled} onClick={() => choose(index)}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></button>)}</div></>; }
+function RevealWithDistribution(props: { question: Question; selected: number | null; submitted: boolean; summary: PlayerSummary | null; summaryError?: string | null; ranks: Record<string, number>; distribution?: ChoiceDistribution | null }) { return <Reveal {...props} distribution={props.distribution} />; }
+function RoomQ20Summary({ summary }: { summary?: BonusSummary | null }) { return <main className="page-shell lobby-world-shell"><section className="shell-content player-shell"><div className="panel reveal-card room-summary-card"><BonusDistributionGrid summary={summary} /></div></section></main>; }
+function Bonus({ question, answers, disabled, change, submit }: { question: Question; answers: string[]; disabled: boolean; change: (index: number, value: string) => void; submit: () => void }) { const clues = question.options as BonusPrompt[]; return <><div className="bonus-heading"><span className="bonus-kicker">✦ FINAL SPELL · 120 SEC ✦</span><h1>{question.prompt}</h1><p>เติมชื่อเพลงให้ครบทุกตัวอักษร แล้วส่งคำตอบทั้ง 10 เพลง</p></div><div className="bonus-rule">สะกดให้ตรงทุกตัวอักษร · ระบบไม่นับช่องว่างหัว–ท้าย</div><div className="bonus-grid">{clues.map((clue, index) => <label className="bonus-entry" key={clue.id}><span className="bonus-id">{clue.id}</span><span className="bonus-clue">{clue.prompt}</span><input value={answers[index] ?? ""} onChange={event => change(index, event.target.value)} placeholder="พิมพ์ชื่อเพลง" disabled={disabled} autoComplete="off" /></label>)}</div><button className="button primary bonus-submit" disabled={disabled} onClick={submit}>ส่งคาถาทั้ง 10 เพลง ✦</button></>; }
 function Reveal({ question, selected, submitted, summary, summaryError, ranks, distribution }: { question: Question; selected: number | null; submitted: boolean; summary: PlayerSummary | null; summaryError?: string | null; ranks: Record<string, number>; distribution?: ChoiceDistribution | null }) { const correct = question.reveal?.correctOption; const bonusAnswers = question.reveal?.correctAnswers; const own = summary?.currentResponse?.option ?? (selected === null ? null : String(question.options[selected])); const isCorrect = correct !== undefined && own === correct; const bonusClues = question.options as BonusPrompt[]; const bonusResponses = summary?.currentResponse?.answers ?? []; const bonusCorrectCount = bonusAnswers?.filter((answer, index) => bonusResponses[index] === answer).length ?? 0;
   const hasPositiveResult = question.kind === "bonus" ? bonusCorrectCount > 0 : isCorrect;
   const resultClass = question.kind === "bonus" && !bonusAnswers ? "" : hasPositiveResult ? "correct" : "wrong";
