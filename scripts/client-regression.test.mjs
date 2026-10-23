@@ -515,3 +515,42 @@ test("A stale pre-submit Bonus poll cannot erase an accepted answer's visible in
     assert.ok(screen.getByText("ส่งคำตอบแล้ว · รอเฉลยอัตโนมัติ"));
   } finally { releaseStaleRead(json(beforeSubmission)); view.unmount(); }
 });
+
+
+test("Final Bonus reveal shows accurate full, partial and zero results without next-question prompts", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const expected = Array.from({ length: 10 }, (_, i) => `Song ${i + 1}`);
+  for (const count of [10, 4, 0]) {
+    const state = bonusState();
+    state.room.status = "reveal";
+    state.question.reveal = { correctAnswers: expected };
+    state.summary.currentResponse = { answers: expected.map((song, i) => i < count ? song : "Wrong") };
+    globalThis.fetch = async () => json(state);
+    const view = render(React.createElement(Play));
+    try {
+      await screen.findByText(`ตอบถูก ${count} / 10 เพลง`);
+      assert.equal(document.querySelectorAll(".bonus-correct").length, count);
+      assert.equal(document.querySelectorAll(".bonus-wrong").length, 10 - count);
+      assert.equal(document.querySelector(".reveal-card").classList.contains("correct"), count > 0);
+      assert.equal(document.querySelector(".reveal-card").classList.contains("wrong"), count === 0);
+      assert.ok(screen.getByText("จบครบทุกข้อแล้ว ✨ ขอบคุณที่ร่วมสนุก"));
+      assert.ok(screen.getByText("รอ Host แสดงสรุปผลและอันดับสุดท้าย ✦"));
+      assert.equal(screen.queryByText(/ข้อต่อไป|ข้อถัดไป/), null);
+    } finally { view.unmount(); }
+  }
+});
+
+test("Earlier choice reveals still encourage and wait for the next question", async () => {
+  window.history.replaceState(null, "", "/play?room=142426");
+  const state = activeState();
+  state.room.status = "reveal";
+  state.question.reveal = { correctOption: "Alpha" };
+  state.summary.currentResponse = { option: "Alpha" };
+  globalThis.fetch = async () => json(state);
+  const view = render(React.createElement(Play));
+  try {
+    await screen.findByRole("heading", { name: "คำตอบถูกต้อง!" });
+    assert.ok(screen.getByText("เก่งมากเลย ✨ ข้อต่อไปเอาอีกนะ"));
+    assert.ok(screen.getByText("รอ Host เริ่มข้อถัดไป ✦"));
+  } finally { view.unmount(); }
+});
