@@ -24,7 +24,7 @@ export default function PreviewClient({ initialQuestionId }: PreviewClientProps)
     <div className={`panel question-card ${question.kind === "bonus" ? "bonus-card" : ""}`}>
       <div className="preview-meta"><span>QUESTION {String(question.id).padStart(2, "0")} / {publicPreviewQuestions.length}</span><span>{question.timeSeconds} SEC {question.kind === "bonus" ? "BONUS" : "DEFAULT"}</span></div>
       {question.kind === "choice" ? <>
-        {question.media?.type === "emoji" ? <div className="emoji-question-frame" role="img" aria-label={`โจทย์อิโมจิ: ${question.media.clues}`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className="question-image-frame"><img className="question-image" src={question.media?.src} alt={`ภาพประกอบคำถามที่ ${question.id}`} /></div>}
+        {question.media?.type === "emoji" ? <div className="emoji-question-frame" role="img" aria-label={`โจทย์อิโมจิ: ${question.media.clues}`}><div className="emoji-question-line">{question.media.displayClues ?? question.media.clues}</div></div> : <div className={`question-image-frame${question.media?.fit === "contain" ? " image-fit-contain" : ""}`}><img className="question-image" src={question.media?.src} alt={`ภาพประกอบคำถามที่ ${question.id}`} /></div>}
         <h2 className="question-text question-prompt-banner">{question.prompt}</h2>
         <div className="choices preview-choices">{question.choices?.map((choice, index) => <div className="choice preview-choice" key={choice}><span className="choice-key">{String.fromCharCode(65 + index)}</span><span>{choice}</span></div>)}</div>
         <p className="result-note">โหมดนี้ใช้ตรวจคำถามและภาพก่อนสร้างห้องจริง โดยไม่เผยเฉลยใน browser</p>

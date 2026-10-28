@@ -826,3 +826,13 @@ button, .button, .choice { touch-action: manipulation; -webkit-tap-highlight-col
 .host-player-management { grid-column: 1 / -1; }
 .host-player-management .rank-list li { gap: 12px; flex-wrap: wrap; }
 .host-player-management .rank-list span { overflow-wrap: anywhere; min-width: 0; }
+
+/* Keep approved replacement photos fully visible inside the existing frame. */
+.question-image-frame.image-fit-contain .question-image {
+  position: absolute;
+  inset: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
+  object-fit: contain !important;
+  object-position: center;
+}

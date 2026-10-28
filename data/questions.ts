@@ -5,7 +5,7 @@ export type ChoiceQuestion = {
   choices: string[];
   correctIndex: number;
   answer: string;
-  media: { type: "image"; src: string } | { type: "emoji"; clues: string; displayClues?: string };
+  media: { type: "image"; src: string; fit?: "contain" } | { type: "emoji"; clues: string; displayClues?: string };
   timeSeconds: number;
 };
 
@@ -28,16 +28,16 @@ const emoji = (clues: string, displayClues?: string) => ({ type: "emoji" as cons
 export const sampleQuestions: QuizQuestion[] = [
   { id: 1, kind: "choice", prompt: "จิ๊กโก๋เกิดวันที่เท่าไหร่", choices: ["24 พย.", "22 พย.", "26 พย.", "28 พย."], correctIndex: 3, answer: "28 พย.", media: image(1), timeSeconds: 15 },
   { id: 2, kind: "choice", prompt: "จิ๊กโก๋เกิดราศีอะไร", choices: ["ราศีธนู", "ราศีเมษ", "ราศีพิจิก", "ราศีพิจิกกา"], correctIndex: 2, answer: "ราศีพิจิก", media: image(2), timeSeconds: 15 },
-  { id: 3, kind: "choice", prompt: "บ้านเกิดจิ๊กโก๋อยู่จังหวัดไหน", choices: ["พิษณุโลก", "ย่าโม", "เชียงใหม่", "เขาใหญ่"], correctIndex: 0, answer: "พิษณุโลก", media: image(3), timeSeconds: 15 },
+  { id: 3, kind: "choice", prompt: "บ้านเกิดจิ๊กโก๋อยู่จังหวัดไหน", choices: ["พิษณุโลก", "พิดโลก", "เชียงใหม่", "กรุงเทพ"], correctIndex: 0, answer: "พิษณุโลก", media: image(3), timeSeconds: 15 },
   { id: 4, kind: "choice", prompt: "จิ๊กโก๋มีชื่อเล่นจริงๆว่าอะไร", choices: ["จิ๋ว", "จิ๊กโก๋", "ครีม", "จิ๊กกี๋"], correctIndex: 2, answer: "ครีม", media: image(4), timeSeconds: 15 },
   { id: 5, kind: "choice", prompt: "จิ๊กโก๋กรุ๊ปเลือดอะไร", choices: ["A", "B", "AB", "O"], correctIndex: 1, answer: "B", media: image(5), timeSeconds: 15 },
   { id: 6, kind: "choice", prompt: "เพลงแรกที่ร้อง 3 คน เพลงอะไร", choices: ["โต๊ะหมู่", "โต๊ะพึมๆ", "โต๊ะริมทาง", "โต๊ะริม"], correctIndex: 3, answer: "โต๊ะริม", media: image(6), timeSeconds: 15 },
   { id: 7, kind: "choice", prompt: "ปี 2569 นี้จิ๊กโก๋อายุเท่าไหร่?", choices: ["24", "20", "19", "22"], correctIndex: 0, answer: "24", media: image(7), timeSeconds: 15 },
   { id: 8, kind: "choice", prompt: "เพลง ใจฟูทุกครั้งที่มองหน้าเธอ จิ๊กโก๋ ใส่เสื้อสีอะไร", choices: ["ขาว", "ดำ", "น้ำเงิน", "ชมพู"], correctIndex: 3, answer: "ชมพู", media: image(8), timeSeconds: 15 },
-  { id: 9, kind: "choice", prompt: "จิ๊กโก๋มีหมาชื่ออะไร", choices: ["โบโบ้", "บับว่า", "บับเบิ้ล", "ชัพปุย"], correctIndex: 2, answer: "บับเบิ้ล", media: image(9), timeSeconds: 15 },
+  { id: 9, kind: "choice", prompt: "จิ๊กโก๋มีหมา-แมว ชื่ออะไร", choices: ["บับเบิ้ล/ชับปุย", "บับว่า/แฮรรี่", "บับเบิ้ล/เท้าปุย", "ชัพปุย/เบิ้ล"], correctIndex: 2, answer: "บับเบิ้ล/เท้าปุย", media: { type: "image", src: "/assets/questions/question-09-20261028.jpg", fit: "contain" }, timeSeconds: 15 },
   { id: 10, kind: "choice", prompt: "ประเทศที่จิ๊กโก๋เคยไปศึกษาต่อคือประเทศอะไร", choices: ["Scotland", "New Zealand", "Australia", "Canada"], correctIndex: 1, answer: "New Zealand", media: image(10), timeSeconds: 15 },
   { id: 11, kind: "choice", prompt: "จากภาพนี้คือเพลงอะไร?", choices: ["ทนทำไม", "ออกมาได้แล้ว", "Toxic", "ทนไม่ไหวก็ต้องทน"], correctIndex: 0, answer: "ทนทำไม", media: image(11), timeSeconds: 15 },
-  { id: 12, kind: "choice", prompt: "จากภาพนี้คือเพลงอะไร?", choices: ["กลับไปหาคนในใจเลยไป", "อย่ากลับมาทำร้ายฉันคนนี้อีกเลย", "กลับไปหาคนในใจของเธอเลยไป", "กลัวฉันเสียเธอ"], correctIndex: 2, answer: "กลับไปหาคนในใจของเธอเลยไป", media: image(12), timeSeconds: 15 },
+  { id: 12, kind: "choice", prompt: "จากภาพนี้คือเพลงอะไร?", choices: ["กลับไปหาคนในใจเลยไป", "ไม่รักกันแล้ว", "กลับไปหาคนในใจของเธอเลยไป", "เธอช่วยทิ้งเราได้ไหม"], correctIndex: 3, answer: "เธอช่วยทิ้งเราได้ไหม", media: { type: "image", src: "/assets/questions/question-12-20261028.jpg", fit: "contain" }, timeSeconds: 15 },
   { id: 13, kind: "choice", prompt: "จากภาพนี้คือเพลงอะไร?", choices: ["จมอยู่กับความเสียใจ", "Cheat", "นอกใจกันมานานแค่ไหน", "การนอกใจไม่ใช่ความผิดพลาดไง"], correctIndex: 1, answer: "Cheat", media: image(13), timeSeconds: 15 },
   { id: 14, kind: "choice", prompt: " จากภาพนี้คือเพลงอะไร?", choices: ["ขอบคุณที่เกิดมาให้รัก", "อย่าแตกสลายเพราะใครเลย", "รักที่ปลอดภัย", "เพราะใจ"], correctIndex: 2, answer: "รักที่ปลอดภัย", media: image(14), timeSeconds: 15 },
   { id: 15, kind: "choice", prompt: "เรื่องนี้คือภาพยนตร์เรื่องอะไร?", choices: ["Mulan", "Raya and the Last Dragon", "Pocahontas", "Frozen"], correctIndex: 0, answer: "Mulan", media: emoji("🇨🇳⚔️🐉🏹🌸"), timeSeconds: 15 },
