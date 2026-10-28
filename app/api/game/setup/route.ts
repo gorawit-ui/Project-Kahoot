@@ -5,7 +5,8 @@ import { sampleQuestions } from "@/data/questions";
 import { getHostControlKey, HOST_SESSION_COOKIE, isValidHostSession } from "@/lib/host-auth";
 import { getSupabaseAdmin } from "@/lib/supabase-server";
 
-const QUIZ_TITLE = "JIXGO Magical 24";
+// New content version keeps completed/started rooms bound to their original answers.
+const QUIZ_TITLE = "JIXGO Magical 24 · 2026-10-28";
 const setupSchema = z.object({ room: z.string().regex(/^\d{6}$/) });
 
 export async function POST(request: Request) {

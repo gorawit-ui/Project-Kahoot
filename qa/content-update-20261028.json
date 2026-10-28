@@ -1,0 +1,124 @@
+{
+  "sheet": "kahoot",
+  "quizTitle": "JIXGO Magical 24 · 2026-10-28",
+  "questions": [
+    {
+      "position": 3,
+      "kind": "choice",
+      "prompt": "บ้านเกิดจิ๊กโก๋อยู่จังหวัดไหน",
+      "media": {
+        "type": "image",
+        "src": "/assets/questions/question-03.jpg"
+      },
+      "options": [
+        "พิษณุโลก",
+        "พิดโลก",
+        "เชียงใหม่",
+        "กรุงเทพ"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "พิษณุโลก"
+      }
+    },
+    {
+      "position": 9,
+      "kind": "choice",
+      "prompt": "จิ๊กโก๋มีหมา-แมว ชื่ออะไร",
+      "media": {
+        "type": "image",
+        "src": "/assets/questions/question-09-20261028.jpg",
+        "fit": "contain"
+      },
+      "options": [
+        "บับเบิ้ล/ชับปุย",
+        "บับว่า/แฮรรี่",
+        "บับเบิ้ล/เท้าปุย",
+        "ชัพปุย/เบิ้ล"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "บับเบิ้ล/เท้าปุย"
+      }
+    },
+    {
+      "position": 12,
+      "kind": "choice",
+      "prompt": "จากภาพนี้คือเพลงอะไร?",
+      "media": {
+        "type": "image",
+        "src": "/assets/questions/question-12-20261028.jpg",
+        "fit": "contain"
+      },
+      "options": [
+        "กลับไปหาคนในใจเลยไป",
+        "ไม่รักกันแล้ว",
+        "กลับไปหาคนในใจของเธอเลยไป",
+        "เธอช่วยทิ้งเราได้ไหม"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "เธอช่วยทิ้งเราได้ไหม"
+      }
+    }
+  ],
+  "previousQuestions": [
+    {
+      "position": 3,
+      "kind": "choice",
+      "prompt": "บ้านเกิดจิ๊กโก๋อยู่จังหวัดไหน",
+      "media": {
+        "src": "/assets/questions/question-03.jpg",
+        "type": "image"
+      },
+      "options": [
+        "พิษณุโลก",
+        "ย่าโม",
+        "เชียงใหม่",
+        "เขาใหญ่"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "พิษณุโลก"
+      }
+    },
+    {
+      "position": 9,
+      "kind": "choice",
+      "prompt": "จิ๊กโก๋มีหมาชื่ออะไร",
+      "media": {
+        "src": "/assets/questions/question-09.jpg",
+        "type": "image"
+      },
+      "options": [
+        "โบโบ้",
+        "บับว่า",
+        "บับเบิ้ล",
+        "ชัพปุย"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "บับเบิ้ล"
+      }
+    },
+    {
+      "position": 12,
+      "kind": "choice",
+      "prompt": "จากภาพนี้คือเพลงอะไร?",
+      "media": {
+        "src": "/assets/questions/question-12.jpg",
+        "type": "image"
+      },
+      "options": [
+        "กลับไปหาคนในใจเลยไป",
+        "อย่ากลับมาทำร้ายฉันคนนี้อีกเลย",
+        "กลับไปหาคนในใจของเธอเลยไป",
+        "กลัวฉันเสียเธอ"
+      ],
+      "time_limit_seconds": 15,
+      "correct_answer": {
+        "option": "กลับไปหาคนในใจของเธอเลยไป"
+      }
+    }
+  ]
+}
